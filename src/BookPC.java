@@ -1,5 +1,8 @@
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -7,11 +10,16 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Pos;
 
+import java.util.Date;
+
 public class BookPC extends Application {
     Scene scene;
     BorderPane bpOuter;
     FlowPane fp;
     VBox vbFields;
+    Label errorLbl;
+    DatePicker dateField;
+    TextField pcidField;
     @Override
     public void start(Stage primaryStage) throws Exception {
         bpOuter = new BorderPane();
@@ -26,6 +34,7 @@ public class BookPC extends Application {
         titleInit();
         dateInit();
         pcidInit();
+        errorInit();
         fp.getChildren().add(vbFields);
         bookInit();
 
@@ -47,7 +56,7 @@ public class BookPC extends Application {
 
     void dateInit(){
         Label dateLbl = new Label("Date");
-        DatePicker dateField = new DatePicker();
+        dateField = new DatePicker();
         dateField.setPrefWidth(400);
         VBox dateContainer = new VBox();
         dateContainer.getChildren().add(dateLbl);
@@ -57,17 +66,51 @@ public class BookPC extends Application {
 
     void pcidInit(){
         Label pcidLbl = new Label("PC ID");
-        TextField pcidField = new TextField();
+        pcidField = new TextField();
         VBox pcidContainer = new VBox();
         pcidContainer.getChildren().add(pcidLbl);
         pcidContainer.getChildren().add(pcidField);
         vbFields.getChildren().add(pcidContainer);
+    }
+    void errorInit(){
+        errorLbl = new Label("");
+        errorLbl.setTextFill(Color.RED);
+        vbFields.getChildren().add(errorLbl);
     }
 
     void bookInit(){
         Button book = new Button("Book");
         book.setPrefWidth(400);
         fp.getChildren().add(book);
+        book.setOnMouseClicked(bookClick());
+    }
+
+    private EventHandler<MouseEvent> bookClick(){
+        return new EventHandler<>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String date = "";
+                String pcid = pcidField.getText();
+                if(dateField.getValue() == null){
+                    errorLbl.setText("Date cannot be empty!");
+                } else{
+                    date = dateField.getValue().toString();
+                }
+                // ini harusnya di controller
+                if(pcid.isBlank()) {
+                    errorLbl.setText("PC ID cannot be empty!");
+                }
+                else{
+                    errorLbl.setText("");
+                    // lagi lagi, ini cuma iseng
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Book PC");
+                    alert.setHeaderText(null);
+                    alert.setContentText("PC Booked!");
+                    alert.showAndWait();
+                }
+            }
+        };
     }
 
     public static void main(String[] args) {

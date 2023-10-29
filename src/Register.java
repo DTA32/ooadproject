@@ -16,6 +16,10 @@ public class Register extends Application {
     BorderPane bp;
     FlowPane fp;
     Label errorLbl;
+    TextField usernameField;
+    PasswordField passwordField;
+    PasswordField confirmPasswordField;
+    Spinner<Integer> ageSpinner;
     @Override
     public void start(Stage primaryStage) throws Exception {
         bp = new BorderPane();
@@ -54,7 +58,7 @@ public class Register extends Application {
 
     void usernameInit() {
         Label usernameLbl = new Label("Username");
-        TextField usernameField = new TextField();
+        usernameField = new TextField();
         VBox usernameContainer = new VBox();
         usernameContainer.getChildren().add(usernameLbl);
         usernameContainer.getChildren().add(usernameField);
@@ -63,7 +67,7 @@ public class Register extends Application {
 
     void passwordInit() {
         Label passwordLbl = new Label("Password");
-        PasswordField passwordField = new PasswordField();
+        passwordField = new PasswordField();
         VBox passwordContainer = new VBox();
         passwordContainer.getChildren().add(passwordLbl);
         passwordContainer.getChildren().add(passwordField);
@@ -72,7 +76,7 @@ public class Register extends Application {
 
     void confirmPasswordInit() {
         Label confirmPasswordLbl = new Label("Confirm Password");
-        PasswordField confirmPasswordField = new PasswordField();
+        confirmPasswordField = new PasswordField();
         VBox passwordContainer = new VBox();
         passwordContainer.getChildren().add(confirmPasswordLbl);
         passwordContainer.getChildren().add(confirmPasswordField);
@@ -81,7 +85,7 @@ public class Register extends Application {
 
     void ageInit(){
         Label ageLbl = new Label("Age");
-        Spinner<Integer> ageSpinner = new Spinner<>(13, 65, 13);
+        ageSpinner = new Spinner<>(13, 65, 13);
         VBox ageContainer = new VBox();
         ageContainer.getChildren().add(ageLbl);
         ageContainer.getChildren().add(ageSpinner);
@@ -105,7 +109,35 @@ public class Register extends Application {
         return new EventHandler<>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Register Clicked");
+                String username = usernameField.getText();
+                String password = passwordField.getText();
+                String confirmPassword = confirmPasswordField.getText();
+                int age = ageSpinner.getValue();
+                // ini harusnya di controller
+                if(username.isBlank() || username.length() < 7){
+                    // kurang cek unique, harus ke db
+                    errorLbl.setText("Username must be at least 7 characters");
+                }
+                // check is username unique to db
+                else if(password.isBlank() || password.length() < 6 ){
+                    // kurang alphanumeric, tapi di soal gaboleh
+                    errorLbl.setText("Password must be at least 6 characters");
+                }
+                else if(!password.equals(confirmPassword)){
+                    errorLbl.setText("Password and Confirm Password must be the same");
+                }
+                else if(age < 13 || age > 65){
+                    errorLbl.setText("Age must be at least 13 years old");
+                }
+                else{
+                    errorLbl.setText("");
+                    // dibawah ini cuma iseng
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Register");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Register Success");
+                    alert.showAndWait();
+                }
             }
         };
     }
