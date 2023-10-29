@@ -91,14 +91,20 @@ public class BookPC extends Application {
             public void handle(MouseEvent event) {
                 String date = "";
                 String pcid = pcidField.getText();
+                Alert err = new Alert(Alert.AlertType.ERROR);
+                err.setTitle("Error");
                 if(dateField.getValue() == null){
-                    errorLbl.setText("Date cannot be empty!");
+//                    errorLbl.setText("Date cannot be empty!");
+                    err.setHeaderText("Date cannot be empty!");
+                    err.showAndWait();
                 } else{
                     date = dateField.getValue().toString();
                 }
                 // ini harusnya di controller
                 if(pcid.isBlank()) {
-                    errorLbl.setText("PC ID cannot be empty!");
+//                    errorLbl.setText("PC ID cannot be empty!");
+                    err.setHeaderText("PC ID cannot be empty!");
+                    err.showAndWait();
                 }
                 else{
                     errorLbl.setText("");

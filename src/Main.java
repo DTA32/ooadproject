@@ -173,8 +173,8 @@ public class Main extends Application {
     }
 
     public static void main(String args[]) {
-//        Register.main(args);
-        BookPC.main(args);
+        Register.main(args);
+//        BookPC.main(args);
 //        Report.main(args);
 //    	launch(args);
     }

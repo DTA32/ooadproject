@@ -113,24 +113,34 @@ public class Register extends Application {
                 String password = passwordField.getText();
                 String confirmPassword = confirmPasswordField.getText();
                 int age = ageSpinner.getValue();
+                Alert err = new Alert(Alert.AlertType.ERROR);
+                err.setTitle("Error");
                 // ini harusnya di controller
                 if(username.isBlank() || username.length() < 7){
                     // kurang cek unique, harus ke db
-                    errorLbl.setText("Username must be at least 7 characters");
+//                    errorLbl.setText("Username must be at least 7 characters");
+                    err.setHeaderText("Username must be at least 7 characters");
+                    err.showAndWait();
                 }
                 // check is username unique to db
                 else if(password.isBlank() || password.length() < 6 ){
                     // kurang alphanumeric, tapi di soal gaboleh
-                    errorLbl.setText("Password must be at least 6 characters");
+//                    errorLbl.setText("Password must be at least 6 characters");
+                    err.setHeaderText("Password must be at least 6 characters");
+                    err.showAndWait();
                 }
                 else if(!password.equals(confirmPassword)){
-                    errorLbl.setText("Password and Confirm Password must be the same");
+//                    errorLbl.setText("Password and Confirm Password must be the same");
+                    err.setHeaderText("Password and Confirm Password must be the same");
+                    err.showAndWait();
                 }
                 else if(age < 13 || age > 65){
-                    errorLbl.setText("Age must be at least 13 years old");
+//                    errorLbl.setText("Age must be at least 13 years old");
+                    err.setHeaderText("Age must be at least 13 years old");
+                    err.showAndWait();
                 }
                 else{
-                    errorLbl.setText("");
+//                    errorLbl.setText("");
                     // dibawah ini cuma iseng
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Register");
