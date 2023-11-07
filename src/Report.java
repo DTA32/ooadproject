@@ -14,7 +14,7 @@ public class Report extends Application{
     BorderPane bp;
     FlowPane fp;
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         bp = new BorderPane();
         fp = new FlowPane();
         fp.setOrientation(Orientation.VERTICAL);

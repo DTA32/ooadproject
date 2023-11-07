@@ -1,13 +1,10 @@
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -19,8 +16,9 @@ public class Register extends Application {
     PasswordField passwordField;
     PasswordField confirmPasswordField;
     Spinner<Integer> ageSpinner;
+    Button regButton;
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         bp = new BorderPane();
         fp = new FlowPane();
 
@@ -37,6 +35,7 @@ public class Register extends Application {
         bp.setCenter(fp);
 
         scene = new Scene(bp, 1200, 600);
+        setupEventHandling();
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -91,51 +90,47 @@ public class Register extends Application {
     }
 
     void registerInit() {
-        Button button = new Button("Register");
-        button.setPrefWidth(500);
-        fp.getChildren().add(button);
-        button.setOnMouseClicked(registerClick());
+        regButton = new Button("Register");
+        regButton.setPrefWidth(500);
+        fp.getChildren().add(regButton);
     }
 
-    private EventHandler<MouseEvent> registerClick() {
-        return new EventHandler<>() {
-            @Override
-            public void handle(MouseEvent event) {
-                String username = usernameField.getText();
-                String password = passwordField.getText();
-                String confirmPassword = confirmPasswordField.getText();
-                int age = ageSpinner.getValue();
-                Alert err = new Alert(Alert.AlertType.ERROR);
-                err.setTitle("Error");
-                // ini harusnya di controller
-                if(username.isBlank() || username.length() < 7){
-                    // kurang cek unique, harus ke db
-                    err.setHeaderText("Username must be at least 7 characters");
-                    err.showAndWait();
-                }
-                // check is username unique to db
-                else if(password.isBlank() || password.length() < 6 ){
-                    // kurang alphanumeric, tapi di soal gaboleh regex
-                    err.setHeaderText("Password must be at least 6 characters");
-                    err.showAndWait();
-                }
-                else if(!password.equals(confirmPassword)){
-                    err.setHeaderText("Password and Confirm Password must be the same");
-                    err.showAndWait();
-                }
-                else if(age < 13 || age > 65){
-                    err.setHeaderText("Age must be at least 13 years old");
-                    err.showAndWait();
-                }
-                else{
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Register");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Register Success");
-                    alert.showAndWait();
-                }
+    void setupEventHandling() {
+        regButton.setOnMouseClicked((e) -> {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            String confirmPassword = confirmPasswordField.getText();
+            int age = ageSpinner.getValue();
+            Alert err = new Alert(Alert.AlertType.ERROR);
+            err.setTitle("Error");
+            // ini harusnya di controller
+            if(username.isBlank() || username.length() < 7){
+                // kurang cek unique, harus ke db
+                err.setHeaderText("Username must be at least 7 characters");
+                err.showAndWait();
             }
-        };
+            // check is username unique to db
+            else if(password.isBlank() || password.length() < 6 ){
+                // kurang alphanumeric, tapi di soal gaboleh regex
+                err.setHeaderText("Password must be at least 6 characters");
+                err.showAndWait();
+            }
+            else if(!password.equals(confirmPassword)){
+                err.setHeaderText("Password and Confirm Password must be the same");
+                err.showAndWait();
+            }
+            else if(age < 13 || age > 65){
+                err.setHeaderText("Age must be at least 13 years old");
+                err.showAndWait();
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Register");
+                alert.setHeaderText(null);
+                alert.setContentText("Register Success");
+                alert.showAndWait();
+            }
+        });
     }
 
     public static void main(String[] args) {

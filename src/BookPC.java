@@ -1,16 +1,11 @@
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Pos;
-
-import java.util.Date;
 
 public class BookPC extends Application {
     Scene scene;
@@ -19,8 +14,9 @@ public class BookPC extends Application {
     VBox vbFields;
     DatePicker dateField;
     TextField pcidField;
+    Button book;
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         bpOuter = new BorderPane();
         fp = new FlowPane();
         fp.setOrientation(Orientation.VERTICAL);
@@ -39,6 +35,7 @@ public class BookPC extends Application {
         bpOuter.setCenter(fp);
 
         scene = new Scene(bpOuter, 1200, 600);
+        setupEventHandling();
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -72,42 +69,37 @@ public class BookPC extends Application {
     }
 
     void bookInit(){
-        Button book = new Button("Book");
+        book = new Button("Book");
         book.setPrefWidth(400);
         fp.getChildren().add(book);
-        book.setOnMouseClicked(bookClick());
     }
 
-    private EventHandler<MouseEvent> bookClick(){
-        return new EventHandler<>() {
-            @Override
-            public void handle(MouseEvent event) {
-                String date = "";
-                String pcid = pcidField.getText();
-                Alert err = new Alert(Alert.AlertType.ERROR);
-                err.setTitle("Error");
-                if(dateField.getValue() == null){
-                    err.setHeaderText("Date cannot be empty!");
+    void setupEventHandling(){
+        book.setOnMouseClicked((e) ->  {
+            String date = "";
+            String pcid = pcidField.getText();
+            Alert err = new Alert(Alert.AlertType.ERROR);
+            err.setTitle("Error");
+            if(dateField.getValue() == null){
+                err.setHeaderText("Date cannot be empty!");
+                err.showAndWait();
+            } else{
+                date = dateField.getValue().toString();
+                // ini harusnya di controller
+                if(pcid.isBlank()) {
+                    err.setHeaderText("PC ID cannot be empty!");
                     err.showAndWait();
-                } else{
-                    date = dateField.getValue().toString();
-                    // ini harusnya di controller
-                    if(pcid.isBlank()) {
-                        err.setHeaderText("PC ID cannot be empty!");
-                        err.showAndWait();
-                    }
-                    else{
-                        // lagi lagi, ini cuma iseng
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Book PC");
-                        alert.setHeaderText(null);
-                        alert.setContentText("PC Booked!");
-                        alert.showAndWait();
-                    }
                 }
-
+                else{
+                    // lagi lagi, ini cuma iseng
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Book PC");
+                    alert.setHeaderText(null);
+                    alert.setContentText("PC Booked!");
+                    alert.showAndWait();
+                }
             }
-        };
+        });
     }
 
     public static void main(String[] args) {
