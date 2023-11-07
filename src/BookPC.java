@@ -17,7 +17,6 @@ public class BookPC extends Application {
     BorderPane bpOuter;
     FlowPane fp;
     VBox vbFields;
-    Label errorLbl;
     DatePicker dateField;
     TextField pcidField;
     @Override
@@ -34,7 +33,6 @@ public class BookPC extends Application {
         titleInit();
         dateInit();
         pcidInit();
-        errorInit();
         fp.getChildren().add(vbFields);
         bookInit();
 
@@ -72,11 +70,6 @@ public class BookPC extends Application {
         pcidContainer.getChildren().add(pcidField);
         vbFields.getChildren().add(pcidContainer);
     }
-    void errorInit(){
-        errorLbl = new Label("");
-        errorLbl.setTextFill(Color.RED);
-        vbFields.getChildren().add(errorLbl);
-    }
 
     void bookInit(){
         Button book = new Button("Book");
@@ -94,27 +87,25 @@ public class BookPC extends Application {
                 Alert err = new Alert(Alert.AlertType.ERROR);
                 err.setTitle("Error");
                 if(dateField.getValue() == null){
-//                    errorLbl.setText("Date cannot be empty!");
                     err.setHeaderText("Date cannot be empty!");
                     err.showAndWait();
                 } else{
                     date = dateField.getValue().toString();
+                    // ini harusnya di controller
+                    if(pcid.isBlank()) {
+                        err.setHeaderText("PC ID cannot be empty!");
+                        err.showAndWait();
+                    }
+                    else{
+                        // lagi lagi, ini cuma iseng
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Book PC");
+                        alert.setHeaderText(null);
+                        alert.setContentText("PC Booked!");
+                        alert.showAndWait();
+                    }
                 }
-                // ini harusnya di controller
-                if(pcid.isBlank()) {
-//                    errorLbl.setText("PC ID cannot be empty!");
-                    err.setHeaderText("PC ID cannot be empty!");
-                    err.showAndWait();
-                }
-                else{
-                    errorLbl.setText("");
-                    // lagi lagi, ini cuma iseng
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Book PC");
-                    alert.setHeaderText(null);
-                    alert.setContentText("PC Booked!");
-                    alert.showAndWait();
-                }
+
             }
         };
     }

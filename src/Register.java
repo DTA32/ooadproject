@@ -15,7 +15,6 @@ public class Register extends Application {
     Scene scene;
     BorderPane bp;
     FlowPane fp;
-    Label errorLbl;
     TextField usernameField;
     PasswordField passwordField;
     PasswordField confirmPasswordField;
@@ -34,7 +33,6 @@ public class Register extends Application {
         passwordInit();
         confirmPasswordInit();
         ageInit();
-        errorInit();
         registerInit();
         bp.setCenter(fp);
 
@@ -92,12 +90,6 @@ public class Register extends Application {
         fp.getChildren().add(ageContainer);
     }
 
-    void errorInit(){
-        errorLbl = new Label("");
-        errorLbl.setTextFill(Color.RED);
-        fp.getChildren().add(errorLbl);
-    }
-
     void registerInit() {
         Button button = new Button("Register");
         button.setPrefWidth(500);
@@ -118,30 +110,24 @@ public class Register extends Application {
                 // ini harusnya di controller
                 if(username.isBlank() || username.length() < 7){
                     // kurang cek unique, harus ke db
-//                    errorLbl.setText("Username must be at least 7 characters");
                     err.setHeaderText("Username must be at least 7 characters");
                     err.showAndWait();
                 }
                 // check is username unique to db
                 else if(password.isBlank() || password.length() < 6 ){
-                    // kurang alphanumeric, tapi di soal gaboleh
-//                    errorLbl.setText("Password must be at least 6 characters");
+                    // kurang alphanumeric, tapi di soal gaboleh regex
                     err.setHeaderText("Password must be at least 6 characters");
                     err.showAndWait();
                 }
                 else if(!password.equals(confirmPassword)){
-//                    errorLbl.setText("Password and Confirm Password must be the same");
                     err.setHeaderText("Password and Confirm Password must be the same");
                     err.showAndWait();
                 }
                 else if(age < 13 || age > 65){
-//                    errorLbl.setText("Age must be at least 13 years old");
                     err.setHeaderText("Age must be at least 13 years old");
                     err.showAndWait();
                 }
                 else{
-//                    errorLbl.setText("");
-                    // dibawah ini cuma iseng
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Register");
                     alert.setHeaderText(null);

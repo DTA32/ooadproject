@@ -1,11 +1,13 @@
 import javafx.application.Application;
 import javafx.geometry.Orientation;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Pos;
+import model.ReportModel;
 
 public class Report extends Application{
     Scene scene;
@@ -50,10 +52,19 @@ public class Report extends Application{
         table.setEditable(true);
         table.setPrefWidth(1000);
         table.setPrefHeight(500);
-        TableColumn no = new TableColumn("No");
-        TableColumn pcid = new TableColumn("PC ID");
-        TableColumn report = new TableColumn("Report Notes");
-        table.getColumns().addAll(no, pcid, report);
+        TableColumn<ReportModel, Integer> idCol = new TableColumn<>("ID");
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idCol.setPrefWidth(100);
+        TableColumn<ReportModel, Integer> pcidCol = new TableColumn<>("PC ID");
+        pcidCol.setCellValueFactory(new PropertyValueFactory<>("pcid"));
+        pcidCol.setPrefWidth(200);
+        TableColumn<ReportModel, String> reportCol = new TableColumn<>("Report Notes");
+        reportCol.setCellValueFactory(new PropertyValueFactory<>("reportNotes"));
+        reportCol.setPrefWidth(690);
+        table.getColumns().addAll(idCol, pcidCol, reportCol);
+        table.getItems().add(new ReportModel(1,13,"Jelek."));
+        table.getItems().add(new ReportModel(2,22,"Yutub ngelag"));
+        table.getItems().add(new ReportModel(3,16,"Gabisa buka palo"));
         fp.getChildren().add(table);
     }
 
