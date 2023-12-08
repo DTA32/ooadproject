@@ -1,4 +1,5 @@
-import javafx.application.Application;
+package view;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -6,9 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
+import main.MainStage;
 
-public class Register extends Application {
+public class Register {
     Scene scene;
     BorderPane bp;
     FlowPane fp;
@@ -17,12 +18,12 @@ public class Register extends Application {
     PasswordField confirmPasswordField;
     Spinner<Integer> ageSpinner;
     Button regButton;
-    @Override
-    public void start(Stage primaryStage) {
+
+    public Register() {
         bp = new BorderPane();
         fp = new FlowPane();
 
-        bp.setTop(titleInit());
+        topInit();
 
         fp.setOrientation(Orientation.VERTICAL);
         fp.setAlignment(Pos.TOP_CENTER);
@@ -36,9 +37,12 @@ public class Register extends Application {
 
         scene = new Scene(bp, 1200, 600);
         setupEventHandling();
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
+
+    public Scene getScene(){
+        return scene;
+    }
+
     VBox titleInit(){
         Label application = new Label("Internet CLafes");
         application.setFont(new Font("Arial", 36));
@@ -51,6 +55,17 @@ public class Register extends Application {
         titleContainer.getChildren().add(title);
         titleContainer.setPadding(new Insets(16, 0, 48, 0));
         return titleContainer;
+    }
+
+    void topInit(){
+        VBox topContainer = new VBox();
+        Button back = new Button("< Back");
+        back.setOnMouseClicked(e -> {
+            TemporaryMenu temp = new TemporaryMenu();
+            MainStage.stage.setScene(temp.getScene());
+        });
+        topContainer.getChildren().addAll(back, titleInit());
+        bp.setTop(topContainer);
     }
 
     void usernameInit() {
@@ -90,7 +105,7 @@ public class Register extends Application {
     }
 
     void registerInit() {
-        regButton = new Button("Register");
+        regButton = new Button("view.Register");
         regButton.setPrefWidth(500);
         fp.getChildren().add(regButton);
     }
@@ -125,15 +140,13 @@ public class Register extends Application {
             }
             else{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Register");
+                alert.setTitle("view.Register");
                 alert.setHeaderText(null);
-                alert.setContentText("Register Success");
+                alert.setContentText("view.Register Success");
                 alert.showAndWait();
             }
         });
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 }

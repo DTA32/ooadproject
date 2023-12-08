@@ -1,13 +1,14 @@
-import javafx.application.Application;
+package view;
+
 import javafx.geometry.Orientation;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Pos;
+import main.MainStage;
 
-public class BookPC extends Application {
+public class BookPC {
     Scene scene;
     BorderPane bpOuter;
     FlowPane fp;
@@ -15,8 +16,8 @@ public class BookPC extends Application {
     DatePicker dateField;
     TextField pcidField;
     Button book;
-    @Override
-    public void start(Stage primaryStage) {
+
+    public BookPC() {
         bpOuter = new BorderPane();
         fp = new FlowPane();
         fp.setOrientation(Orientation.VERTICAL);
@@ -25,6 +26,8 @@ public class BookPC extends Application {
         vbFields = new VBox();
         vbFields.setAlignment(Pos.CENTER);
         vbFields.setSpacing(16);
+
+        backInit();
 
         titleInit();
         dateInit();
@@ -36,8 +39,19 @@ public class BookPC extends Application {
 
         scene = new Scene(bpOuter, 1200, 600);
         setupEventHandling();
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    }
+
+    void backInit(){
+        Button back = new Button("< Back");
+        back.setOnMouseClicked(e -> {
+            TemporaryMenu temp = new TemporaryMenu();
+            MainStage.stage.setScene(temp.getScene());
+        });
+        bpOuter.setTop(back);
+    }
+
+    public Scene getScene(){
+        return scene;
     }
 
     void titleInit(){
@@ -100,9 +114,5 @@ public class BookPC extends Application {
                 }
             }
         });
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
