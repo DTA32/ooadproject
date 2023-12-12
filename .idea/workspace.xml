@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="005fd502-17ca-47ec-86af-7c7574a84013" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/helper/Helper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/ViewPCModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/ViewPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/JavaFX.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOADProject.eml" beforeDir="false" afterPath="$PROJECT_DIR$/OOADProject.eml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOADProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OOADProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/TemporaryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/TemporaryMenu.java" afterDir="false" />
+    <list default="true" id="005fd502-17ca-47ec-86af-7c7574a84013" name="Changes" comment="Added View All Pcs Prototype">
+      <change afterPath="$PROJECT_DIR$/src/database/Connect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ViewPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ViewPC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +22,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -52,7 +45,7 @@
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;maul&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -94,11 +87,25 @@
       <workItem from="1702310676528" duration="636000" />
       <workItem from="1702311320075" duration="1484000" />
       <workItem from="1702320417954" duration="902000" />
-      <workItem from="1702321336552" duration="4418000" />
+      <workItem from="1702321336552" duration="4688000" />
+      <workItem from="1702356091795" duration="772000" />
     </task>
+    <task id="LOCAL-00001" summary="Added View All Pcs Prototype">
+      <option name="closed" value="true" />
+      <created>1702325801314</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702325801314</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added View All Pcs Prototype" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added View All Pcs Prototype" />
   </component>
 </project>

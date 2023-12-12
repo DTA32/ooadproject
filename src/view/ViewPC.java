@@ -26,10 +26,10 @@ public class ViewPC {
         fp.setAlignment(Pos.TOP_CENTER);
         fp.setVgap(16);
 
-        backInit();
         titleInit();
         tableInit();
         Bookinit();
+        backInit();
 
         bp.setCenter(fp);
 
