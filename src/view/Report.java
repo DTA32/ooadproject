@@ -73,6 +73,7 @@ public class Report{
         table.getItems().add(new ReportModel(1,13,"Jelek."));
         table.getItems().add(new ReportModel(2,22,"Yutub ngelag"));
         table.getItems().add(new ReportModel(3,16,"Gabisa buka palo"));
+        table.getItems().add(new ReportModel(4,12,"Ga gacor kang"));
         fp.getChildren().add(table);
     }
 }
