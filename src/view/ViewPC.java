@@ -10,8 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
-import model.ReportModel;
-import model.ViewPCModel;
+import model.PC;
 
 public class ViewPC {
 
@@ -61,7 +60,7 @@ public class ViewPC {
         bp.setTop(book);
     }
 
-    private void bookPC(ViewPCModel pcModel){
+    private void bookPC(PC pcModel){
         BookPC bookPC = new BookPC();
         MainStage.stage.setScene(bookPC.getScene());
     }
@@ -81,21 +80,21 @@ public class ViewPC {
         table.setEditable(true);
         table.setPrefWidth(1000);
         table.setPrefHeight(500);
-        TableColumn<ViewPCModel, Integer> pcidCol = new TableColumn<>("PC ID");
+        TableColumn<PC, Integer> pcidCol = new TableColumn<>("PC ID");
         pcidCol.setCellValueFactory(new PropertyValueFactory<>("pcid"));
         pcidCol.setPrefWidth(200);
-        TableColumn<ViewPCModel, String> statusCol = new TableColumn<>("Status");
+        TableColumn<PC, String> statusCol = new TableColumn<>("Status");
         statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
         statusCol.setPrefWidth(690);
-        TableColumn<ViewPCModel, Void> bookCol = new TableColumn<>("Book");
+        TableColumn<PC, Void> bookCol = new TableColumn<>("Book");
         bookCol.setPrefWidth(100);
 
-        bookCol.setCellFactory(col -> new TableCell<ViewPCModel, Void>() {
+        bookCol.setCellFactory(col -> new TableCell<PC, Void>() {
             private final Button bookButton = new Button("Book");
 
             {
                 bookButton.setOnAction(e -> {
-                    ViewPCModel currentRowData = getTableView().getItems().get(getIndex());
+                    PC currentRowData = getTableView().getItems().get(getIndex());
                     bookPC(currentRowData);
 
                 });
@@ -115,9 +114,9 @@ public class ViewPC {
 
         //Fill data
         table.getColumns().addAll(pcidCol, statusCol, bookCol);
-        table.getItems().add(new ViewPCModel(1, "Broken"));
-        table.getItems().add(new ViewPCModel(2, "Usable"));
-        table.getItems().add(new ViewPCModel(3, "Maintenance"));
+        table.getItems().add(new PC(1, "Broken"));
+        table.getItems().add(new PC(2, "Usable"));
+        table.getItems().add(new PC(3, "Maintenance"));
         fp.getChildren().add(table);
     }
 

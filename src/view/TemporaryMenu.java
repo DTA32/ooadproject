@@ -18,6 +18,8 @@ public class TemporaryMenu {
 
     Button allPc;
 
+    Button bookedPC;
+
 
     public TemporaryMenu(){
         fp = new FlowPane();
@@ -48,7 +50,13 @@ public class TemporaryMenu {
             MainStage.stage.setScene(allPc.getScene());
         });
 
-        fp.getChildren().addAll(title, bookPC, viewReport, register, allPc);
+        bookedPC = new Button("Booked PC");
+        bookedPC.setOnMouseClicked(e -> {
+            BookedPC bookedPC = new BookedPC();
+            MainStage.stage.setScene(bookedPC.getScene());
+        });
+
+        fp.getChildren().addAll(title, bookPC, viewReport, register, allPc, bookedPC);
 
         scene = new Scene(fp, 1200, 600);
     }
