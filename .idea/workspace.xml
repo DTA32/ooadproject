@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="005fd502-17ca-47ec-86af-7c7574a84013" name="Changes" comment="Added View All Pcs Prototype">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/PC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/BookedPC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/CancelPC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/FinishPC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ReportModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ReportModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ViewPCModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/BookedPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BookedPC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/TemporaryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/TemporaryMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ViewPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ViewPC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +94,7 @@
       <workItem from="1702321336552" duration="4688000" />
       <workItem from="1702356091795" duration="4270000" />
       <workItem from="1702366198816" duration="8000" />
-      <workItem from="1702379757235" duration="1171000" />
+      <workItem from="1702379757235" duration="11157000" />
     </task>
     <task id="LOCAL-00001" summary="Added View All Pcs Prototype">
       <option name="closed" value="true" />

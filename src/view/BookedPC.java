@@ -65,8 +65,8 @@ public class BookedPC {
     private void cancelBook(){
         Button cancel = new Button("Cancel");
         cancel.setOnMouseClicked(e -> {
-            //Ini nanti juga di Controller
-            Helper.showAlert(AlertType.INFORMATION, "Canceled Booking");
+//            CancelPC cancelPC = new CancelPC();
+//            MainStage.stage.setScene(cancelPC.getScene());
         });
         fp.getChildren().add(cancel);
 
@@ -75,8 +75,8 @@ public class BookedPC {
     private void finishBook(){
         Button finish = new Button("Finish");
         finish.setOnMouseClicked(e -> {
-            //Ini nanti di Controller
-            Helper.showAlert(AlertType.INFORMATION, "Finished Booking");
+//            FinishPC finishPC = new FinishPC();
+//            MainStage.stage.setScene(finishPC.getScene());
         });
 
         fp.getChildren().add(finish);
@@ -88,6 +88,11 @@ public class BookedPC {
         table.setPrefWidth(1000);
         table.setPrefHeight(500);
 
+
+        TableColumn bookIDCol = new TableColumn("Book ID");
+        bookIDCol.setCellValueFactory(new PropertyValueFactory<PC, String> ("bookid"));
+        bookIDCol.setPrefWidth(200);
+
         TableColumn<PC, Integer> pcIdCol= new TableColumn("PC ID");
         pcIdCol.setCellValueFactory(new PropertyValueFactory("pcid"));
         pcIdCol.setPrefWidth(200);
@@ -96,46 +101,57 @@ public class BookedPC {
         statusCol.setCellValueFactory(new PropertyValueFactory<PC, String> ("status"));
         statusCol.setPrefWidth(200);
 
-        TableColumn<PC, String> optionCol = new TableColumn("Options");
-        optionCol.setPrefWidth(200);
+        TableColumn dateCol = new TableColumn("Date");
+        dateCol.setCellValueFactory(new PropertyValueFactory<PC, String> ("date"));
+        dateCol.setPrefWidth(200);
 
-        optionCol.setCellFactory(col -> new TableCell<PC, String>() {
-            private final ChoiceBox<String> choiceBox = new ChoiceBox<>();
+        TableColumn finishCol = new TableColumn("Finish");
+        finishCol.setCellFactory(col -> new TableCell<PC, Void>(){
+            private final Button finishButton = new Button("Finish");
 
             {
-                choiceBox.getItems().addAll("Cancel", "Finish");
-                choiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-                    if (!isEmpty()) {
-                        PC currentPc = getTableView().getItems().get(getIndex());
-                        if ("Cancel".equals(newVal)) {
-                            currentPc.setStatus("Cancelled");
-                        } else if ("Finish".equals(newVal)) {
-                            currentPc.setStatus("Finished");
-                        }
-                        getTableView().refresh();
-                    }
+                finishButton.setOnAction((e) -> {
+                    PC curr_PC = getTableView().getItems().get(getIndex());
+                    FinishPC finishPC = new FinishPC();
+                    MainStage.stage.setScene(finishPC.getScene());
                 });
             }
 
             @Override
-            protected void updateItem(String item, boolean empty) {
+            protected void updateItem(Void item, boolean empty){
                 super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(choiceBox);
-                }
+                setGraphic(empty ? null : finishButton);
             }
         });
+        finishCol.setPrefWidth(200);
+
+
+        TableColumn<PC, Void> cancelCol = new TableColumn("Cancel");
+        cancelCol.setCellFactory(col -> new TableCell<PC, Void>() {
+            private final Button cancelButton = new Button("Cancel");
+
+            {
+                cancelButton.setOnAction((e) -> {
+                    PC curr_PC = getTableView().getItems().get(getIndex());
+                    CancelPC cancelPC = new CancelPC();
+                    MainStage.stage.setScene(cancelPC.getScene());
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : cancelButton);
+            }
+        });
+        cancelCol.setPrefWidth(200);
 
 
 
-
-
-        table.getColumns().addAll(pcIdCol, statusCol, optionCol);
-        table.getItems().add(new PC(1, "Booked"));
+        table.getColumns().addAll(bookIDCol,pcIdCol, statusCol, finishCol, cancelCol);
+        table.getItems().add(new PC(1, "Finished Booked"));
         table.getItems().add(new PC(2, "Not Booked"));
-        table.getItems().add(new PC(3, "Booked"));
+        table.getItems().add(new PC(3, "Finished Booked"));
         fp.getChildren().add(table);
     }
 }
