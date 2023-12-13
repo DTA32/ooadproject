@@ -1,0 +1,72 @@
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import model.TechnicianListJobModel;
+
+public class TechnicianListJob extends Application {
+    Scene scene;
+    BorderPane bp;
+    FlowPane fp;
+
+    @Override
+    public void start(Stage primaryStage) {
+        bp = new BorderPane();
+        fp = new FlowPane();
+
+        fp.setOrientation(Orientation.VERTICAL);
+        fp.setAlignment(Pos.TOP_CENTER);
+        fp.setVgap(16);
+        bp.setCenter(fp);
+        titleInit();
+        tableInit();
+
+        scene = new Scene(bp, 1200, 600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    void titleInit() {
+        Label title = new Label("View All Job Report");
+        title.setFont(new Font("Arial", 24));
+        title.setAlignment(Pos.CENTER);
+        VBox titleContainer = new VBox();
+        titleContainer.getChildren().add(title);
+        titleContainer.setAlignment(Pos.CENTER);
+        fp.getChildren().add(titleContainer);
+    }
+
+    void tableInit() {
+        TableView table = new TableView();
+        table.setEditable(true);
+        table.setPrefWidth(1000);
+        table.setPrefHeight(500);
+        TableColumn<TechnicianListJobModel, Integer> noCol = new TableColumn<>("NO");
+        noCol.setCellValueFactory(new PropertyValueFactory<>("no"));
+        noCol.setPrefWidth(200);
+        TableColumn<TechnicianListJobModel, String> technicianCol = new TableColumn<>("Computer technician");
+        technicianCol.setCellValueFactory(new PropertyValueFactory<>("technician"));
+        technicianCol.setPrefWidth(400);
+        TableColumn<TechnicianListJobModel, String> statusCol = new TableColumn<>("Job Status");
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        statusCol.setPrefWidth(200);
+        TableColumn<TechnicianListJobModel, Integer> pcidCol = new TableColumn<>("PC ID");
+        pcidCol.setCellValueFactory(new PropertyValueFactory<>("pcid"));
+        pcidCol.setPrefWidth(200);
+        table.getColumns().addAll(noCol, technicianCol, statusCol, pcidCol);
+        table.getItems().add(new TechnicianListJobModel(1, "Yudi", "Complete", 13));
+        table.getItems().add(new TechnicianListJobModel(2, "Andi", "Uncomplete", 17));
+        table.getItems().add(new TechnicianListJobModel(3, "Budi", "Complete", 20));
+        fp.getChildren().add(table);
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
