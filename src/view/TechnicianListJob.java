@@ -1,3 +1,5 @@
+package view;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -8,15 +10,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import main.MainStage;
 import model.TechnicianListJobModel;
 
-public class TechnicianListJob extends Application {
+public class TechnicianListJob{
     Scene scene;
     BorderPane bp;
     FlowPane fp;
 
-    @Override
-    public void start(Stage primaryStage) {
+
+    public TechnicianListJob(){
         bp = new BorderPane();
         fp = new FlowPane();
 
@@ -26,10 +29,10 @@ public class TechnicianListJob extends Application {
         bp.setCenter(fp);
         titleInit();
         tableInit();
+        backInit();
 
         scene = new Scene(bp, 1200, 600);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+
     }
 
     void titleInit() {
@@ -42,6 +45,18 @@ public class TechnicianListJob extends Application {
         fp.getChildren().add(titleContainer);
     }
 
+    void backInit(){
+        Button back = new Button("< Back");
+        back.setOnMouseClicked(e -> {
+            TemporaryMenu temp = new TemporaryMenu();
+            MainStage.stage.setScene(temp.getScene());
+        });
+        bp.setTop(back);
+    }
+
+    public Scene getScene(){
+        return scene;
+    }
     void tableInit() {
         TableView table = new TableView();
         table.setEditable(true);
@@ -66,7 +81,4 @@ public class TechnicianListJob extends Application {
         fp.getChildren().add(table);
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

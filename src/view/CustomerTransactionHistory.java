@@ -1,3 +1,5 @@
+package view;
+
 import java.sql.Date;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -9,15 +11,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import main.MainStage;
 import model.CustomerTransactionHistoryModel;
+import view.TemporaryMenu;
 
-public class CustomerTransactionHistory extends Application {
+public class CustomerTransactionHistory {
     Scene scene;
     BorderPane bp;
     FlowPane fp;
 
-    @Override
-    public void start(Stage primaryStage) {
+    public CustomerTransactionHistory(){
         bp = new BorderPane();
         fp = new FlowPane();
 
@@ -27,10 +30,13 @@ public class CustomerTransactionHistory extends Application {
         bp.setCenter(fp);
         titleInit();
         tableInit();
+        backInit();
 
         scene = new Scene(bp, 1200, 600);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    }
+
+    public Scene getScene(){
+        return scene;
     }
 
     void titleInit() {
@@ -41,6 +47,15 @@ public class CustomerTransactionHistory extends Application {
         titleContainer.getChildren().add(title);
         titleContainer.setAlignment(Pos.CENTER);
         fp.getChildren().add(titleContainer);
+    }
+
+    void backInit(){
+        Button back = new Button("< Back");
+        back.setOnMouseClicked(e -> {
+            TemporaryMenu temp = new TemporaryMenu();
+            MainStage.stage.setScene(temp.getScene());
+        });
+        bp.setTop(back);
     }
 
     void tableInit() {
@@ -70,7 +85,5 @@ public class CustomerTransactionHistory extends Application {
         fp.getChildren().add(table);
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 }
