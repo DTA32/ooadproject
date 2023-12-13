@@ -20,6 +20,12 @@ public class TemporaryMenu {
 
     Button allPc;
 
+    Button bookedPC;
+
+    Button cancelPC;
+
+    Button finishPC;
+
 
     public TemporaryMenu(){
         fp = new FlowPane();
@@ -49,14 +55,32 @@ public class TemporaryMenu {
             ViewPC allPc = new ViewPC();
             MainStage.stage.setScene(allPc.getScene());
         });
+
+        bookedPC = new Button("Booked PC");
+        bookedPC.setOnMouseClicked(e -> {
+            BookedPC bookedPC = new BookedPC();
+            MainStage.stage.setScene(bookedPC.getScene());
+        });
+
+        cancelPC = new Button("Cancel PC");
+        cancelPC.setOnMouseClicked(e -> {
+            CancelPC cancelPC = new CancelPC();
+            MainStage.stage.setScene(cancelPC.getScene());
+        });
+
+        finishPC = new Button("Finish PC");
+        finishPC.setOnMouseClicked(e -> {
+            FinishPC finishPC = new FinishPC();
+            MainStage.stage.setScene(finishPC.getScene());
+        });
+
         login = new Button("Login");
         login.setOnMouseClicked(e -> {
             Login login = new Login();
             MainStage.stage.setScene(login.getScene());
         });
 
-
-        fp.getChildren().addAll(title, bookPC, viewReport, register, allPc, login);
+        fp.getChildren().addAll(title, bookPC, viewReport, register, allPc, bookedPC, cancelPC, finishPC, login);
 
         scene = new Scene(fp, 1200, 600);
     }
