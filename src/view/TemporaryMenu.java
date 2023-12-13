@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.geometry.*;
 import main.MainStage;
+import view.auth.Login;
 
 
 public class TemporaryMenu {
@@ -15,6 +16,7 @@ public class TemporaryMenu {
     Button bookPC;
     Button viewReport;
     Button register;
+    Button login;
 
     Button allPc;
 
@@ -47,8 +49,14 @@ public class TemporaryMenu {
             ViewPC allPc = new ViewPC();
             MainStage.stage.setScene(allPc.getScene());
         });
+        login = new Button("Login");
+        login.setOnMouseClicked(e -> {
+            Login login = new Login();
+            MainStage.stage.setScene(login.getScene());
+        });
 
-        fp.getChildren().addAll(title, bookPC, viewReport, register, allPc);
+
+        fp.getChildren().addAll(title, bookPC, viewReport, register, allPc, login);
 
         scene = new Scene(fp, 1200, 600);
     }
