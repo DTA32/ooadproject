@@ -1,8 +1,6 @@
 package view;
 
 import java.sql.Date;
-import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,10 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import main.MainStage;
 import model.CustomerTransactionHistoryModel;
-import view.TemporaryMenu;
 
 public class CustomerTransactionHistory {
     private static CustomerTransactionHistory customerTransactionHistory;

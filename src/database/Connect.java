@@ -46,7 +46,7 @@ public final class Connect {
 
     /**
      * This method is used for SELECT SQL statements.
-     * @param String This is the query statement
+     * @param query This is the query statement
      * @return ResultSet This returns result data from the database
      */
     public ResultSet executeQuery(String query) {
@@ -61,7 +61,7 @@ public final class Connect {
 
     /**
      * This method is used for INSERT, UPDATE, or DELETE SQL statements.
-     * @param String This is the query statement
+     * @param query This is the query statement
      */
     public void executeUpdate(String query) {
         try {
@@ -73,7 +73,7 @@ public final class Connect {
 
     /**
      * This method is used for SELECT, INSERT, UPDATE, or DELETE SQL statements using prepare statement.
-     * @param String This is the query statement
+     * @param query This is the query statement
      */
     public PreparedStatement prepareStatement(String query) {
         PreparedStatement ps = null;

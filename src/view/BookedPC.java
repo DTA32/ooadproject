@@ -1,6 +1,5 @@
 package view;
 
-import helper.Helper;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,9 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
-import javafx.scene.control.Alert.AlertType;
 import model.PC;
-import model.ReportModel;
 
 public class BookedPC {
     private static BookedPC bookedPC;
