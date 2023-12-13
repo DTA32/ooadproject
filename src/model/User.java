@@ -43,7 +43,7 @@ public class User {
             ps.setString(1, username);
             ps.setString(2, password);
             ps.setInt(3, age);
-            ps.executeUpdate();;
+            ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
