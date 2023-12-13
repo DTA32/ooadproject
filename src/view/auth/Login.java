@@ -12,6 +12,14 @@ import javafx.scene.text.FontWeight;
 import main.MainStage;
 
 public class Login {
+    private static Login login;
+    public static Login getInstance() {
+        return login = login == null ? new Login() : login;
+    }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
 
     Scene scene;
     VBox vb;
@@ -26,10 +34,6 @@ public class Login {
         addEventListener();
     }
 
-    public Scene getScene() {
-        return scene;
-    }
-
     private void initialize() {
         vb = new VBox(10);
         loginTitle = new Label("Login");
@@ -41,6 +45,10 @@ public class Login {
         passwordInput.setPromptText("Input your password here");
         loginButton = new Button("Login");
         registerHyperlink = new Hyperlink("Don't have an account? Register Here!");
+        registerHyperlink.setOnAction(e -> {
+            Register register = Register.getInstance();
+            register.show();
+        });
         vb.getChildren().addAll(loginTitle, usernameTitle, usernameInput, passwordTitle, passwordInput, loginButton,
                 registerHyperlink);
         loginTitle.setFont(Font.font("Arial", FontWeight.BOLD, 20));

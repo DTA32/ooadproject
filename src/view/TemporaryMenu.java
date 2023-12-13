@@ -6,11 +6,22 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.geometry.*;
 import main.MainStage;
-import model.CustomerTransactionHistoryModel;
 import view.auth.Login;
+import view.auth.Register;
 
 
 public class TemporaryMenu {
+    private static TemporaryMenu temporaryMenu;
+
+    public static TemporaryMenu getInstance() {
+        return temporaryMenu = temporaryMenu == null ? new TemporaryMenu() : temporaryMenu;
+    }
+
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
+
     Scene scene;
     FlowPane fp;
 
@@ -32,7 +43,7 @@ public class TemporaryMenu {
     Button TechJob;
 
 
-    public TemporaryMenu(){
+    public TemporaryMenu() {
         fp = new FlowPane();
         fp.setOrientation(Orientation.VERTICAL);
         fp.setAlignment(Pos.CENTER);
@@ -42,59 +53,59 @@ public class TemporaryMenu {
 
         bookPC = new Button("Book PC");
         bookPC.setOnMouseClicked(e -> {
-            BookPC bookPC = new BookPC();
-            MainStage.stage.setScene(bookPC.getScene());
+            BookPC bookPC = BookPC.getInstance();
+            bookPC.show();
         });
         viewReport = new Button("View Report");
         viewReport.setOnMouseClicked(e -> {
-            Report report = new Report();
-            MainStage.stage.setScene(report.getScene());
+            Report report = Report.getInstance();
+            report.show();
         });
         register = new Button("Register");
         register.setOnMouseClicked(e -> {
-            Register register = new Register();
-            MainStage.stage.setScene(register.getScene());
+            Register register = Register.getInstance();
+            register.show();
         });
         allPc = new Button("All PC");
         allPc.setOnMouseClicked(e -> {
-            ViewPC allPc = new ViewPC();
-            MainStage.stage.setScene(allPc.getScene());
+            ViewPC allPc = ViewPC.getInstance();
+            allPc.show();
         });
 
         bookedPC = new Button("Booked PC");
         bookedPC.setOnMouseClicked(e -> {
-            BookedPC bookedPC = new BookedPC();
-            MainStage.stage.setScene(bookedPC.getScene());
+            BookedPC bookedPC = BookedPC.getInstance();
+            bookedPC.show();
         });
 
         cancelPC = new Button("Cancel PC");
         cancelPC.setOnMouseClicked(e -> {
-            CancelPC cancelPC = new CancelPC();
-            MainStage.stage.setScene(cancelPC.getScene());
+            CancelPC cancelPC = CancelPC.getInstance();
+            cancelPC.show();
         });
 
         finishPC = new Button("Finish PC");
         finishPC.setOnMouseClicked(e -> {
-            FinishPC finishPC = new FinishPC();
-            MainStage.stage.setScene(finishPC.getScene());
+            FinishPC finishPC = FinishPC.getInstance();
+            finishPC.show();
         });
 
         login = new Button("Login");
         login.setOnMouseClicked(e -> {
-            Login login = new Login();
-            MainStage.stage.setScene(login.getScene());
+            Login login = Login.getInstance();
+            login.show();
         });
 
         history = new Button("History");
         history.setOnMouseClicked(e -> {
-            CustomerTransactionHistory history = new CustomerTransactionHistory();
-            MainStage.stage.setScene(history.getScene());
+            CustomerTransactionHistory customerTransactionHistory = CustomerTransactionHistory.getInstance();
+            customerTransactionHistory.show();
         });
 
         TechJob = new Button("Technician Job List");
         TechJob.setOnMouseClicked(e -> {
-            TechnicianListJob techJob = new TechnicianListJob();
-            MainStage.stage.setScene(techJob.getScene());
+            TechnicianListJob techJob = TechnicianListJob.getInstance();
+            techJob.show();
         });
 
         fp.getChildren().addAll(title, bookPC, viewReport,
@@ -103,9 +114,5 @@ public class TemporaryMenu {
                 history, TechJob);
 
         scene = new Scene(fp, 1200, 600);
-    }
-
-    public Scene getScene(){
-        return scene;
     }
 }

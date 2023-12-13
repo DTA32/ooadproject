@@ -9,6 +9,14 @@ import javafx.geometry.Pos;
 import main.MainStage;
 
 public class BookPC {
+    private static BookPC bookPC;
+    public static BookPC getInstance() {
+        return bookPC = bookPC == null ? new BookPC() : bookPC;
+    }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
     Scene scene;
     BorderPane bpOuter;
     FlowPane fp;
@@ -44,14 +52,10 @@ public class BookPC {
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            TemporaryMenu temp = TemporaryMenu.getInstance();
+            temp.show();
         });
         bpOuter.setTop(back);
-    }
-
-    public Scene getScene(){
-        return scene;
     }
 
     void titleInit(){

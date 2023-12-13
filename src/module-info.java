@@ -7,5 +7,6 @@ module OOADProject {
     opens model;
     opens controller;
     opens view;
+    opens view.auth;
 
 }

@@ -14,6 +14,14 @@ import main.MainStage;
 import model.TechnicianListJobModel;
 
 public class TechnicianListJob{
+    private static TechnicianListJob technicianListJob;
+    public static TechnicianListJob getInstance() {
+        return technicianListJob = technicianListJob == null ? new TechnicianListJob() : technicianListJob;
+    }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
     Scene scene;
     BorderPane bp;
     FlowPane fp;
@@ -48,14 +56,10 @@ public class TechnicianListJob{
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            TemporaryMenu temp = TemporaryMenu.getInstance();
+            temp.show();
         });
         bp.setTop(back);
-    }
-
-    public Scene getScene(){
-        return scene;
     }
     void tableInit() {
         TableView table = new TableView();

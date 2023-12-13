@@ -16,6 +16,14 @@ import model.CustomerTransactionHistoryModel;
 import view.TemporaryMenu;
 
 public class CustomerTransactionHistory {
+    private static CustomerTransactionHistory customerTransactionHistory;
+    public static CustomerTransactionHistory getInstance() {
+        return customerTransactionHistory = customerTransactionHistory == null ? new CustomerTransactionHistory() : customerTransactionHistory;
+    }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
     Scene scene;
     BorderPane bp;
     FlowPane fp;
@@ -35,9 +43,6 @@ public class CustomerTransactionHistory {
         scene = new Scene(bp, 1200, 600);
     }
 
-    public Scene getScene(){
-        return scene;
-    }
 
     void titleInit() {
         Label title = new Label("Customer Transaction History");
@@ -52,8 +57,8 @@ public class CustomerTransactionHistory {
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            TemporaryMenu temp = TemporaryMenu.getInstance();
+            temp.show();
         });
         bp.setTop(back);
     }
