@@ -1,10 +1,12 @@
 package model;
 
-public class ViewPCModel {
+public class PC {
     private int pcid;
     private String status;
 
-    public ViewPCModel(int pcid, String status){
+
+
+    public PC(int pcid, String status){
         this.pcid = pcid;
         this.status = status;
     }
@@ -24,4 +26,6 @@ public class ViewPCModel {
     public void setStatus(String status){
         this.status = status;
     }
+
+
 }

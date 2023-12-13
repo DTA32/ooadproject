@@ -1,5 +1,7 @@
 package model;
 
+import javafx.collections.ObservableList;
+
 public class ReportModel {
     private int id;
     private int pcid;
@@ -9,6 +11,10 @@ public class ReportModel {
         this.id = id;
         this.pcid = pcid;
         this.reportNotes = reportNotes;
+    }
+
+    public static ObservableList getReport() {
+        return null;
     }
 
     public int getId() {
