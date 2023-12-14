@@ -1,5 +1,4 @@
 module OOADProject {
-
     requires javafx.graphics;
     requires java.sql;
     requires javafx.controls;
@@ -7,5 +6,6 @@ module OOADProject {
     opens model;
     opens controller;
     opens view;
+    opens view.auth;
 
 }

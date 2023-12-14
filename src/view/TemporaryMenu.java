@@ -6,8 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.geometry.*;
 import main.MainStage;
-import model.CustomerTransactionHistoryModel;
+import view.Admin.ViewAllStaffs;
 import view.auth.Login;
+import view.auth.Register;
 
 
 public class TemporaryMenu {
@@ -30,6 +31,8 @@ public class TemporaryMenu {
     Button history;
 
     Button TechJob;
+
+    Button viewAllStaffs;
 
 
     public TemporaryMenu(){
@@ -97,10 +100,16 @@ public class TemporaryMenu {
             MainStage.stage.setScene(techJob.getScene());
         });
 
+        viewAllStaffs = new Button("View All Staffs");
+        viewAllStaffs.setOnMouseClicked(e -> {
+            ViewAllStaffs viewAllStaffs = new ViewAllStaffs();
+            MainStage.stage.setScene(viewAllStaffs.getScene());
+        });
+
         fp.getChildren().addAll(title, bookPC, viewReport,
                 register, allPc, bookedPC,
                 cancelPC, finishPC, login,
-                history, TechJob);
+                history, TechJob, viewAllStaffs);
 
         scene = new Scene(fp, 1200, 600);
     }

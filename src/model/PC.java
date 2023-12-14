@@ -4,7 +4,9 @@ public class PC {
     private int pcid;
     private String status;
 
-
+//    public boolean getAllPCData(){
+//
+//    }
 
     public PC(int pcid, String status){
         this.pcid = pcid;

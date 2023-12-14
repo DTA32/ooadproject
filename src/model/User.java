@@ -4,10 +4,13 @@ import database.Connect;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class User {
 
-    private String UserID, UserNae, UserPassword, UserAge, UserRole;
+    private String UserID, UserName, Passwod, Role;
+    private  int Age;
 
     public static boolean getUserData(String username, String password){
         Connect conn = Connect.getConnection();
@@ -38,7 +41,7 @@ public class User {
             e.printStackTrace();
         }
 
-        prepareSql = "INSERT INTO users (UserName, Password, Age) VALUES (?, ?, ?)";
+        prepareSql = "INSERT INTO users (UserName, Password, Age, Role) VALUES (?, ?, ?, 'Customer' )";
         try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
             ps.setString(1, username);
             ps.setString(2, password);
@@ -51,12 +54,46 @@ public class User {
         return true;
     }
 
-    public User(String userID, String userNae, String userPassword, String userAge, String userRole) {
+    public static ArrayList<User> getAlluserData(){
+        ArrayList<User> userList = new ArrayList<>();
+        Connect conn = Connect.getConnection();
+        String query = "SELECT * FROM users";
+        try (ResultSet rs = conn.executeQuery(query)) {
+            while (rs.next()) {
+                String UserID = rs.getString("UserID");
+                String UserNae = rs.getString("UserName");
+                String Password = rs.getString("Password");
+                int Age = Integer.parseInt(rs.getString("Age"));
+                String Role = rs.getString("Role");
+                User user = new User(UserID, UserNae, Password, Role, Age);
+                userList.add(user);
+            }
+            return userList;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public static boolean changeRoleUser(String UserID, String Role)
+    {
+        Connect conn = Connect.getConnection();
+        String prepareSql = "UPDATE users SET Role = ? WHERE UserID = ?";
+        try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
+            ps.setString(1, Role);
+            ps.setString(2, UserID);
+            ps.executeUpdate();;
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public User(String userID, String userName, String passwod, String role, int age) {
         UserID = userID;
-        UserNae = userNae;
-        UserPassword = userPassword;
-        UserAge = userAge;
-        UserRole = userRole;
+        UserName = userName;
+        Passwod = passwod;
+        Role = role;
+        Age = age;
     }
 
     public String getUserID() {
@@ -67,35 +104,35 @@ public class User {
         UserID = userID;
     }
 
-    public String getUserNae() {
-        return UserNae;
+    public String getUserName() {
+        return UserName;
     }
 
-    public void setUserNae(String userNae) {
-        UserNae = userNae;
+    public void setUserName(String userName) {
+        UserName = userName;
     }
 
-    public String getUserPassword() {
-        return UserPassword;
+    public String getPasswod() {
+        return Passwod;
     }
 
-    public void setUserPassword(String userPassword) {
-        UserPassword = userPassword;
+    public void setPasswod(String passwod) {
+        Passwod = passwod;
     }
 
-    public String getUserAge() {
-        return UserAge;
+    public String getRole() {
+        return Role;
     }
 
-    public void setUserAge(String userAge) {
-        UserAge = userAge;
+    public void setRole(String role) {
+        Role = role;
     }
 
-    public String getUserRole() {
-        return UserRole;
+    public int getAge() {
+        return Age;
     }
 
-    public void setUserRole(String userRole) {
-        UserRole = userRole;
+    public void setAge(int age) {
+        Age = age;
     }
 }

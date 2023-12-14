@@ -5,17 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68acd454-bd7f-47fb-98f0-e5113c16d97c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Admin/ChangeRoleStaff.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Admin/ViewAllStaffs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/computer_technician/viewTechnicianJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/javafx.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOADProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OOADProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/auth/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/TemporaryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/TemporaryMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,16 +55,24 @@
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "11",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/hakuk/IdeaProjects/ooadproject/lib/mysql-connector-java-8.0.24.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.18965517",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hakuk\IdeaProjects\ooadproject\lib" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ooadproject" />
@@ -69,7 +91,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-11.0.21-corretto-11.0.21-3183f394aec4-26afc3bf" />
+        <option value="jdk-11.0.21-corretto-11.0.21-8336523bb0d9-d3b62f98" />
       </set>
     </attachedChunks>
   </component>

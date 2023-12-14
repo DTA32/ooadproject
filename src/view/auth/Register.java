@@ -1,4 +1,4 @@
-package view;
+package view.auth;
 
 import controller.UserController;
 import helper.Helper;
@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import main.MainStage;
+import view.TemporaryMenu;
 
 public class Register {
     Scene scene;
@@ -107,7 +108,7 @@ public class Register {
     }
 
     void registerInit() {
-        regButton = new Button("view.Register");
+        regButton = new Button("view.auth.Register");
         regButton.setPrefWidth(500);
         fp.getChildren().add(regButton);
     }
