@@ -41,6 +41,10 @@ public class TemporaryMenu {
     Button history;
 
     Button TechJob;
+    
+    Button Transactions;
+    
+    Button AssignUser;
 
 
     public TemporaryMenu() {
@@ -107,11 +111,23 @@ public class TemporaryMenu {
             TechnicianListJob techJob = TechnicianListJob.getInstance();
             techJob.show();
         });
+        
+        Transactions = new Button("Transaction History");
+        Transactions.setOnMouseClicked(e -> {
+        	TransactionHistory transHistory = TransactionHistory.getInstance();
+        	transHistory.show();
+        });
+        
+        AssignUser = new Button("Assign User to Another PC");
+        AssignUser.setOnMouseClicked(e -> {
+            AssignUserAnotherPC assignUser = AssignUserAnotherPC.getInstance();
+            assignUser.show();
+        });
 
         fp.getChildren().addAll(title, bookPC, viewReport,
                 register, allPc, bookedPC,
                 cancelPC, finishPC, login,
-                history, TechJob);
+                history, TechJob, Transactions, AssignUser);
 
         scene = new Scene(fp, 1200, 600);
     }

@@ -1,4 +1,4 @@
-module OOADProject {
+module brandnewooad {
 
     requires javafx.graphics;
     requires java.sql;
