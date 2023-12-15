@@ -3,11 +3,11 @@ CREATE DATABASE IF NOT EXISTS InternetCLafes;
 USE InternetCLafes;
 
 CREATE TABLE Users (
-    user_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_name VARCHAR(255) NOT NULL,
-    user_password VARCHAR(255) NOT NULL,
-    user_age INT NOT NULL,
-    user_role INT NOT NULL
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    UserName VARCHAR(255) NOT NULL,
+    UserPassword VARCHAR(255) NOT NULL,
+    UserAge INT NOT NULL,
+    UserRole INT NOT NULL
 );
 
 CREATE TABLE PCs (
@@ -20,7 +20,7 @@ CREATE TABLE TransactionHeaders (
     staff_id INT NOT NULL,
     staff_name VARCHAR(255) NOT NULL,
     transaction_date DATE NOT NULL,
-    FOREIGN KEY (staff_id) REFERENCES Users(user_id)
+    FOREIGN KEY (staff_id) REFERENCES Users(UserID)
 );
 
 CREATE TABLE TransactionDetails (
@@ -47,7 +47,7 @@ CREATE TABLE PCBooks (
     user_id INT NOT NULL,
     booked_date DATE NOT NULL,
     FOREIGN KEY (pc_id) REFERENCES PCs(pc_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(UserID)
 );
 
 CREATE TABLE Jobs (
@@ -55,6 +55,6 @@ CREATE TABLE Jobs (
     user_id INT NOT NULL,
     pc_id INT NOT NULL,
     job_status INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (user_id) REFERENCES Users(UserID),
     FOREIGN KEY (pc_id) REFERENCES PCs(pc_id)
 );
