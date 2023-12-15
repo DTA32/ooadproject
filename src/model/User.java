@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 
 public class User {
 
-    private String UserID, UserNae, UserPassword, UserAge, UserRole;
+    private String UserID, UserName, UserPassword, UserAge, UserRole;
 
     public static boolean getUserData(String username, String password){
         Connect conn = Connect.getConnection();
@@ -51,9 +51,9 @@ public class User {
         return true;
     }
 
-    public User(String userID, String userNae, String userPassword, String userAge, String userRole) {
+    public User(String userID, String userName, String userPassword, String userAge, String userRole) {
         UserID = userID;
-        UserNae = userNae;
+        UserName = userName;
         UserPassword = userPassword;
         UserAge = userAge;
         UserRole = userRole;
@@ -68,11 +68,11 @@ public class User {
     }
 
     public String getUserNae() {
-        return UserNae;
+        return UserName;
     }
 
-    public void setUserNae(String userNae) {
-        UserNae = userNae;
+    public void setUserNae(String userName) {
+        UserName = userName;
     }
 
     public String getUserPassword() {
