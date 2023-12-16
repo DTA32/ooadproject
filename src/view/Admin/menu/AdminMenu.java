@@ -13,16 +13,15 @@ import main.MainStage;
 import model.User;
 import view.Admin.job.JobManagement;
 import view.Admin.pc.ViewPC;
-import view.Admin.report.Report;
+import view.Admin.report.ViewAllReport;
 import view.Admin.staff.ViewAllStaffs;
 import view.Admin.transaction.TransactionHistory;
-import view.auth.Login;
 
 public class AdminMenu {
 
-    private static Login login;
-    public static Login getInstance() {
-        return login = login == null ? new Login() : login;
+    private static AdminMenu adminMenu;
+    public static AdminMenu getInstance() {
+        return adminMenu = adminMenu == null ? new AdminMenu() : adminMenu;
     }
     public void show(){
         MainStage stage = MainStage.getInstance();
@@ -110,7 +109,7 @@ public class AdminMenu {
             jobManagement.show();
         });
         viewAllReportBtn.setOnMouseClicked(e -> {
-            Report report = new Report();
+            ViewAllReport report = new ViewAllReport();
             report.show();
         });
         viewAllPCBtn.setOnMouseClicked(e -> {

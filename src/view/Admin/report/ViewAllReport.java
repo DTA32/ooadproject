@@ -1,4 +1,4 @@
-package view;
+package view.Admin.report;
 
 import controller.ReportController;
 import javafx.geometry.Orientation;
@@ -10,10 +10,8 @@ import javafx.scene.layout.*;
 import javafx.geometry.Pos;
 import main.MainStage;
 import model.Report;
+import view.Admin.menu.AdminMenu;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class ViewAllReport {
@@ -59,8 +57,8 @@ public class ViewAllReport {
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = TemporaryMenu.getInstance();
-            temp.show();
+            AdminMenu adminMenu = AdminMenu.getInstance();
+            adminMenu.show();
         });
         bp.setTop(back);
     }

@@ -9,7 +9,7 @@ import main.MainStage;
 import view.Admin.job.JobManagement;
 import view.Admin.pc.CancelPC;
 import view.Admin.pc.ViewPC;
-import view.Admin.report.Report;
+import view.Admin.report.ViewAllReport;
 import view.Admin.staff.ViewAllStaffs;
 import view.Admin.transaction.TransactionHistory;
 import view.auth.Login;
