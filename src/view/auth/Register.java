@@ -118,7 +118,7 @@ public class Register {
     }
 
     void registerInit() {
-        regButton = new Button("Register");
+        regButton = new Button("view.auth.Register");
         regButton.setPrefWidth(500);
         fp.getChildren().add(regButton);
     }

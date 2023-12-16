@@ -6,9 +6,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.geometry.*;
 import main.MainStage;
+import view.Admin.JobManagement;
+import view.Admin.ViewAllStaffs;
 import view.auth.Login;
 import view.auth.Register;
-
+import view.computer_technician.ViewTechnicianJob;
 
 public class TemporaryMenu {
     private static TemporaryMenu temporaryMenu;
@@ -45,6 +47,10 @@ public class TemporaryMenu {
     Button Transactions;
     
     Button AssignUser;
+
+    Button viewAllStaffs;
+    Button viewtechnicianJob;
+    Button jobManagementBtn;
 
 
     public TemporaryMenu() {
@@ -124,10 +130,28 @@ public class TemporaryMenu {
             assignUser.show();
         });
 
+        viewAllStaffs = new Button("View All Staffs");
+        viewAllStaffs.setOnMouseClicked(e -> {
+            ViewAllStaffs viewAllStaffs = new ViewAllStaffs();
+            viewAllStaffs.show();
+        });
+
+        viewtechnicianJob = new Button("View Technician Job");
+        viewtechnicianJob.setOnMouseClicked(e -> {
+            ViewTechnicianJob viewtechnicianJob = new ViewTechnicianJob();
+            viewtechnicianJob.show();
+        });
+
+        jobManagementBtn = new Button("Job Management");
+        jobManagementBtn.setOnMouseClicked(e -> {
+            JobManagement jobManagement = new JobManagement();
+            jobManagement.show();
+        });
+
         fp.getChildren().addAll(title, bookPC, viewReport,
                 register, allPc, bookedPC,
                 cancelPC, finishPC, login,
-                history, TechJob, Transactions, AssignUser);
+                history, TechJob, viewAllStaffs, viewtechnicianJob, jobManagementBtn, Transactions, AssignUser);
 
         scene = new Scene(fp, 1200, 600);
     }

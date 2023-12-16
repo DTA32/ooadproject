@@ -4,6 +4,8 @@ import helper.Helper;
 import javafx.scene.control.Alert;
 import model.User;
 
+import java.util.ArrayList;
+
 public class UserController {
 
     public static boolean getUserData(String username, String password){
@@ -75,6 +77,22 @@ public class UserController {
             return false;
         }
         return true;
+    }
+
+    public static boolean changeRoleUser(String UserID, String Role)
+    {
+        if (User.changeRoleUser(UserID, Role)) {
+            Helper.showAlert(Alert.AlertType.INFORMATION, "Successfully Updated Role");
+            return true;
+        }
+
+        Helper.showAlert(Alert.AlertType.ERROR, "Error updating");
+        return false;
+    }
+
+    public static ArrayList<User> getAllUserData()
+    {
+        return User.getAlluserData();
     }
 
 }

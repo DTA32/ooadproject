@@ -1,5 +1,4 @@
-module brandnewooad {
-
+module OOADProject {
     requires javafx.graphics;
     requires java.sql;
     requires javafx.controls;
@@ -8,5 +7,4 @@ module brandnewooad {
     opens controller;
     opens view;
     opens view.auth;
-
 }
