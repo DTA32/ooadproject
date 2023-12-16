@@ -8,24 +8,26 @@ import java.util.ArrayList;
 
 public class UserController {
 
-    public static boolean getUserData(String username, String password){
+    public static User getUserData(String username, String password){
         // Validate username
         if (username.isEmpty()){
             Helper.showAlert(Alert.AlertType.ERROR, "Username cannot be empty!");
-            return false;
+            return null;
         }
         // Validate password
         if (password.isEmpty()){
             Helper.showAlert(Alert.AlertType.ERROR, "Password cannot be empty!");
-            return false;
+            return null;
         }
         // Validate username and password
-        boolean isValidUser = User.getUserData(username, password);
-        if (!isValidUser){
+        User user = User.getUserData(username, password);
+        if (user == null){
             Helper.showAlert(Alert.AlertType.ERROR, "Invalid username or password!");
-            return false;
+            return null;
         }
-        return true;
+        Helper.showAlert(Alert.AlertType.INFORMATION, "Login success!");
+        Helper.setUser(user);
+        return user;
     }
 
     public static boolean addNewUser(String username, String password, String confirmPassword, int age)
@@ -76,6 +78,7 @@ public class UserController {
             Helper.showAlert(Alert.AlertType.ERROR, "Username is not unique!");
             return false;
         }
+        Helper.showAlert(Alert.AlertType.INFORMATION, "Successfully registered!");
         return true;
     }
 

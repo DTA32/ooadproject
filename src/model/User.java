@@ -10,18 +10,25 @@ public class User {
     private String UserID, UserName, Passwod, Role;
     private  int Age;
 
-    public static boolean getUserData(String username, String password){
+    public static User getUserData(String username, String password){
         Connect conn = Connect.getConnection();
         String prepareSql = "SELECT * FROM users WHERE UserName = ? AND Password = ?";
         try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
             ps.setString(1, username);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) return true;
+            if (rs.next()){
+                String UserID = rs.getString("UserID");
+                String UserNae = rs.getString("UserName");
+                String Password = rs.getString("Password");
+                int Age = Integer.parseInt(rs.getString("Age"));
+                String Role = rs.getString("Role");
+                return new User(UserID, UserNae, Password, Role, Age);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     public static boolean addNewUser(String username, String password, int age) {

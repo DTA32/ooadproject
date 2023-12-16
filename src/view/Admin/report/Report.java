@@ -1,4 +1,4 @@
-package view;
+package view.Admin.report;
 
 import javafx.geometry.Orientation;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -9,6 +9,7 @@ import javafx.scene.layout.*;
 import javafx.geometry.Pos;
 import main.MainStage;
 import model.ReportModel;
+import view.TemporaryMenu;
 
 public class Report{
     private static Report report;
@@ -70,7 +71,7 @@ public class Report{
         TableColumn<ReportModel, Integer> pcidCol = new TableColumn<>("PC ID");
         pcidCol.setCellValueFactory(new PropertyValueFactory<>("pcid"));
         pcidCol.setPrefWidth(200);
-        TableColumn<ReportModel, String> reportCol = new TableColumn<>("view.Report Notes");
+        TableColumn<ReportModel, String> reportCol = new TableColumn<>("view.Admin.report.Report Notes");
         reportCol.setCellValueFactory(new PropertyValueFactory<>("reportNotes"));
         reportCol.setPrefWidth(690);
         table.getColumns().addAll(idCol, pcidCol, reportCol);

@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
 import model.PC;
+import view.Admin.pc.CancelPC;
 
 public class BookedPC {
     private static BookedPC bookedPC;
