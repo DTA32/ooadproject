@@ -1,4 +1,4 @@
-package view;
+package view.Admin.transaction;
 
 import java.sql.Date;
 
@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import main.MainStage;
 import model.TransactionHistoryHeaderModel;
 import model.TransactionHistoryDetailModel;
+import view.TemporaryMenu;
 
 public class TransactionHistory{
     private static TransactionHistory transactionHistory;
