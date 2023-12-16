@@ -47,11 +47,10 @@ public class User {
             ps.setString(2, password);
             ps.setInt(3, age);
             ps.executeUpdate();;
+            return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            return false;
         }
-
-        return true;
     }
 
     public static ArrayList<User> getAlluserData(){

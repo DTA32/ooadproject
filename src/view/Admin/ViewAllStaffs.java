@@ -28,7 +28,6 @@ public class ViewAllStaffs {
     TableColumn <User, Void> actionColumn;
 
     public ViewAllStaffs() {
-        getAllStaffs();
         topInit();
         initialize();
     }
