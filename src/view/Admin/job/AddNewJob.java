@@ -1,4 +1,4 @@
-package view.Admin;
+package view.Admin.job;
 
 public class AddNewJob {
 }

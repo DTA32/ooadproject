@@ -6,11 +6,18 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.geometry.*;
 import main.MainStage;
-import view.Admin.JobManagement;
-import view.Admin.ViewAllStaffs;
+import view.Admin.job.JobManagement;
+import view.Admin.pc.CancelPC;
+import view.Admin.pc.ViewPC;
+import view.Admin.report.Report;
+import view.Admin.staff.ViewAllStaffs;
+import view.Admin.transaction.TransactionHistory;
 import view.auth.Login;
 import view.auth.Register;
 import view.computer_technician.ViewTechnicianJob;
+import view.customer.pc.BookPC;
+import view.customer.transaction.CustomerTransactionHistory;
+import view.operator.pc.AssignUserAnotherPC;
 
 public class TemporaryMenu {
     private static TemporaryMenu temporaryMenu;

@@ -1,4 +1,4 @@
-package view.Admin;
+package view.Admin.staff;
 
 import controller.UserController;
 import javafx.geometry.Insets;
@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
+import view.Admin.staff.ChangeRoleStaff;
 import view.TemporaryMenu;
 
 import java.util.ArrayList;

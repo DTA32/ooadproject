@@ -1,4 +1,4 @@
-package view;
+package view.Admin.pc;
 
 import helper.Helper;
 import javafx.geometry.Orientation;
@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.control.Alert.AlertType;
 import main.MainStage;
+import view.TemporaryMenu;
 
 import java.util.Calendar;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package view;
+package view.customer.pc;
 
 import javafx.geometry.Orientation;
 import javafx.scene.text.Font;
@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Pos;
 import main.MainStage;
+import view.TemporaryMenu;
 
 public class BookPC {
     private static BookPC bookPC;

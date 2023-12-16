@@ -1,4 +1,4 @@
-package view;
+package view.Admin.pc;
 
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -11,6 +11,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
 import model.PC;
+import view.customer.pc.BookPC;
+import view.TemporaryMenu;
 
 public class ViewPC {
     private static ViewPC viewPC;
