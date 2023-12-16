@@ -13,6 +13,17 @@ import view.auth.Register;
 import view.computer_technician.ViewTechnicianJob;
 
 public class TemporaryMenu {
+    private static TemporaryMenu temporaryMenu;
+
+    public static TemporaryMenu getInstance() {
+        return temporaryMenu = temporaryMenu == null ? new TemporaryMenu() : temporaryMenu;
+    }
+
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
+
     Scene scene;
     FlowPane fp;
 
@@ -32,13 +43,17 @@ public class TemporaryMenu {
     Button history;
 
     Button TechJob;
+    
+    Button Transactions;
+    
+    Button AssignUser;
 
     Button viewAllStaffs;
     Button viewtechnicianJob;
     Button jobManagementBtn;
 
 
-    public TemporaryMenu(){
+    public TemporaryMenu() {
         fp = new FlowPane();
         fp.setOrientation(Orientation.VERTICAL);
         fp.setAlignment(Pos.CENTER);
@@ -48,88 +63,96 @@ public class TemporaryMenu {
 
         bookPC = new Button("Book PC");
         bookPC.setOnMouseClicked(e -> {
-            BookPC bookPC = new BookPC();
-            MainStage.stage.setScene(bookPC.getScene());
+            BookPC bookPC = BookPC.getInstance();
+            bookPC.show();
         });
         viewReport = new Button("View Report");
         viewReport.setOnMouseClicked(e -> {
-            Report report = new Report();
-            MainStage.stage.setScene(report.getScene());
+            Report report = Report.getInstance();
+            report.show();
         });
         register = new Button("Register");
         register.setOnMouseClicked(e -> {
-            Register register = new Register();
-            MainStage.stage.setScene(register.getScene());
+            Register register = Register.getInstance();
+            register.show();
         });
         allPc = new Button("All PC");
         allPc.setOnMouseClicked(e -> {
-            ViewPC allPc = new ViewPC();
-            MainStage.stage.setScene(allPc.getScene());
+            ViewPC allPc = ViewPC.getInstance();
+            allPc.show();
         });
 
         bookedPC = new Button("Booked PC");
         bookedPC.setOnMouseClicked(e -> {
-            BookedPC bookedPC = new BookedPC();
-            MainStage.stage.setScene(bookedPC.getScene());
+            BookedPC bookedPC = BookedPC.getInstance();
+            bookedPC.show();
         });
 
         cancelPC = new Button("Cancel PC");
         cancelPC.setOnMouseClicked(e -> {
-            CancelPC cancelPC = new CancelPC();
-            MainStage.stage.setScene(cancelPC.getScene());
+            CancelPC cancelPC = CancelPC.getInstance();
+            cancelPC.show();
         });
 
         finishPC = new Button("Finish PC");
         finishPC.setOnMouseClicked(e -> {
-            FinishPC finishPC = new FinishPC();
-            MainStage.stage.setScene(finishPC.getScene());
+            FinishPC finishPC = FinishPC.getInstance();
+            finishPC.show();
         });
 
         login = new Button("Login");
         login.setOnMouseClicked(e -> {
-            Login login = new Login();
-            MainStage.stage.setScene(login.getScene());
+            Login login = Login.getInstance();
+            login.show();
         });
 
         history = new Button("History");
         history.setOnMouseClicked(e -> {
-            CustomerTransactionHistory history = new CustomerTransactionHistory();
-            MainStage.stage.setScene(history.getScene());
+            CustomerTransactionHistory customerTransactionHistory = CustomerTransactionHistory.getInstance();
+            customerTransactionHistory.show();
         });
 
         TechJob = new Button("Technician Job List");
         TechJob.setOnMouseClicked(e -> {
-            TechnicianListJob techJob = new TechnicianListJob();
-            MainStage.stage.setScene(techJob.getScene());
+            TechnicianListJob techJob = TechnicianListJob.getInstance();
+            techJob.show();
+        });
+        
+        Transactions = new Button("Transaction History");
+        Transactions.setOnMouseClicked(e -> {
+        	TransactionHistory transHistory = TransactionHistory.getInstance();
+        	transHistory.show();
+        });
+        
+        AssignUser = new Button("Assign User to Another PC");
+        AssignUser.setOnMouseClicked(e -> {
+            AssignUserAnotherPC assignUser = AssignUserAnotherPC.getInstance();
+            assignUser.show();
         });
 
         viewAllStaffs = new Button("View All Staffs");
         viewAllStaffs.setOnMouseClicked(e -> {
             ViewAllStaffs viewAllStaffs = new ViewAllStaffs();
-            MainStage.stage.setScene(viewAllStaffs.getScene());
+            viewAllStaffs.show();
         });
 
         viewtechnicianJob = new Button("View Technician Job");
         viewtechnicianJob.setOnMouseClicked(e -> {
             ViewTechnicianJob viewtechnicianJob = new ViewTechnicianJob();
-            MainStage.stage.setScene(viewtechnicianJob.getScene());
+            viewtechnicianJob.show();
         });
 
         jobManagementBtn = new Button("Job Management");
         jobManagementBtn.setOnMouseClicked(e -> {
             JobManagement jobManagement = new JobManagement();
-            MainStage.stage.setScene(jobManagement.getScene());
+            jobManagement.show();
         });
 
         fp.getChildren().addAll(title, bookPC, viewReport,
                 register, allPc, bookedPC,
                 cancelPC, finishPC, login,
-                history, TechJob, viewAllStaffs, viewtechnicianJob, jobManagementBtn);
+                history, TechJob, viewAllStaffs, viewtechnicianJob, jobManagementBtn, Transactions, AssignUser);
 
         scene = new Scene(fp, 1200, 600);
-    }
-
-    public Scene getScene(){
-        return scene;
     }
 }

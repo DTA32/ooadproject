@@ -13,6 +13,14 @@ import main.MainStage;
 import view.TemporaryMenu;
 
 public class Register {
+    private static Register register;
+    public static Register getInstance() {
+        return register = register == null ? new Register() : register;
+    }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
     Scene scene;
     BorderPane bp;
     FlowPane fp;
@@ -21,8 +29,14 @@ public class Register {
     PasswordField confirmPasswordField;
     Spinner<Integer> ageSpinner;
     Button regButton;
+    Hyperlink loginHyperlink;
 
     public Register() {
+        initialize();
+        setupEventHandling();
+    }
+
+    private void initialize() {
         bp = new BorderPane();
         fp = new FlowPane();
 
@@ -36,14 +50,10 @@ public class Register {
         confirmPasswordInit();
         ageInit();
         registerInit();
+        loginHyperlinkInit();
         bp.setCenter(fp);
 
         scene = new Scene(bp, 1200, 600);
-        setupEventHandling();
-    }
-
-    public Scene getScene(){
-        return scene;
     }
 
     VBox titleInit(){
@@ -64,8 +74,8 @@ public class Register {
         VBox topContainer = new VBox();
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            TemporaryMenu temp = TemporaryMenu.getInstance();
+            temp.show();
         });
         topContainer.getChildren().addAll(back, titleInit());
         bp.setTop(topContainer);
@@ -111,6 +121,18 @@ public class Register {
         regButton = new Button("view.auth.Register");
         regButton.setPrefWidth(500);
         fp.getChildren().add(regButton);
+    }
+
+    void loginHyperlinkInit() {
+        loginHyperlink = new Hyperlink("Already have an account? Login here");
+        loginHyperlink.setOnMouseClicked(e -> {
+            Login login = Login.getInstance();
+            login.show();
+        });
+        VBox loginContainer = new VBox();
+        loginContainer.getChildren().add(loginHyperlink);
+        loginContainer.setAlignment(Pos.CENTER);
+        fp.getChildren().add(loginContainer);
     }
 
     void setupEventHandling() {

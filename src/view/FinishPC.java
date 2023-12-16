@@ -18,6 +18,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class FinishPC {
+    private static FinishPC finishPC;
+    public static FinishPC getInstance() {
+        return finishPC = finishPC == null ? new FinishPC() : finishPC;
+    }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
     Scene scene;
 
     BorderPane bpOuter;
@@ -57,8 +65,8 @@ public class FinishPC {
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            TemporaryMenu temp = TemporaryMenu.getInstance();
+            temp.show();
         });
         bpOuter.setTop(back);
     }
@@ -70,10 +78,6 @@ public class FinishPC {
             isFinishable();
         });
         vbFields.getChildren().add(finish);
-    }
-
-    public Scene getScene(){
-        return scene;
     }
 
     void titleInit(){

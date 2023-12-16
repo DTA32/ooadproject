@@ -6,7 +6,7 @@ public final class Connect {
 
     private final String USERNAME = "root"; // change with your MySQL username, the default username is 'root'
     private final String PASSWORD = ""; // change with your MySQL password, the default password is empty
-    private final String DATABASE = "ooadProject"; // change with the database name that you use
+    private final String DATABASE = "InternetCLafes"; // change with the database name that you use
     private final String HOST = "localhost:3306"; // change with your MySQL host, the default port is 3306
     private final String CONECTION = String.format("jdbc:mysql://%s/%s", HOST, DATABASE);
 
@@ -46,7 +46,7 @@ public final class Connect {
 
     /**
      * This method is used for SELECT SQL statements.
-     * @param String This is the query statement
+     * @param query This is the query statement
      * @return ResultSet This returns result data from the database
      */
     public ResultSet executeQuery(String query) {
@@ -61,7 +61,7 @@ public final class Connect {
 
     /**
      * This method is used for INSERT, UPDATE, or DELETE SQL statements.
-     * @param String This is the query statement
+     * @param query This is the query statement
      */
     public void executeUpdate(String query) {
         try {
@@ -73,7 +73,7 @@ public final class Connect {
 
     /**
      * This method is used for SELECT, INSERT, UPDATE, or DELETE SQL statements using prepare statement.
-     * @param String This is the query statement
+     * @param query This is the query statement
      */
     public PreparedStatement prepareStatement(String query) {
         PreparedStatement ps = null;

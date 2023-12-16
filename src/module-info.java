@@ -7,5 +7,4 @@ module OOADProject {
     opens controller;
     opens view;
     opens view.auth;
-
 }

@@ -18,6 +18,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CancelPC {
+    private static CancelPC cancelPC;
+    public static CancelPC getInstance() {
+        return cancelPC = cancelPC == null ? new CancelPC() : cancelPC;
+    }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
 
     Scene scene;
 
@@ -57,8 +65,8 @@ public class CancelPC {
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            TemporaryMenu temp = TemporaryMenu.getInstance();
+            temp.show();
         });
         bpOuter.setTop(back);
     }
@@ -70,9 +78,6 @@ public class CancelPC {
         vbFields.getChildren().add(cancel);
     }
 
-    public  Scene getScene(){
-        return scene;
-    }
 
     void titleInit(){
         Label title = new Label("Cancel PC");

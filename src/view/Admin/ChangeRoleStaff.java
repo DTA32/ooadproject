@@ -29,6 +29,11 @@ public class ChangeRoleStaff {
         addEventListener();
     }
 
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
+
     public Scene getScene() {
         return scene;
     }
@@ -71,13 +76,13 @@ public class ChangeRoleStaff {
         saveBtn.setOnAction(event -> {
             if (UserController.changeRoleUser(user.getUserID(), user.getRole())){
                 ViewAllStaffs viewAllStaffs = new  ViewAllStaffs();
-                MainStage.stage.setScene(viewAllStaffs.getScene());
+                viewAllStaffs.show();
             }
         });
 
         cancelBtn.setOnAction(event -> {
             ViewAllStaffs viewAllStaffs = new  ViewAllStaffs();
-            MainStage.stage.setScene(viewAllStaffs.getScene());
+            viewAllStaffs.show();
         });
 
 

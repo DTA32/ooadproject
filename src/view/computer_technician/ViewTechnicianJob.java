@@ -33,6 +33,11 @@ public class ViewTechnicianJob {
         topInit();
         initialize();
     }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
+
 
     public ArrayList<PC> getAllPCData(){
         return PCController.getAllPCData();
@@ -47,7 +52,7 @@ public class ViewTechnicianJob {
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
             TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            temp.show();
         });
         topContainer.getChildren().addAll(back);
         bp.setTop(topContainer);

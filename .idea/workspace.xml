@@ -5,17 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68acd454-bd7f-47fb-98f0-e5113c16d97c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controller/JobController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/PCController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Job.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Admin/AddNewJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Admin/JobManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seeder.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/TechnicianListJobController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/TransactionHistoryDetailModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/TransactionHistoryHeaderModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/AssignUserAnotherPC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/TransactionHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/PC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOADProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OOADProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/Connect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Connect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/MainStage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/MainStage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TechnicianListJobModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TechnicianListJobModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Admin/ChangeRoleStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/ChangeRoleStaff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Admin/JobManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/JobManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Admin/ViewAllStaffs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/ViewAllStaffs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/BookPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BookPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/BookedPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BookedPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CancelPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CancelPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CustomerTransactionHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CustomerTransactionHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/FinishPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FinishPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/TechnicianListJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/TechnicianListJob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/TemporaryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/TemporaryMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/computer_technician/viewTechnicianJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/computer_technician/ViewTechnicianJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ViewPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ViewPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/auth/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/auth/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/auth/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/auth/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/computer_technician/ViewTechnicianJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/computer_technician/ViewTechnicianJob.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,29 +67,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dimz&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/hakuk/IdeaProjects/ooadproject/lib/mysql-connector-java-8.0.24.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.18965517&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Merging dimz",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "11",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/hakuk/IdeaProjects/ooadproject/lib/mysql-connector-java-8.0.24.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.18965517",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\hakuk\IdeaProjects\ooadproject\lib" />
@@ -90,6 +113,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="jdk-11.0.21-corretto-11.0.21-249ae16d76d6-d0fa0211" />
         <option value="jdk-11.0.21-corretto-11.0.21-8336523bb0d9-d3b62f98" />
       </set>
     </attachedChunks>
@@ -109,5 +133,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

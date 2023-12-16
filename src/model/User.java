@@ -1,14 +1,12 @@
 package model;
 
 import database.Connect;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class User {
-
     private String UserID, UserName, Passwod, Role;
     private  int Age;
 

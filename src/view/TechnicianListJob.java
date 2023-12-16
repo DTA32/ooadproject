@@ -1,19 +1,44 @@
 package view;
 
-import javafx.application.Application;
-import javafx.geometry.Insets;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import database.Connect;
+import helper.Helper;
+import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
 import main.MainStage;
 import model.TechnicianListJobModel;
+import controller.TechnicianListJobController;
 
 public class TechnicianListJob{
+    private static TechnicianListJob technicianListJob;
+    public static TechnicianListJob getInstance() {
+        return technicianListJob = technicianListJob == null ? new TechnicianListJob() : technicianListJob;
+    }
+
+    ObservableList<TechnicianListJobModel> data = FXCollections.observableArrayList();
+    
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
     Scene scene;
     BorderPane bp;
     FlowPane fp;
@@ -30,7 +55,6 @@ public class TechnicianListJob{
         titleInit();
         tableInit();
         backInit();
-
         scene = new Scene(bp, 1200, 600);
 
     }
@@ -48,15 +72,12 @@ public class TechnicianListJob{
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            TemporaryMenu temp = TemporaryMenu.getInstance();
+            temp.show();
         });
         bp.setTop(back);
     }
-
-    public Scene getScene(){
-        return scene;
-    }
+    
     void tableInit() {
         TableView table = new TableView();
         table.setEditable(true);
@@ -67,17 +88,54 @@ public class TechnicianListJob{
         noCol.setPrefWidth(200);
         TableColumn<TechnicianListJobModel, String> technicianCol = new TableColumn<>("Computer technician");
         technicianCol.setCellValueFactory(new PropertyValueFactory<>("technician"));
+        technicianCol.setCellFactory(TextFieldTableCell.<TechnicianListJobModel>forTableColumn());
         technicianCol.setPrefWidth(400);
         TableColumn<TechnicianListJobModel, String> statusCol = new TableColumn<>("Job Status");
         statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        statusCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        //update data
+        statusCol.setOnEditCommit(
+            new EventHandler<CellEditEvent<TechnicianListJobModel, String>>() {
+                @Override
+                public void handle(CellEditEvent<TechnicianListJobModel, String> t) {
+                	// get id
+                	int user_id = ((TechnicianListJobModel) t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())
+                            ).getNo();
+                	// close get id
+                	if (TechnicianListJobController.updateStatus(user_id, t.getNewValue())){
+                		Helper.showAlert(Alert.AlertType.INFORMATION, "Successfully updated!");
+                    }
+
+                }
+            }
+        );
+        // close update data
         statusCol.setPrefWidth(200);
         TableColumn<TechnicianListJobModel, Integer> pcidCol = new TableColumn<>("PC ID");
         pcidCol.setCellValueFactory(new PropertyValueFactory<>("pcid"));
         pcidCol.setPrefWidth(200);
         table.getColumns().addAll(noCol, technicianCol, statusCol, pcidCol);
-        table.getItems().add(new TechnicianListJobModel(1, "Yudi", "Complete", 13));
-        table.getItems().add(new TechnicianListJobModel(2, "Andi", "Uncomplete", 17));
-        table.getItems().add(new TechnicianListJobModel(3, "Budi", "Complete", 20));
+      //ambil data dari database
+        Connect conn = Connect.getConnection();
+        String prepareSql = "SELECT 1 as no, 'Yudi' as name, 'Complete' as state, 13 as numb FROM users;";
+        try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                int no = rs.getInt("no");
+                String name = rs.getString("name");
+                String state = rs.getString("state");
+                int numb = rs.getInt("numb");
+                table.getItems().add(new TechnicianListJobModel(no, name, state, numb));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        close
+//        table.getItems().add(new TechnicianListJobModel(1, "Yudi", "Complete", 13));
+//        table.getItems().add(new TechnicianListJobModel(2, "Andi", "Uncomplete", 17));
+//        table.getItems().add(new TechnicianListJobModel(3, "Budi", "Complete", 20));
         fp.getChildren().add(table);
     }
 

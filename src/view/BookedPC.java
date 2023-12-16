@@ -1,6 +1,5 @@
 package view;
 
-import helper.Helper;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,11 +10,17 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
-import javafx.scene.control.Alert.AlertType;
 import model.PC;
-import model.ReportModel;
 
 public class BookedPC {
+    private static BookedPC bookedPC;
+    public static BookedPC getInstance() {
+        return bookedPC = bookedPC == null ? new BookedPC() : bookedPC;
+    }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
 
     Scene scene;
 
@@ -39,10 +44,6 @@ public class BookedPC {
         scene = new Scene(bp, 1200, 600);
     }
 
-    public Scene getScene(){
-        return scene;
-    }
-
     void titleInit(){
         Label title = new Label("Booked PC");
         title.setFont(new Font("Arial", 24));
@@ -56,8 +57,8 @@ public class BookedPC {
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            TemporaryMenu temp = TemporaryMenu.getInstance();
+            temp.show();
         });
         bp.setTop(back);
     }
@@ -65,8 +66,8 @@ public class BookedPC {
     private void cancelBook(){
         Button cancel = new Button("Cancel");
         cancel.setOnMouseClicked(e -> {
-//            CancelPC cancelPC = new CancelPC();
-//            MainStage.stage.setScene(cancelPC.getScene());
+//            CancelPC cancelPC = CancelPC.getInstance();
+//            cancelPC.show();
         });
         fp.getChildren().add(cancel);
 
@@ -75,8 +76,8 @@ public class BookedPC {
     private void finishBook(){
         Button finish = new Button("Finish");
         finish.setOnMouseClicked(e -> {
-//            FinishPC finishPC = new FinishPC();
-//            MainStage.stage.setScene(finishPC.getScene());
+//            FinishPC finishPC = FinishPC.getInstance();
+//            finishPC.show();
         });
 
         fp.getChildren().add(finish);
@@ -112,8 +113,8 @@ public class BookedPC {
             {
                 finishButton.setOnAction((e) -> {
                     PC curr_PC = getTableView().getItems().get(getIndex());
-                    FinishPC finishPC = new FinishPC();
-                    MainStage.stage.setScene(finishPC.getScene());
+                    FinishPC finishPC = FinishPC.getInstance();
+                    finishPC.show();
                 });
             }
 
@@ -133,8 +134,8 @@ public class BookedPC {
             {
                 cancelButton.setOnAction((e) -> {
                     PC curr_PC = getTableView().getItems().get(getIndex());
-                    CancelPC cancelPC = new CancelPC();
-                    MainStage.stage.setScene(cancelPC.getScene());
+                    CancelPC cancelPC = CancelPC.getInstance();
+                    cancelPC.show();
                 });
             }
 

@@ -13,7 +13,14 @@ import main.MainStage;
 import model.PC;
 
 public class ViewPC {
-
+    private static ViewPC viewPC;
+    public static ViewPC getInstance() {
+        return viewPC = viewPC == null ? new ViewPC() : viewPC;
+    }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
     Scene scene;
     BorderPane bp;
     FlowPane fp;
@@ -35,16 +42,11 @@ public class ViewPC {
         scene = new Scene(bp, 1200, 600);
 
     }
-
-    public Scene getScene(){
-        return scene;
-    }
-
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            TemporaryMenu temp = TemporaryMenu.getInstance();
+            temp.show();
         });
         bp.setTop(back);
     }
@@ -54,15 +56,15 @@ public class ViewPC {
     void Bookinit(){
         Button book = new Button("Book");
         book.setOnMouseClicked(e -> {
-            BookPC bookPC = new BookPC();
-            MainStage.stage.setScene(book.getScene());
+            BookPC bookPC = BookPC.getInstance();
+            bookPC.show();
         });
         bp.setTop(book);
     }
 
     private void bookPC(PC pcModel){
-        BookPC bookPC = new BookPC();
-        MainStage.stage.setScene(bookPC.getScene());
+        BookPC bookPC = BookPC.getInstance();
+        bookPC.show();
     }
 
     void titleInit(){

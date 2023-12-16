@@ -11,6 +11,14 @@ import main.MainStage;
 import model.ReportModel;
 
 public class Report{
+    private static Report report;
+    public static Report getInstance() {
+        return report = report == null ? new Report() : report;
+    }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
     Scene scene;
     BorderPane bp;
     FlowPane fp;
@@ -32,15 +40,11 @@ public class Report{
 
     }
 
-    public Scene getScene(){
-        return scene;
-    }
-
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            TemporaryMenu temp = TemporaryMenu.getInstance();
+            temp.show();
         });
         bp.setTop(back);
     }

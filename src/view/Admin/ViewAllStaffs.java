@@ -32,6 +32,11 @@ public class ViewAllStaffs {
         initialize();
     }
 
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
+
     public ArrayList<User> getAllStaffs(){
         return UserController.getAllUserData();
     }
@@ -45,7 +50,7 @@ public class ViewAllStaffs {
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
             TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            temp.show();
         });
         topContainer.getChildren().addAll(back);
         bp.setTop(topContainer);
@@ -73,7 +78,7 @@ public class ViewAllStaffs {
                 editBtn.setOnAction(event -> {
                     User user = getTableView().getItems().get(getIndex());
                     ChangeRoleStaff changeRole = new ChangeRoleStaff(user);;
-                    MainStage.stage.setScene(changeRole.getScene());
+                   changeRole.show();
                 });
             }
 

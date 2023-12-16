@@ -38,6 +38,11 @@ public class JobManagement {
         initialize();
     }
 
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
+
     public ArrayList<Job> getAllJobData(){
         return JobController.getAllJobData();
     }
@@ -51,7 +56,7 @@ public class JobManagement {
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
             TemporaryMenu temp = new TemporaryMenu();
-            MainStage.stage.setScene(temp.getScene());
+            temp.show();
         });
         topContainer.getChildren().addAll(back);
         bp.setTop(topContainer);
