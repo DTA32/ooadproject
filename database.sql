@@ -34,7 +34,7 @@ CREATE TABLE TransactionDetails (
 
 CREATE TABLE Reports (
     report_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_role INT NOT NULL,
+    user_role VARCHAR(255) NOT NULL,
     pc_id INT NOT NULL,
     report_note VARCHAR(255) NOT NULL,
     report_date DATE NOT NULL,
