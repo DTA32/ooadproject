@@ -7,7 +7,7 @@ CREATE TABLE Users (
     UserName VARCHAR(255) NOT NULL,
     UserPassword VARCHAR(255) NOT NULL,
     UserAge INT NOT NULL,
-    UserRole INT NOT NULL
+    UserRole VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE PCs (

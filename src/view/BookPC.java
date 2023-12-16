@@ -1,5 +1,6 @@
 package view;
 
+import controller.PCBookController;
 import javafx.geometry.Orientation;
 import javafx.scene.text.Font;
 import javafx.scene.Scene;
@@ -7,6 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Pos;
 import main.MainStage;
+import model.PC;
+
+import java.time.LocalDate;
 
 public class BookPC {
     private static BookPC bookPC;
@@ -38,8 +42,8 @@ public class BookPC {
         backInit();
 
         titleInit();
-        dateInit();
         pcidInit();
+        dateInit();
         fp.getChildren().add(vbFields);
         bookInit();
 
@@ -57,6 +61,8 @@ public class BookPC {
         });
         bpOuter.setTop(back);
     }
+
+
 
     void titleInit(){
         Label title = new Label("Book PC");
@@ -92,31 +98,25 @@ public class BookPC {
         fp.getChildren().add(book);
     }
 
+    void setPcID(Integer pcID){
+        if(pcidField != null && pcID != null){
+            pcidField.setText(pcID.toString());
+            pcidField.setDisable(true);
+        }
+    }
+
     void setupEventHandling(){
-        book.setOnMouseClicked((e) ->  {
-            String date = "";
-            String pcid = pcidField.getText();
-            Alert err = new Alert(Alert.AlertType.ERROR);
-            err.setTitle("Error");
-            if(dateField.getValue() == null){
-                err.setHeaderText("Date cannot be empty!");
-                err.showAndWait();
-            } else{
-                date = dateField.getValue().toString();
-                // ini harusnya di controller
-                if(pcid.isBlank()) {
-                    err.setHeaderText("PC ID cannot be empty!");
-                    err.showAndWait();
-                }
-                else{
-                    // lagi lagi, ini cuma iseng
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Book PC");
-                    alert.setHeaderText(null);
-                    alert.setContentText("PC Booked!");
-                    alert.showAndWait();
-                }
+        //Nanti perlu logic buat ambil user yang lagi login
+        book.setOnMouseClicked(e -> {
+            LocalDate booked_date = dateField.getValue();
+            String pcidText = pcidField.getText();
+            try {
+                Integer pcid = Integer.parseInt(pcidText);
+                PCBookController.addNewBook(pcid, booked_date);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
             }
         });
+
     }
 }

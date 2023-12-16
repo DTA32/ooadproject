@@ -1,5 +1,8 @@
 package view;
 
+import controller.PCBookController;
+import helper.Helper;
+import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -7,10 +10,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
+import javafx.scene.control.Alert.AlertType;
 import model.PC;
+import model.PCBook;
 
 public class BookedPC {
     private static BookedPC bookedPC;
@@ -28,6 +34,10 @@ public class BookedPC {
 
     FlowPane fp;
 
+    private TableView<PCBook> table;
+
+    Button finishBtn, cancelBtn;
+
     public BookedPC(){
         bp = new BorderPane();
         fp = new FlowPane();
@@ -39,9 +49,37 @@ public class BookedPC {
 
         titleInit();
         tableInit();
+        setupButtons();
         backInit();
 
         scene = new Scene(bp, 1200, 600);
+    }
+
+
+    void setupButtons() {
+        finishBtn = new Button("Finish");
+        finishBtn.setOnMouseClicked(e -> {
+            // Finish event handling
+        });
+
+        cancelBtn = new Button("Cancel");
+        cancelBtn.setOnMouseClicked(e -> {
+            PCBook selectedBook = table.getSelectionModel().getSelectedItem();
+            if(selectedBook == null){
+                Helper.showAlert(AlertType.ERROR, "Please select a pc to cancel its booking!");
+                return;
+            }
+
+            PCBookController.cancelBook(selectedBook.getBook_id());
+            _repaint();
+
+        });
+
+        VBox buttonBox = new VBox(10);
+        buttonBox.getChildren().addAll(finishBtn, cancelBtn);
+        buttonBox.setAlignment(Pos.CENTER);
+
+        bp.setLeft(buttonBox);
     }
 
     void titleInit(){
@@ -63,96 +101,35 @@ public class BookedPC {
         bp.setTop(back);
     }
 
-    private void cancelBook(){
-        Button cancel = new Button("Cancel");
-        cancel.setOnMouseClicked(e -> {
-//            CancelPC cancelPC = CancelPC.getInstance();
-//            cancelPC.show();
-        });
-        fp.getChildren().add(cancel);
-
-    }
-
-    private void finishBook(){
-        Button finish = new Button("Finish");
-        finish.setOnMouseClicked(e -> {
-//            FinishPC finishPC = FinishPC.getInstance();
-//            finishPC.show();
-        });
-
-        fp.getChildren().add(finish);
-    }
 
     void tableInit(){
-        TableView table = new TableView();
+        table = new TableView();
         table.setEditable(true);
         table.setPrefWidth(1000);
         table.setPrefHeight(500);
 
 
-        TableColumn bookIDCol = new TableColumn("Book ID");
-        bookIDCol.setCellValueFactory(new PropertyValueFactory<PC, String> ("bookid"));
+        TableColumn<PCBook, Integer> bookIDCol = new TableColumn("Book ID");
+        bookIDCol.setCellValueFactory(new PropertyValueFactory<> ("book_id"));
         bookIDCol.setPrefWidth(200);
 
-        TableColumn<PC, Integer> pcIdCol= new TableColumn("PC ID");
-        pcIdCol.setCellValueFactory(new PropertyValueFactory("pcid"));
+        TableColumn<PCBook, Integer> pcIdCol= new TableColumn("PC ID");
+        pcIdCol.setCellValueFactory(new PropertyValueFactory("pc_id"));
         pcIdCol.setPrefWidth(200);
 
-        TableColumn statusCol = new TableColumn("Status");
-        statusCol.setCellValueFactory(new PropertyValueFactory<PC, String> ("status"));
-        statusCol.setPrefWidth(200);
-
-        TableColumn dateCol = new TableColumn("Date");
-        dateCol.setCellValueFactory(new PropertyValueFactory<PC, String> ("date"));
+        TableColumn<PCBook, String> dateCol = new TableColumn("Date");
+        dateCol.setCellValueFactory(new PropertyValueFactory<> ("booked_date"));
         dateCol.setPrefWidth(200);
 
-        TableColumn finishCol = new TableColumn("Finish");
-        finishCol.setCellFactory(col -> new TableCell<PC, Void>(){
-            private final Button finishButton = new Button("Finish");
-
-            {
-                finishButton.setOnAction((e) -> {
-                    PC curr_PC = getTableView().getItems().get(getIndex());
-                    FinishPC finishPC = FinishPC.getInstance();
-                    finishPC.show();
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty){
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : finishButton);
-            }
-        });
-        finishCol.setPrefWidth(200);
-
-
-        TableColumn<PC, Void> cancelCol = new TableColumn("Cancel");
-        cancelCol.setCellFactory(col -> new TableCell<PC, Void>() {
-            private final Button cancelButton = new Button("Cancel");
-
-            {
-                cancelButton.setOnAction((e) -> {
-                    PC curr_PC = getTableView().getItems().get(getIndex());
-                    CancelPC cancelPC = CancelPC.getInstance();
-                    cancelPC.show();
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : cancelButton);
-            }
-        });
-        cancelCol.setPrefWidth(200);
-
-
-
-        table.getColumns().addAll(bookIDCol,pcIdCol, statusCol, finishCol, cancelCol);
-        table.getItems().add(new PC(1, "Finished Booked"));
-        table.getItems().add(new PC(2, "Not Booked"));
-        table.getItems().add(new PC(3, "Finished Booked"));
+        //kok ada 5 column coy
+        table.getColumns().addAll(bookIDCol,pcIdCol, dateCol);
+        ObservableList<PCBook> bookedPC = PCBook.getAllBookedPCs();
+        table.setItems(bookedPC);
         fp.getChildren().add(table);
+    }
+
+    void _repaint(){
+        ObservableList<PCBook> bookedPCs = PCBook.getAllBookedPCs();
+        table.setItems(bookedPCs);
     }
 }

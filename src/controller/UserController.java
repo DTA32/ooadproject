@@ -6,25 +6,44 @@ import model.User;
 
 public class UserController {
 
-    public static boolean getUserData(String username, String password){
+    public static Integer getUserData(String username, String password) {
         // Validate username
-        if (username.isEmpty()){
+        if (username.isEmpty()) {
             Helper.showAlert(Alert.AlertType.ERROR, "Username cannot be empty!");
-            return false;
+            return null;
         }
         // Validate password
-        if (password.isEmpty()){
+        if (password.isEmpty()) {
             Helper.showAlert(Alert.AlertType.ERROR, "Password cannot be empty!");
-            return false;
+            return null;
         }
         // Validate username and password
-        boolean isValidUser = User.getUserData(username, password);
-        if (!isValidUser){
+        Integer userId = User.getUserData(username, password);
+        if (userId == null) {
             Helper.showAlert(Alert.AlertType.ERROR, "Invalid username or password!");
-            return false;
         }
-        return true;
+        return userId;
     }
+
+//    public static boolean getUserData(String username, String password){
+//        // Validate username
+//        if (username.isEmpty()){
+//            Helper.showAlert(Alert.AlertType.ERROR, "Username cannot be empty!");
+//            return false;
+//        }
+//        // Validate password
+//        if (password.isEmpty()){
+//            Helper.showAlert(Alert.AlertType.ERROR, "Password cannot be empty!");
+//            return false;
+//        }
+//        // Validate username and password
+//        boolean isValidUser = User.getUserData(username, password);
+//        if (!isValidUser){
+//            Helper.showAlert(Alert.AlertType.ERROR, "Invalid username or password!");
+//            return false;
+//        }
+//        return true;
+//    }
 
     public static boolean addNewUser(String username, String password, String confirmPassword, int age)
     {

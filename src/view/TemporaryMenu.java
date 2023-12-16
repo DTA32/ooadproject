@@ -42,6 +42,8 @@ public class TemporaryMenu {
 
     Button TechJob;
 
+    Button Management;
+
 
     public TemporaryMenu() {
         fp = new FlowPane();
@@ -108,10 +110,17 @@ public class TemporaryMenu {
             techJob.show();
         });
 
+        Management = new Button("PC Management");
+        Management.setOnMouseClicked(e -> {
+            PCManagement pcManagement = PCManagement.getInstance();
+            pcManagement.show();
+        });
+
+
         fp.getChildren().addAll(title, bookPC, viewReport,
                 register, allPc, bookedPC,
                 cancelPC, finishPC, login,
-                history, TechJob);
+                history, TechJob, Management);
 
         scene = new Scene(fp, 1200, 600);
     }

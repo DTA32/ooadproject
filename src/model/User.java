@@ -9,18 +9,31 @@ public class User {
 
     private String UserID, UserName, UserPassword, UserAge, UserRole;
 
-    public static boolean getUserData(String username, String password){
+    public static Integer getUserData(String username, String password){
         Connect conn = Connect.getConnection();
-        String prepareSql = "SELECT * FROM users WHERE UserName = ? AND Password = ?";
+        String prepareSql = "SELECT * FROM users WHERE UserName = ? AND UserPassword = ?";
         try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
             ps.setString(1, username);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) return true;
+            if (rs.next()) {
+                return rs.getInt("UserID");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
+//        Connect conn = Connect.getConnection();
+//        String prepareSql = "SELECT * FROM users WHERE UserName = ? AND UserPassword = ?";
+//        try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
+//            ps.setString(1, username);
+//            ps.setString(2, password);
+//            ResultSet rs = ps.executeQuery();
+//            if (rs.next()) return true;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return false;
     }
 
     public static boolean addNewUser(String username, String password, int age) {
@@ -38,7 +51,7 @@ public class User {
             e.printStackTrace();
         }
 
-        prepareSql = "INSERT INTO users (UserName, Password, Age) VALUES (?, ?, ?)";
+        prepareSql = "INSERT INTO users (UserName, UserPassword, UserAge, UserRole) VALUES (?, ?, ?, 'Customer')";
         try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
             ps.setString(1, username);
             ps.setString(2, password);
@@ -51,9 +64,9 @@ public class User {
         return true;
     }
 
-    public User(String userID, String userName, String userPassword, String userAge, String userRole) {
+    public User(String userID, String userNae, String userPassword, String userAge, String userRole) {
         UserID = userID;
-        UserName = userName;
+        UserName = userNae;
         UserPassword = userPassword;
         UserAge = userAge;
         UserRole = userRole;
@@ -71,8 +84,8 @@ public class User {
         return UserName;
     }
 
-    public void setUserNae(String userName) {
-        UserName = userName;
+    public void setUserNae(String userNae) {
+        UserName = userNae;
     }
 
     public String getUserPassword() {

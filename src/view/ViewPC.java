@@ -1,5 +1,6 @@
 package view;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,6 +26,10 @@ public class ViewPC {
     BorderPane bp;
     FlowPane fp;
 
+    TableView<PC> table;
+
+    TableColumn<PC, String> pcId, Status;
+
     public ViewPC(){
         bp = new BorderPane();
         fp = new FlowPane();
@@ -34,7 +39,7 @@ public class ViewPC {
 
         titleInit();
         tableInit();
-        Bookinit();
+//        Bookinit();
         backInit();
 
         bp.setCenter(fp);
@@ -51,20 +56,20 @@ public class ViewPC {
         bp.setTop(back);
     }
 
+
+
     //kayaknya pindah scene bukan kek gini
     //deh hehe tpi ini langsung ngambil id pcnya juga jadi mungkin aja hehe
-    void Bookinit(){
-        Button book = new Button("Book");
-        book.setOnMouseClicked(e -> {
-            BookPC bookPC = BookPC.getInstance();
-            bookPC.show();
-        });
-        bp.setTop(book);
+
+    private void bookPC(Integer pcId){
+        BookPC bookPC = BookPC.getInstance();
+        bookPC.setPcID(pcId);
+        bookPC.show();
     }
 
-    private void bookPC(PC pcModel){
-        BookPC bookPC = BookPC.getInstance();
-        bookPC.show();
+    void _repaint(){
+        table.getItems().clear();
+//        table.getItems().addAll(PC.getAllPC());
     }
 
     void titleInit(){
@@ -78,49 +83,54 @@ public class ViewPC {
     }
 
     void tableInit(){
-        TableView table = new TableView();
+        TableView<PC> table = new TableView<>();
         table.setEditable(true);
         table.setPrefWidth(1000);
         table.setPrefHeight(500);
-        TableColumn<PC, Integer> pcidCol = new TableColumn<>("PC ID");
-        pcidCol.setCellValueFactory(new PropertyValueFactory<>("pcid"));
-        pcidCol.setPrefWidth(200);
-        TableColumn<PC, String> statusCol = new TableColumn<>("Status");
-        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
-        statusCol.setPrefWidth(690);
+
+        pcId = new TableColumn("PC ID");
+        pcId.setCellValueFactory(new PropertyValueFactory<>("pcid"));
+        pcId.setPrefWidth(200);
+
+        Status = new TableColumn<>("Status");
+        Status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        Status.setPrefWidth(690);
+
         TableColumn<PC, Void> bookCol = new TableColumn<>("Book");
         bookCol.setPrefWidth(100);
-
-        bookCol.setCellFactory(col -> new TableCell<PC, Void>() {
-            private final Button bookButton = new Button("Book");
-
+        bookCol.setCellFactory(col -> new TableCell<PC, Void>(){
+            private final Button bookBtn = new Button("Book");
             {
-                bookButton.setOnAction(e -> {
+                bookBtn.setOnAction(e -> {
                     PC currentRowData = getTableView().getItems().get(getIndex());
-                    bookPC(currentRowData);
-
+                    bookPC(currentRowData.getPcid());
                 });
             }
-
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty) {
+                if(empty){
                     setGraphic(null);
-                } else {
-                    setGraphic(bookButton);
+                }else{
+                    setGraphic(bookBtn);
                 }
             }
         });
 
 
+
+
         //Fill data
-        table.getColumns().addAll(pcidCol, statusCol, bookCol);
-        table.getItems().add(new PC(1, "Broken"));
-        table.getItems().add(new PC(2, "Usable"));
-        table.getItems().add(new PC(3, "Maintenance"));
+        table.getColumns().addAll(pcId, Status, bookCol);
+        refreshTable(table);
         fp.getChildren().add(table);
     }
 
+
+
+    private void refreshTable(TableView<PC> table){
+        ObservableList<PC> pcsList = PC.getallPC();
+        table.setItems(pcsList);
+    }
 
 }
