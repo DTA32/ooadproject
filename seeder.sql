@@ -22,10 +22,10 @@ INSERT INTO TransactionDetails (transaction_id, pc_id, customer_name, booked_tim
     (2, 2, 'customer', '2020-01-02 11:00:00');
 
 INSERT INTO Reports (user_role, pc_id, report_note, report_date) VALUES
-    (0, 1, 'Report 1', '2020-01-01'),
-    (1, 1, 'Report 2', '2020-01-02'),
-    (2, 2, 'Report 3', '2020-01-03'),
-    (3, 2, 'Report 4', '2020-01-04');
+    ('Customer', 1, 'Report 1', '2020-01-01'),
+    ('Operator', 1, 'Report 2', '2020-01-02'),
+    ('Customer', 2, 'Report 3', '2020-01-03'),
+    ('Operator', 2, 'Report 4', '2020-01-04');
 
 INSERT INTO PCBooks (pc_id, user_id, booked_date) VALUES
     (1, 2, '2020-01-01'),

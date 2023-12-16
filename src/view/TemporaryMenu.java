@@ -9,7 +9,7 @@ import main.MainStage;
 import view.Admin.job.JobManagement;
 import view.Admin.pc.CancelPC;
 import view.Admin.pc.ViewPC;
-import view.Admin.report.Report;
+import view.Admin.report.ViewAllReport;
 import view.Admin.staff.ViewAllStaffs;
 import view.Admin.transaction.TransactionHistory;
 import view.auth.Login;
@@ -58,6 +58,7 @@ public class TemporaryMenu {
     Button viewAllStaffs;
     Button viewtechnicianJob;
     Button jobManagementBtn;
+    Button makeReportBtn;
 
 
     public TemporaryMenu() {
@@ -75,8 +76,8 @@ public class TemporaryMenu {
         });
         viewReport = new Button("View Report");
         viewReport.setOnMouseClicked(e -> {
-            Report report = Report.getInstance();
-            report.show();
+            ViewAllReport viewAllReport = ViewAllReport.getInstance();
+            viewAllReport.show();
         });
         register = new Button("Register");
         register.setOnMouseClicked(e -> {
@@ -155,10 +156,19 @@ public class TemporaryMenu {
             jobManagement.show();
         });
 
-        fp.getChildren().addAll(title, bookPC, viewReport,
+        makeReportBtn = new Button("Make Report");
+        makeReportBtn.setOnMouseClicked(e -> {
+            MakeReport makeReport = MakeReport.getInstance();
+            makeReport.show();
+        });
+
+        fp.getChildren().addAll(
+                title, bookPC, viewReport,
                 register, allPc, bookedPC,
                 cancelPC, finishPC, login,
-                history, TechJob, viewAllStaffs, viewtechnicianJob, jobManagementBtn, Transactions, AssignUser);
+                history, TechJob, viewAllStaffs,
+                viewtechnicianJob, jobManagementBtn, Transactions,
+                AssignUser, makeReportBtn);
 
         scene = new Scene(fp, 1200, 600);
     }

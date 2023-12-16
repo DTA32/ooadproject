@@ -101,7 +101,7 @@ public class Login {
             User user = UserController.getUserData(username, password);
             if (user != null) {
                 if (user.getRole().equals("admin")){
-                    AdminMenu adminMenu = new AdminMenu();
+                    AdminMenu adminMenu = AdminMenu.getInstance();
                     adminMenu.show();
                 }
                 else if (user.getRole().equals("customer")){

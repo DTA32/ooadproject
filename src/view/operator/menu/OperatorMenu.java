@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
+import view.MakeReport;
 import view.auth.Login;
 import view.operator.pc.AssignUserAnotherPC;
 
@@ -92,7 +93,8 @@ public class OperatorMenu {
             assignUserAnotherPC.show();
         });
         makeReportBtn.setOnMouseClicked(e -> {
-
+            MakeReport makeReport = MakeReport.getInstance();
+            makeReport.show();
         });
     }
 
