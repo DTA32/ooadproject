@@ -100,19 +100,19 @@ public class Login {
             String password = passwordInput.getText();
             User user = UserController.getUserData(username, password);
             if (user != null) {
-                if (user.getRole().equals("Admin")){
+                if (user.getRole().equals("admin")){
                     AdminMenu adminMenu = new AdminMenu();
                     adminMenu.show();
                 }
-                else if (user.getRole().equals("Customer")){
+                else if (user.getRole().equals("customer")){
                     CustomerMenu customerMenu = new CustomerMenu();
                     customerMenu.show();
                 }
-                else if (user.getRole().equals("Operator")){
+                else if (user.getRole().equals("operator")){
                     OperatorMenu operatorMenu = new OperatorMenu();
                     operatorMenu.show();
                 }
-                else if (user.getRole().equals("Computer Technician")){
+                else if (user.getRole().equals("technician")){
                     ComputerTechnician computerTechnician = new ComputerTechnician();
                     computerTechnician.show();
                 }
