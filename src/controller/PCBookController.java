@@ -20,6 +20,9 @@ public class PCBookController {
         if(booked_date == null){
             Helper.showAlert(AlertType.ERROR, "Please select a date to book a PC!");
             return;
+        } else if (booked_date.isBefore(LocalDate.now())) {
+            Helper.showAlert(AlertType.ERROR, "You can't book a PC for the past!");
+            return;
         }
 
         if(!PCBook.isAvailablePC(pcid, booked_date)){
@@ -28,12 +31,15 @@ public class PCBookController {
         }
 
         //nanti tambahin 1 parameter baru user_id
+        LocalDate today = LocalDate.now();
         boolean isSaved = PCBook.addNewBook(pcid, booked_date, user_id);
         if (isSaved) {
             Helper.showAlert(AlertType.INFORMATION, "PC Booked on date : "+ booked_date + " Successfully!");
-        } else {
+        }
+        else {
             Helper.showAlert(AlertType.ERROR, "Failed to book the PC!");
         }
+
     }
 
     public static void cancelBook(int book_id){

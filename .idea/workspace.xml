@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="68acd454-bd7f-47fb-98f0-e5113c16d97c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helper/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/Helper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Admin/job/AddNewJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/job/AddNewJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Admin/job/JobManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/job/JobManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Admin/menu/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/menu/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Admin/staff/ChangeRoleStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/staff/ChangeRoleStaff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Admin/staff/ViewAllStaffs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/staff/ViewAllStaffs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/PCBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PCBookController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +41,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "dimz",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "11",
     "kotlin-language-version-configured": "true",
@@ -70,6 +64,13 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="OOADProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ooadproject" />
       <method v="2">
