@@ -31,6 +31,10 @@ public class ViewTechnicianJob {
         topInit();
         initialize();
     }
+    public static ViewTechnicianJob viewTechnicianJob;
+    public static ViewTechnicianJob getInstance() {
+        return viewTechnicianJob = viewTechnicianJob == null ? new ViewTechnicianJob() : viewTechnicianJob;
+    }
     public void show(){
         MainStage stage = MainStage.getInstance();
         stage.getStage().setScene(scene);

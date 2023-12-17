@@ -13,6 +13,7 @@ import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
 import view.auth.Login;
+import view.computer_technician.ViewTechnicianJob;
 
 public class ComputerTechnician {
 
@@ -89,6 +90,10 @@ public class ComputerTechnician {
     }
 
     private void addEventListener() {
+        viewTechnicianJobBtn.setOnMouseClicked(e -> {
+            ViewTechnicianJob viewTechnicianJob = ViewTechnicianJob.getInstance();
+            viewTechnicianJob.show();
+        });
         logoutBtn.setOnMouseClicked(e -> {
             Helper.setUser(null);
             Helper.setTempUser(null);
