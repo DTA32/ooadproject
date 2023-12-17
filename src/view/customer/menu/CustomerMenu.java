@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
+import view.Admin.pc.ViewPC;
 import view.customer.pc.BookPC;
 import view.customer.transaction.CustomerTransactionHistory;
 
@@ -30,7 +31,7 @@ public class CustomerMenu {
     VBox companyVb, titleDescVb, adminMenuVb;
     HBox mainMenuVb;
     Label companyLbl, titleLbl, descriptionLbl;
-    Button makeReportBtn, bookPcBtn, viewCustomerTransactionHistoryBtn;
+    Button makeReportBtn, bookPcBtn, viewCustomerTransactionHistoryBtn, viewAllPCBtn;
 
     public CustomerMenu() {
         initialize();
@@ -74,7 +75,7 @@ public class CustomerMenu {
 
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
-                viewCustomerTransactionHistoryBtn, bookPcBtn
+                viewCustomerTransactionHistoryBtn, bookPcBtn, viewAllPCBtn
         );
         mainMenuVb.setSpacing(16);
 
@@ -99,6 +100,11 @@ public class CustomerMenu {
         bookPcBtn.setOnMouseClicked(e -> {
             BookPC bookPC = new BookPC();
             bookPC.show();
+        });
+
+        viewAllPCBtn.setOnMouseClicked(e -> {
+            ViewPC viewPC = new ViewPC();
+            viewPC.show();
         });
     }
 

@@ -7,6 +7,11 @@
     <list default="true" id="68acd454-bd7f-47fb-98f0-e5113c16d97c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/PCBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PCBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PCBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PCBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Admin/menu/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/menu/AdminMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/customer/menu/CustomerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/menu/CustomerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/customer/pc/BookPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/pc/BookPC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

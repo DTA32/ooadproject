@@ -174,6 +174,22 @@ public class PCBook
         return false;
     }
 
+//    public static String getPCStatus(int pcid){
+//        Connect connect = Connect.getConnection();
+//        String prepareSql = "SELECT pc_condition FROM pcs WHERE pc_id = ?";
+//
+//        try (PreparedStatement ps = connect.prepareStatement(prepareSql)){
+//            ps.setInt(1, pcid);
+//            ResultSet rs = ps.executeQuery();
+//            if(rs.next()){
+//                return rs.getString("pc_condition");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+
 }
 
 

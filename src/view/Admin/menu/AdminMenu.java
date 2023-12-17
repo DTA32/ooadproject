@@ -86,7 +86,7 @@ public class AdminMenu {
 
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
-                crud_pcBtn, viewAllStaffJobBtn, viewAllReportBtn,
+                crud_pcBtn, viewAllPCBtn,viewAllStaffJobBtn, viewAllReportBtn,
                 viewAllStaffBtn, viewAllTransactionHistoryBtn
         );
         mainMenuVb.setSpacing(16);

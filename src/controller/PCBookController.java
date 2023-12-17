@@ -3,6 +3,7 @@ package controller;
 
 import java.time.LocalDate;
 
+import model.PC;
 import model.PCBook;
 import helper.Helper;
 import javafx.scene.control.Alert.AlertType;
@@ -25,13 +26,21 @@ public class PCBookController {
             return;
         }
 
+        String pcStatus = PC.getPCStatus(pcid);
+        if("Maintenance".equals(pcStatus)){
+            Helper.showAlert(AlertType.ERROR, "PC is unavailable at the moment!");
+            return;
+        }else if("Broken".equals(pcStatus)){
+            Helper.showAlert(AlertType.ERROR, "PC is unavailable at the moment!");
+            return;
+        }
+
         if(!PCBook.isAvailablePC(pcid, booked_date)){
             Helper.showAlert(AlertType.ERROR, "PC is not available on this date!");
             return;
         }
 
         //nanti tambahin 1 parameter baru user_id
-        LocalDate today = LocalDate.now();
         boolean isSaved = PCBook.addNewBook(pcid, booked_date, user_id);
         if (isSaved) {
             Helper.showAlert(AlertType.INFORMATION, "PC Booked on date : "+ booked_date + " Successfully!");
@@ -39,6 +48,8 @@ public class PCBookController {
         else {
             Helper.showAlert(AlertType.ERROR, "Failed to book the PC!");
         }
+
+
 
     }
 
@@ -65,6 +76,5 @@ public class PCBookController {
         }
 
     }
-
 
 }
