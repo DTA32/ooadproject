@@ -6,7 +6,7 @@ import model.User;
 
 public class Helper {
 
-    private static User user;
+    private static User user, tempUser;
 
     public static void showAlert(AlertType alertType, String contentText){
         Alert alert = new Alert(alertType);
@@ -18,8 +18,12 @@ public class Helper {
         return user;
     }
 
-    public static User getUser() {
-        return user;
+    public static User getTempUser() {
+        return tempUser;
+    }
+
+    public static void setTempUser(User user) {
+        Helper.tempUser = user;
     }
 
     public static void setUser(User user) {

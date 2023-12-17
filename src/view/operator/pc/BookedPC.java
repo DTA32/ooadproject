@@ -101,7 +101,7 @@ public class BookedPC {
 
 
     void tableInit(){
-        TableView table = new TableView();
+        table = new TableView();
         table.setEditable(true);
         table.setPrefWidth(1000);
         table.setPrefHeight(500);

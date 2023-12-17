@@ -1,6 +1,7 @@
 package view.Admin.staff;
 
 import controller.UserController;
+import helper.Helper;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,8 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
-import view.Admin.staff.ChangeRoleStaff;
-import view.TemporaryMenu;
+import view.Admin.menu.AdminMenu;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class ViewAllStaffs {
 
     Scene scene;
     BorderPane bp = new BorderPane();
-    VBox vb;
+    VBox viewAllStaffVb, titleVb;
     Label titleLbl;
     TableView <User> tableView;
     TableColumn <User, String> userNameColumn, roleColumn;
@@ -50,35 +50,42 @@ public class ViewAllStaffs {
         VBox topContainer = new VBox();
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            temp.show();
+            AdminMenu adminMenu = AdminMenu.getInstance();
+            adminMenu.show();
         });
         topContainer.getChildren().addAll(back);
         bp.setTop(topContainer);
     }
 
     private void initialize() {
-        titleLbl = new Label("View All Staffs");
-        titleLbl.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        titleLbl = new Label("VIEW ALL STAFFS");
+        titleLbl.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 20));
+
+        titleVb = new VBox(10);
+        titleVb.getChildren().addAll(titleLbl);
+        titleVb.setAlignment(Pos.CENTER);
+        titleVb.setMaxWidth(500);
+
         tableView = new TableView<>();
 
         userNameColumn = new TableColumn<>("Username");
         userNameColumn.setCellValueFactory(new PropertyValueFactory<>("UserName"));
-        userNameColumn.setPrefWidth(200);
+        userNameColumn.setMinWidth(350);
 
         roleColumn = new TableColumn<>("Role");
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("Role"));
-        roleColumn.setPrefWidth(200);
+        roleColumn.setMinWidth(350);
 
         actionColumn = new TableColumn<>("Action");
-        actionColumn.setPrefWidth(350);
+        actionColumn.setMinWidth(350);
         actionColumn.setCellFactory(param -> new TableCell<>() {
             private final Button editBtn = new Button("Change Role");
 
             {
                 editBtn.setOnAction(event -> {
                     User user = getTableView().getItems().get(getIndex());
-                    ChangeRoleStaff changeRole = new ChangeRoleStaff(user);;
+                    Helper.setTempUser(user);
+                    ChangeRoleStaff changeRole = new ChangeRoleStaff();;
                    changeRole.show();
                 });
             }
@@ -102,12 +109,15 @@ public class ViewAllStaffs {
         ArrayList <User> userList = getAllStaffs();
         tableView.getItems().addAll(userList);
 
-        vb = new VBox(10);
-        vb.getChildren().addAll(titleLbl, tableView);
-        vb.setAlignment(Pos.CENTER_LEFT);
-        vb.setPadding(new Insets(50));
+        viewAllStaffVb = new VBox(10);
+        viewAllStaffVb.getChildren().addAll(titleLbl, tableView);
+        viewAllStaffVb.setAlignment(Pos.CENTER);
+        viewAllStaffVb.setPadding(new Insets(64));
+        viewAllStaffVb.setSpacing(32);
 
-        scene = new Scene(vb, 1200, 600);
+        bp.setCenter(viewAllStaffVb);
+
+        scene = new Scene(bp, 1200, 600);
     }
 
 }
