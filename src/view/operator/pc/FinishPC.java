@@ -1,4 +1,4 @@
-package view;
+package view.operator.pc;
 
 import helper.Helper;
 import javafx.geometry.Orientation;
@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.control.Alert.AlertType;
 import main.MainStage;
+import view.TemporaryMenu;
+import view.operator.menu.OperatorMenu;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -65,8 +67,8 @@ public class FinishPC {
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = TemporaryMenu.getInstance();
-            temp.show();
+            OperatorMenu operatorMenu = OperatorMenu.getInstance();
+            operatorMenu.show();
         });
         bpOuter.setTop(back);
     }

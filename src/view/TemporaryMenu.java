@@ -8,8 +8,9 @@ import javafx.geometry.*;
 import main.MainStage;
 import view.Admin.job.JobManagement;
 import view.Admin.pc.CancelPC;
+import view.Admin.pc.PCManagement;
 import view.Admin.pc.ViewPC;
-import view.Admin.report.Report;
+import view.Admin.report.ViewAllReport;
 import view.Admin.staff.ViewAllStaffs;
 import view.Admin.transaction.TransactionHistory;
 import view.auth.Login;
@@ -18,6 +19,8 @@ import view.computer_technician.ViewTechnicianJob;
 import view.customer.pc.BookPC;
 import view.customer.transaction.CustomerTransactionHistory;
 import view.operator.pc.AssignUserAnotherPC;
+import view.operator.pc.BookedPC;
+import view.operator.pc.FinishPC;
 
 public class TemporaryMenu {
     private static TemporaryMenu temporaryMenu;
@@ -50,14 +53,17 @@ public class TemporaryMenu {
     Button history;
 
     Button TechJob;
-    
+
     Button Transactions;
-    
+
     Button AssignUser;
+
+    Button Management;
 
     Button viewAllStaffs;
     Button viewtechnicianJob;
     Button jobManagementBtn;
+    Button makeReportBtn;
 
 
     public TemporaryMenu() {
@@ -75,8 +81,8 @@ public class TemporaryMenu {
         });
         viewReport = new Button("View Report");
         viewReport.setOnMouseClicked(e -> {
-            Report report = Report.getInstance();
-            report.show();
+            ViewAllReport viewAllReport = ViewAllReport.getInstance();
+            viewAllReport.show();
         });
         register = new Button("Register");
         register.setOnMouseClicked(e -> {
@@ -124,13 +130,13 @@ public class TemporaryMenu {
             TechnicianListJob techJob = TechnicianListJob.getInstance();
             techJob.show();
         });
-        
+
         Transactions = new Button("Transaction History");
         Transactions.setOnMouseClicked(e -> {
         	TransactionHistory transHistory = TransactionHistory.getInstance();
         	transHistory.show();
         });
-        
+
         AssignUser = new Button("Assign User to Another PC");
         AssignUser.setOnMouseClicked(e -> {
             AssignUserAnotherPC assignUser = AssignUserAnotherPC.getInstance();
@@ -155,10 +161,26 @@ public class TemporaryMenu {
             jobManagement.show();
         });
 
+        makeReportBtn = new Button("Make Report");
+        makeReportBtn.setOnMouseClicked(e -> {
+            MakeReport makeReport = MakeReport.getInstance();
+            makeReport.show();
+        });
+
+        Management = new Button("PC Management");
+        Management.setOnMouseClicked(e -> {
+            PCManagement pcManagement = PCManagement.getInstance();
+            pcManagement.show();
+        });
+
+
         fp.getChildren().addAll(title, bookPC, viewReport,
                 register, allPc, bookedPC,
                 cancelPC, finishPC, login,
-                history, TechJob, viewAllStaffs, viewtechnicianJob, jobManagementBtn, Transactions, AssignUser);
+                history, TechJob, viewAllStaffs,
+                viewtechnicianJob, jobManagementBtn, Transactions,
+                AssignUser, makeReportBtn,
+                history, TechJob, Management);
 
         scene = new Scene(fp, 1200, 600);
     }

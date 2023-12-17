@@ -12,15 +12,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
-import view.auth.Login;
 import view.customer.pc.BookPC;
 import view.customer.transaction.CustomerTransactionHistory;
 
 public class CustomerMenu {
 
-    private static Login login;
-    public static Login getInstance() {
-        return login = login == null ? new Login() : login;
+    private static CustomerMenu customerMenu;
+    public static CustomerMenu getInstance() {
+        return customerMenu = customerMenu == null ? new CustomerMenu() : customerMenu;
     }
     public void show(){
         MainStage stage = MainStage.getInstance();
