@@ -22,8 +22,14 @@ public class Login {
         return login = login == null ? new Login() : login;
     }
     public void show(){
+        _repaint();
         MainStage stage = MainStage.getInstance();
         stage.getStage().setScene(scene);
+    }
+
+    public void _repaint(){
+        usernameInput.setText("");
+        passwordInput.setText("");
     }
 
     Scene scene;
@@ -100,6 +106,7 @@ public class Login {
             String password = passwordInput.getText();
             User user = UserController.getUserData(username, password);
             if (user != null) {
+                Helper.setUser(user);
                 if (user.getRole().equalsIgnoreCase("admin")){
                     AdminMenu adminMenu = AdminMenu.getInstance();
                     adminMenu.show();
@@ -113,7 +120,7 @@ public class Login {
                     operatorMenu.show();
                 }
                 else if (user.getRole().equalsIgnoreCase("technician")){
-                    ComputerTechnician computerTechnician = new ComputerTechnician();
+                    ComputerTechnician computerTechnician = ComputerTechnician.getInstance();
                     computerTechnician.show();
                 }
                 else{

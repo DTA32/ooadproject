@@ -13,6 +13,7 @@ import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
 import view.MakeReport;
+import view.auth.Login;
 import view.operator.pc.*;
 
 public class OperatorMenu {
@@ -31,7 +32,7 @@ public class OperatorMenu {
     VBox companyVb, titleDescVb, adminMenuVb;
     HBox mainMenuVb;
     Label companyLbl, titleLbl, descriptionLbl;
-    Button assignUserToAnotherPCBtn, makeReportBtn, bookedPcBtn, finishPcBtn;
+    Button assignUserToAnotherPCBtn, makeReportBtn, bookedPcBtn, finishPcBtn, logoutBtn;
 
     public OperatorMenu() {
         initialize();
@@ -76,12 +77,16 @@ public class OperatorMenu {
         finishPcBtn = new Button("Finish PC");
         finishPcBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
+        logoutBtn = new Button("Logout");
+        logoutBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
+
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
                 assignUserToAnotherPCBtn,
                 makeReportBtn,
                 bookedPcBtn,
-                finishPcBtn
+                finishPcBtn,
+                logoutBtn
         );
         mainMenuVb.setSpacing(16);
 
@@ -110,6 +115,12 @@ public class OperatorMenu {
         finishPcBtn.setOnMouseClicked(e -> {
             FinishPC finishPC = new FinishPC();
             finishPC.show();
+        });
+        logoutBtn.setOnMouseClicked(e -> {
+            Helper.setUser(null);
+            Helper.setTempUser(null);
+            Login login = Login.getInstance();
+            login.show();
         });
     }
 

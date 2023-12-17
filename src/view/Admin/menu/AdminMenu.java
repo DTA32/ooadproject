@@ -17,6 +17,7 @@ import view.Admin.pc.ViewPC;
 import view.Admin.report.ViewAllReport;
 import view.Admin.staff.ViewAllStaffs;
 import view.Admin.transaction.TransactionHistory;
+import view.auth.Login;
 
 public class AdminMenu {
 
@@ -33,7 +34,7 @@ public class AdminMenu {
     VBox companyVb, titleDescVb, adminMenuVb;
     HBox mainMenuVb;
     Label companyLbl, titleLbl, descriptionLbl;
-    Button crud_pcBtn, viewAllStaffJobBtn, viewAllReportBtn, viewAllStaffBtn, viewAllTransactionHistoryBtn, viewAllPCBtn;
+    Button crud_pcBtn, viewAllStaffJobBtn, viewAllReportBtn, viewAllStaffBtn, viewAllTransactionHistoryBtn, viewAllPCBtn, logoutBtn;
 
     public AdminMenu() {
         initialize();
@@ -84,10 +85,13 @@ public class AdminMenu {
         viewAllTransactionHistoryBtn = new Button("View All Transaction History");
         viewAllTransactionHistoryBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
+        logoutBtn = new Button("Logout");
+        logoutBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
+
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
                 crud_pcBtn, viewAllPCBtn,viewAllStaffJobBtn, viewAllReportBtn,
-                viewAllStaffBtn, viewAllTransactionHistoryBtn
+                viewAllStaffBtn, viewAllTransactionHistoryBtn, logoutBtn
         );
         mainMenuVb.setSpacing(16);
 
@@ -118,12 +122,18 @@ public class AdminMenu {
             report.show();
         });
         viewAllPCBtn.setOnMouseClicked(e -> {
-            ViewPC viewPC = new ViewPC();
+            ViewPC viewPC = ViewPC.getInstance();
             viewPC.show();
         });
         viewAllTransactionHistoryBtn.setOnMouseClicked(e -> {
             TransactionHistory transactionHistory = new TransactionHistory();
             transactionHistory.show();
+        });
+        logoutBtn.setOnMouseClicked(e -> {
+            Helper.setUser(null);
+            Helper.setTempUser(null);
+            Login login = Login.getInstance();
+            login.show();
         });
     }
 }

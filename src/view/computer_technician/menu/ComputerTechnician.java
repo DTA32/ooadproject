@@ -16,9 +16,9 @@ import view.auth.Login;
 
 public class ComputerTechnician {
 
-    private static Login login;
-    public static Login getInstance() {
-        return login = login == null ? new Login() : login;
+    private static ComputerTechnician computerTechnician;
+    public static ComputerTechnician getInstance() {
+        return computerTechnician = computerTechnician == null ? new ComputerTechnician() : computerTechnician;
     }
     public void show(){
         MainStage stage = MainStage.getInstance();
@@ -29,7 +29,7 @@ public class ComputerTechnician {
     VBox companyVb, titleDescVb, adminMenuVb;
     HBox mainMenuVb;
     Label companyLbl, titleLbl, descriptionLbl;
-    Button completeJobBtn, viewTechnicianJobBtn;
+    Button completeJobBtn, viewTechnicianJobBtn, logoutBtn;
 
     public ComputerTechnician() {
         initialize();
@@ -68,10 +68,14 @@ public class ComputerTechnician {
         viewTechnicianJobBtn = new Button("View Technician Job");
         viewTechnicianJobBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
+        logoutBtn = new Button("Logout");
+        logoutBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
+
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
                 completeJobBtn,
-                viewTechnicianJobBtn
+                viewTechnicianJobBtn,
+                logoutBtn
         );
         mainMenuVb.setSpacing(16);
 
@@ -85,16 +89,12 @@ public class ComputerTechnician {
     }
 
     private void addEventListener() {
-//        loginButton.setOnMouseClicked(e -> {
-//            String username = usernameInput.getText();
-//            String password = passwordInput.getText();
-//            UserController.getUserData(username, password);
-//        });
-//
-//        registerHyperlink.setOnAction(e -> {
-//            Register register = Register.getInstance();
-//            register.show();
-//        });
+        logoutBtn.setOnMouseClicked(e -> {
+            Helper.setUser(null);
+            Helper.setTempUser(null);
+            Login login = Login.getInstance();
+            login.show();
+        });
     }
 
 }

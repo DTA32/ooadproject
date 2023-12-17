@@ -12,6 +12,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
+import view.MakeReport;
+import view.auth.Login;
 import view.Admin.pc.ViewPC;
 import view.customer.pc.BookPC;
 import view.customer.transaction.CustomerTransactionHistory;
@@ -31,7 +33,7 @@ public class CustomerMenu {
     VBox companyVb, titleDescVb, adminMenuVb;
     HBox mainMenuVb;
     Label companyLbl, titleLbl, descriptionLbl;
-    Button makeReportBtn, bookPcBtn, viewCustomerTransactionHistoryBtn, viewAllPCBtn;
+    Button makeReportBtn, bookPcBtn, viewCustomerTransactionHistoryBtn, viewAllPCBtn, logoutBtn;
 
     public CustomerMenu() {
         initialize();
@@ -73,9 +75,15 @@ public class CustomerMenu {
         bookPcBtn = new Button("Book PC");
         bookPcBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
+        viewAllPCBtn = new Button("View All PC");
+        viewAllPCBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
+
+        logoutBtn = new Button("Logout");
+        logoutBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
+
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
-                viewCustomerTransactionHistoryBtn, bookPcBtn, viewAllPCBtn
+                viewCustomerTransactionHistoryBtn, bookPcBtn, viewAllPCBtn, logoutBtn
         );
         mainMenuVb.setSpacing(16);
 
@@ -90,8 +98,8 @@ public class CustomerMenu {
 
     private void addEventListener() {
         makeReportBtn.setOnMouseClicked(e -> {
-//            MakeReportMenu makeReportMenu = new MakeReportMenu();
-//            makeReportMenu.show();
+            MakeReport makeReport = MakeReport.getInstance();
+            makeReport.show();
         });
         viewCustomerTransactionHistoryBtn.setOnMouseClicked(e -> {
             CustomerTransactionHistory customerTransactionHistory = new CustomerTransactionHistory();
@@ -105,6 +113,12 @@ public class CustomerMenu {
         viewAllPCBtn.setOnMouseClicked(e -> {
             ViewPC viewPC = new ViewPC();
             viewPC.show();
+        });
+        logoutBtn.setOnMouseClicked(e -> {
+            Helper.setUser(null);
+            Helper.setTempUser(null);
+            Login login = Login.getInstance();
+            login.show();
         });
     }
 
