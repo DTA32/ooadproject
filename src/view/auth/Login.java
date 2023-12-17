@@ -2,7 +2,6 @@ package view.auth;
 
 import controller.UserController;
 import helper.Helper;
-import helper.UserSessionCookie;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -99,27 +98,26 @@ public class Login {
         loginButton.setOnMouseClicked(e -> {
             String username = usernameInput.getText();
             String password = passwordInput.getText();
-            // ini harus dimerge sama yang maul (cookies)
             User user = UserController.getUserData(username, password);
             if (user != null) {
-                if (user.getRole().equals("admin")){
+                if (user.getRole().equalsIgnoreCase("admin")){
                     AdminMenu adminMenu = AdminMenu.getInstance();
                     adminMenu.show();
                 }
-                else if (user.getRole().equals("customer")){
-                    CustomerMenu customerMenu = new CustomerMenu();
+                else if (user.getRole().equalsIgnoreCase("customer")){
+                    CustomerMenu customerMenu = CustomerMenu.getInstance();
                     customerMenu.show();
                 }
-                else if (user.getRole().equals("operator")){
+                else if (user.getRole().equalsIgnoreCase("operator")){
                     OperatorMenu operatorMenu = new OperatorMenu();
                     operatorMenu.show();
                 }
-                else if (user.getRole().equals("technician")){
+                else if (user.getRole().equalsIgnoreCase("technician")){
                     ComputerTechnician computerTechnician = new ComputerTechnician();
                     computerTechnician.show();
                 }
                 else{
-                    Helper.showAlert(Alert.AlertType.ERROR, "Role not found");
+                    Helper.showAlert(Alert.AlertType.ERROR, "Role error!");
                 }
             }
         });

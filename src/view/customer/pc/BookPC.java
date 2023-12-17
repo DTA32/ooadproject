@@ -12,6 +12,7 @@ import model.PC;
 
 import java.time.LocalDate;
 import view.TemporaryMenu;
+import view.customer.menu.CustomerMenu;
 
 public class BookPC {
     private static BookPC bookPC;
@@ -57,8 +58,8 @@ public class BookPC {
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = TemporaryMenu.getInstance();
-            temp.show();
+            CustomerMenu customerMenu = CustomerMenu.getInstance();
+            customerMenu.show();
         });
         bpOuter.setTop(back);
     }

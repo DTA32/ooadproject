@@ -3,9 +3,7 @@ package controller;
 
 import java.time.LocalDate;
 
-import helper.UserSessionCookie;
 import model.PCBook;
-import model.PC;
 import helper.Helper;
 import javafx.scene.control.Alert.AlertType;
 
@@ -13,10 +11,9 @@ public class PCBookController {
 
     public static void addNewBook(Integer pcid, LocalDate booked_date){
 
-//        TODO: Mungkin ini logic buat ambil user_id dari session cookie
-        Integer user_id = UserSessionCookie.getInstance().getUser_id();
+        Integer user_id = Integer.parseInt(Helper.getCurrentUser().getUserID());
         if(user_id == null){
-            Helper.showAlert(AlertType.ERROR, "Please login first to book a PC!");
+            Helper.showAlert(AlertType.ERROR, "Authentication error!");
             return;
         }
 
