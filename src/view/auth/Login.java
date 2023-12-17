@@ -109,7 +109,7 @@ public class Login {
                     customerMenu.show();
                 }
                 else if (user.getRole().equalsIgnoreCase("operator")){
-                    OperatorMenu operatorMenu = new OperatorMenu();
+                    OperatorMenu operatorMenu = OperatorMenu.getInstance();
                     operatorMenu.show();
                 }
                 else if (user.getRole().equalsIgnoreCase("technician")){

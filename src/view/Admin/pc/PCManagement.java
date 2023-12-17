@@ -1,6 +1,5 @@
-package view;
+package view.Admin.pc;
 
-import helper.Helper;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -15,6 +14,8 @@ import javafx.scene.text.Font;
 import main.MainStage;
 import model.PC;
 import controller.PCController;
+import view.Admin.menu.AdminMenu;
+import view.TemporaryMenu;
 
 public class PCManagement {
 
@@ -84,8 +85,8 @@ public class PCManagement {
     void backInit() {
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = TemporaryMenu.getInstance();
-            temp.show();
+            AdminMenu adminMenu = AdminMenu.getInstance();
+            adminMenu.show();
         });
         bp.setTop(back);
     }

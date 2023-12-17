@@ -8,6 +8,7 @@ import javafx.geometry.*;
 import main.MainStage;
 import view.Admin.job.JobManagement;
 import view.Admin.pc.CancelPC;
+import view.Admin.pc.PCManagement;
 import view.Admin.pc.ViewPC;
 import view.Admin.report.ViewAllReport;
 import view.Admin.staff.ViewAllStaffs;
@@ -18,6 +19,8 @@ import view.computer_technician.ViewTechnicianJob;
 import view.customer.pc.BookPC;
 import view.customer.transaction.CustomerTransactionHistory;
 import view.operator.pc.AssignUserAnotherPC;
+import view.operator.pc.BookedPC;
+import view.operator.pc.FinishPC;
 
 public class TemporaryMenu {
     private static TemporaryMenu temporaryMenu;

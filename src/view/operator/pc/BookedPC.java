@@ -1,4 +1,4 @@
-package view;
+package view.operator.pc;
 
 import controller.PCBookController;
 import helper.Helper;
@@ -10,13 +10,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
-import model.PC;
 import model.PCBook;
-import view.Admin.pc.CancelPC;
+import view.operator.menu.OperatorMenu;
 
 public class BookedPC {
     private static BookedPC bookedPC;
@@ -95,8 +93,8 @@ public class BookedPC {
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = TemporaryMenu.getInstance();
-            temp.show();
+            OperatorMenu operatorMenu = OperatorMenu.getInstance();
+            operatorMenu.show();
         });
         bp.setTop(back);
     }

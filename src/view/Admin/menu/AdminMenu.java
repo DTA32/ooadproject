@@ -12,6 +12,7 @@ import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
 import view.Admin.job.JobManagement;
+import view.Admin.pc.PCManagement;
 import view.Admin.pc.ViewPC;
 import view.Admin.report.ViewAllReport;
 import view.Admin.staff.ViewAllStaffs;
@@ -100,6 +101,10 @@ public class AdminMenu {
     }
 
     private void addEventListener() {
+        crud_pcBtn.setOnMouseClicked(e->{
+            PCManagement pcManagement = PCManagement.getInstance();
+            pcManagement.show();
+        });
         viewAllStaffBtn.setOnMouseClicked(e -> {
             ViewAllStaffs viewAllStaffs = new ViewAllStaffs();
             viewAllStaffs.show();
