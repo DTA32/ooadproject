@@ -109,6 +109,12 @@ public class BookPC {
         }
     }
 
+    void _repaint(){
+        //Nanti perlu logic buat ambil user yang lagi login
+        dateField.setValue(null);
+
+    }
+
     void setupEventHandling(){
         //Nanti perlu logic buat ambil user yang lagi login
         book.setOnMouseClicked(e -> {
@@ -120,6 +126,7 @@ public class BookPC {
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
+            _repaint();
         });
 
     }

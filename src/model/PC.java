@@ -129,7 +129,7 @@ public class PC {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return "Unknown";
     }
 
 }
