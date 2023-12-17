@@ -66,7 +66,7 @@ public class BookedPC {
         cancelBtn.setOnMouseClicked(e -> {
             PCBook selectedBook = table.getSelectionModel().getSelectedItem();
             if(selectedBook == null){
-                Helper.showAlert(AlertType.ERROR, "Please select a pc to cancel its booking!");
+                Helper.showAlert(Alert.AlertType.ERROR, "Please select a pc to cancel its booking!");
                 return;
             }
 

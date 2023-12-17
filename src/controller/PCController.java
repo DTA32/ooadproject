@@ -6,6 +6,8 @@ import helper.Helper;
 import javafx.scene.control.Alert.AlertType;
 import model.PCBook;
 
+import java.util.ArrayList;
+
 
 public class PCController {
 
@@ -91,4 +93,7 @@ public class PCController {
 
     }
 
+    public static ArrayList<PC> getAllPCData() {
+        return PC.getAllPCData();
+    }
 }

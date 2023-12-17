@@ -99,7 +99,7 @@ public class BookPC {
         fp.getChildren().add(book);
     }
 
-    void setPcID(Integer pcID){
+    public void setPcID(Integer pcID){
         if(pcidField != null && pcID != null){
             pcidField.setText(pcID.toString());
             pcidField.setDisable(true);

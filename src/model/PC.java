@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PC {
     private Integer pcid;
@@ -94,6 +96,23 @@ public class PC {
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<PC> getAllPCData(){
+        ArrayList<PC> pcList = new ArrayList<>();
+        Connect conn = Connect.getConnection();
+        String query = "SELECT * FROM pcs";
+        try (ResultSet rs = conn.executeQuery(query)) {
+            while (rs.next()) {
+                int pc_id = Integer.parseInt(rs.getString("pc_id"));
+                String pc_condition = rs.getString("pc_condition");
+                PC pc = new PC(pc_id, pc_condition);
+                pcList.add(pc);
+            }
+            return pcList;
+        } catch (SQLException e) {
+            return null;
         }
     }
 
