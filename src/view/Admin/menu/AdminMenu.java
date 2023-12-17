@@ -110,7 +110,7 @@ public class AdminMenu {
             viewAllStaffs.show();
         });
         viewAllStaffJobBtn.setOnMouseClicked(e -> {
-            JobManagement jobManagement = new JobManagement();
+            JobManagement jobManagement = JobManagement.getInstance();
             jobManagement.show();
         });
         viewAllReportBtn.setOnMouseClicked(e -> {

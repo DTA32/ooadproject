@@ -15,11 +15,21 @@ import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.Job;
 import model.PC;
+import view.Admin.menu.AdminMenu;
 import view.TemporaryMenu;
 
 import java.util.ArrayList;
 
 public class JobManagement {
+
+    private static JobManagement jobManagement;
+    public static JobManagement getInstance() {
+        return jobManagement = jobManagement == null ? new JobManagement() : jobManagement;
+    }
+    public void show(){
+        MainStage stage = MainStage.getInstance();
+        stage.getStage().setScene(scene);
+    }
 
     Scene scene;
     VBox titleVb, pc_idVb, technician_idVb, job_statusVb, jobManagementVb, assignVb, backVb, updateVb, pc_idVb2, technician_idVb2;
@@ -36,11 +46,6 @@ public class JobManagement {
     public JobManagement() {
         initialize();
         addEventListener();
-    }
-
-    public void show(){
-        MainStage stage = MainStage.getInstance();
-        stage.getStage().setScene(scene);
     }
 
     public ArrayList<Job> getAllJobData(){
@@ -207,8 +212,8 @@ public class JobManagement {
         });
 
         backBtn.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            temp.show();
+            AdminMenu adminMenu = AdminMenu.getInstance();
+            adminMenu.show();
         });
 
 //        addNewJobBtn.setOnAction(e -> {

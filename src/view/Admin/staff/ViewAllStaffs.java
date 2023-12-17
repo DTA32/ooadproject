@@ -14,8 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
-import view.Admin.staff.ChangeRoleStaff;
-import view.TemporaryMenu;
+import view.Admin.menu.AdminMenu;
 
 import java.util.ArrayList;
 
@@ -51,8 +50,8 @@ public class ViewAllStaffs {
         VBox topContainer = new VBox();
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = new TemporaryMenu();
-            temp.show();
+            AdminMenu adminMenu = AdminMenu.getInstance();
+            adminMenu.show();
         });
         topContainer.getChildren().addAll(back);
         bp.setTop(topContainer);
@@ -116,7 +115,9 @@ public class ViewAllStaffs {
         viewAllStaffVb.setPadding(new Insets(64));
         viewAllStaffVb.setSpacing(32);
 
-        scene = new Scene(viewAllStaffVb, 1200, 600);
+        bp.setCenter(viewAllStaffVb);
+
+        scene = new Scene(bp, 1200, 600);
     }
 
 }
