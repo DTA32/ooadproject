@@ -9,8 +9,6 @@
       <change beforePath="$PROJECT_DIR$/src/controller/PCBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PCBookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/PC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/PCBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PCBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Admin/menu/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/menu/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/customer/menu/CustomerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/menu/CustomerMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/customer/pc/BookPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/pc/BookPC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,8 +91,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-11.0.21-corretto-11.0.21-249ae16d76d6-d0fa0211" />
-        <option value="jdk-11.0.21-corretto-11.0.21-8336523bb0d9-d3b62f98" />
+        <option value="jdk-11.0.21-corretto-11.0.21-3183f394aec4-d55de845" />
       </set>
     </attachedChunks>
   </component>
@@ -108,6 +105,7 @@
       <updated>1702476549235</updated>
       <workItem from="1702476550558" duration="24000" />
       <workItem from="1702476577071" duration="370000" />
+      <workItem from="1702833741522" duration="2288000" />
     </task>
     <servers />
   </component>

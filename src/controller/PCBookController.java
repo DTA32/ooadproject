@@ -27,11 +27,9 @@ public class PCBookController {
         }
 
         String pcStatus = PC.getPCStatus(pcid);
-        if("Maintenance".equals(pcStatus)){
-            Helper.showAlert(AlertType.ERROR, "PC is unavailable at the moment!");
-            return;
-        }else if("Broken".equals(pcStatus)){
-            Helper.showAlert(AlertType.ERROR, "PC is unavailable at the moment!");
+        System.out.println("PC Status : " +pcStatus);
+        if(pcStatus.equalsIgnoreCase("Broken") || pcStatus.equalsIgnoreCase("Maintenance")){
+            Helper.showAlert(AlertType.ERROR, "PC is not available for booking currently due to "+ pcStatus +"!");
             return;
         }
 
@@ -48,8 +46,6 @@ public class PCBookController {
         else {
             Helper.showAlert(AlertType.ERROR, "Failed to book the PC!");
         }
-
-
 
     }
 
