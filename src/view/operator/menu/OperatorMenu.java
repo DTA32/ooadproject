@@ -13,15 +13,14 @@ import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
 import view.MakeReport;
-import view.auth.Login;
-import view.operator.pc.AssignUserAnotherPC;
+import view.operator.pc.*;
 
 public class OperatorMenu {
 
 
-    private static Login login;
-    public static Login getInstance() {
-        return login = login == null ? new Login() : login;
+    private static OperatorMenu operatorMenu;
+    public static OperatorMenu getInstance() {
+        return operatorMenu = operatorMenu == null ? new OperatorMenu() : operatorMenu;
     }
     public void show(){
         MainStage stage = MainStage.getInstance();
@@ -32,7 +31,7 @@ public class OperatorMenu {
     VBox companyVb, titleDescVb, adminMenuVb;
     HBox mainMenuVb;
     Label companyLbl, titleLbl, descriptionLbl;
-    Button assignUserToAnotherPCBtn, makeReportBtn;
+    Button assignUserToAnotherPCBtn, makeReportBtn, bookedPcBtn, finishPcBtn;
 
     public OperatorMenu() {
         initialize();
@@ -71,10 +70,18 @@ public class OperatorMenu {
         makeReportBtn = new Button("Make Report");
         makeReportBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
+        bookedPcBtn = new Button("Booked PC");
+        bookedPcBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
+
+        finishPcBtn = new Button("Finish PC");
+        finishPcBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
+
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
                 assignUserToAnotherPCBtn,
-                makeReportBtn
+                makeReportBtn,
+                bookedPcBtn,
+                finishPcBtn
         );
         mainMenuVb.setSpacing(16);
 
@@ -95,6 +102,14 @@ public class OperatorMenu {
         makeReportBtn.setOnMouseClicked(e -> {
             MakeReport makeReport = MakeReport.getInstance();
             makeReport.show();
+        });
+        bookedPcBtn.setOnMouseClicked(e -> {
+            BookedPC bookedPC = new BookedPC();
+            bookedPC.show();
+        });
+        finishPcBtn.setOnMouseClicked(e -> {
+            FinishPC finishPC = new FinishPC();
+            finishPC.show();
         });
     }
 
