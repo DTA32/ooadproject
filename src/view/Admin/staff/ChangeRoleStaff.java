@@ -1,6 +1,7 @@
 package view.Admin.staff;
 
 import controller.UserController;
+import helper.Helper;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,15 +16,15 @@ import model.User;
 public class ChangeRoleStaff {
 
     Scene scene;
-    VBox vb;
-    HBox hb;
-    Label titleLbl, userNameLbl, ageLbl, currentRoleLbl;
+    VBox changeRoleVb, titleVb, usernameVb, ageVb, currentRoleVb, formVb;
+    HBox hb, hb2;
+    Label titleLbl, userNameLbl, ageLbl, currentRoleLbl, changeRoleLbl;
     Button saveBtn, cancelBtn;
     ComboBox <String> roleList;
     User user;
 
-    public ChangeRoleStaff(User user) {
-        this.user = user;
+    public ChangeRoleStaff() {
+//        this.user = user;
         initialize();
         addEventListener();
     }
@@ -38,33 +39,78 @@ public class ChangeRoleStaff {
     }
 
     private void initialize() {
+        user = Helper.getTempUser();
+
+        changeRoleLbl = new Label("Change Role");
+        changeRoleLbl.setFont(Font.font("Arial", FontWeight.SEMI_BOLD, 16));
+
         roleList = new ComboBox<String>();
-        roleList.getItems().addAll("Admin", "Customer", "Operator", "Computer Technician"); // 0, 1, 2, 3
+        roleList.getItems().addAll(  "operator", "technician");
         roleList.getSelectionModel().select(user.getRole());
 
+        hb2 = new HBox();
+        hb2.setAlignment(Pos.CENTER);
+        hb2.getChildren().addAll(changeRoleLbl, roleList);
+        hb2.setPadding(new Insets(16));
+        hb2.setSpacing(16);
+
         hb = new HBox();
+        hb.setAlignment(Pos.CENTER);
         hb.setSpacing(10);
-        hb.setPadding(new Insets(10, 0, 0, 0));
 
         cancelBtn = new Button("Cancel");
         saveBtn = new Button("Save");
         hb.getChildren().addAll(cancelBtn, saveBtn);
 
-        titleLbl = new Label("Change Role");
-        titleLbl.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        titleLbl = new Label("CHANGE ROLE");
+        titleLbl.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 20));
+
+        titleVb = new VBox();
+        titleVb.getChildren().addAll(titleLbl);
+        titleVb.setAlignment(Pos.CENTER);
+        titleVb.setMaxWidth(500);
 
         userNameLbl = new Label("User Name : " + user.getUserName());
+        userNameLbl.setFont(Font.font("Arial", FontWeight.SEMI_BOLD, 16));
+
+        usernameVb = new VBox();
+        usernameVb.getChildren().addAll(userNameLbl);
+        usernameVb.setAlignment(Pos.CENTER);
+        usernameVb.setSpacing(16);
+        usernameVb.setMaxWidth(500);
+
         ageLbl = new Label("Age : " + user.getAge());
+        ageLbl.setFont(Font.font("Arial", FontWeight.SEMI_BOLD, 16));
+
+        ageVb = new VBox();
+        ageVb.setAlignment(Pos.CENTER);
+        ageVb.getChildren().addAll(ageLbl);
+        ageVb.setSpacing(16);
+        ageVb.setMaxWidth(500);
+
         currentRoleLbl = new Label("Current Role : " + user.getRole());
+        currentRoleLbl.setFont(Font.font("Arial", FontWeight.SEMI_BOLD, 16));
 
-        vb = new VBox();
-        vb.getChildren().addAll(titleLbl, userNameLbl, ageLbl, currentRoleLbl, roleList, hb);
-        vb.setSpacing(10);
+        currentRoleVb = new VBox();
+        currentRoleVb.setAlignment(Pos.CENTER);
+        currentRoleVb.getChildren().addAll(currentRoleLbl);
+        currentRoleVb.setSpacing(16);
+        currentRoleVb.setMaxWidth(500);
+
+        formVb = new VBox();
+        formVb.getChildren().addAll(usernameVb, ageVb, currentRoleVb, hb2);
+        formVb.setAlignment(Pos.CENTER);
+        formVb.setSpacing(16);
+        formVb.setMaxWidth(500);
+
+        changeRoleVb = new VBox();
+        changeRoleVb.getChildren().addAll(titleVb,formVb, hb);
+        changeRoleVb.setAlignment(Pos.CENTER);
+        changeRoleVb.setPadding(new Insets(64));
+        changeRoleVb.setSpacing(32);
 
 
-        vb.setAlignment(Pos.CENTER_LEFT);
-        vb.setPadding(new Insets(50));
-        scene = new Scene(vb, 1200, 600);
+        scene = new Scene(changeRoleVb, 1200, 600);
     }
 
     private void addEventListener() {

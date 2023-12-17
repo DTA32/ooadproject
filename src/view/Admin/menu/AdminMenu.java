@@ -69,7 +69,7 @@ public class AdminMenu {
         crud_pcBtn = new Button("CRUD PC");
         crud_pcBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
-        viewAllStaffJobBtn = new Button("View All Staff Job");
+        viewAllStaffJobBtn = new Button("Job Management");
         viewAllStaffJobBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
         viewAllPCBtn = new Button("View All PC");

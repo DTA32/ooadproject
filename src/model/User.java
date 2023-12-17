@@ -61,7 +61,7 @@ public class User {
     public static ArrayList<User> getAlluserData(){
         ArrayList<User> userList = new ArrayList<>();
         Connect conn = Connect.getConnection();
-        String query = "SELECT * FROM users";
+        String query = "SELECT * FROM users WHERE NOT Role = 'customer' AND NOT Role = 'admin' ";
         try (ResultSet rs = conn.executeQuery(query)) {
             while (rs.next()) {
                 String UserID = rs.getString("UserID");
