@@ -14,9 +14,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
-import javafx.scene.control.Alert.AlertType;
 import model.PC;
 import model.PCBook;
+import view.Admin.pc.CancelPC;
 
 public class BookedPC {
     private static BookedPC bookedPC;
@@ -103,7 +103,7 @@ public class BookedPC {
 
 
     void tableInit(){
-        table = new TableView();
+        TableView table = new TableView();
         table.setEditable(true);
         table.setPrefWidth(1000);
         table.setPrefHeight(500);

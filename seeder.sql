@@ -1,12 +1,12 @@
 USE InternetCLafes;
 
-INSERT INTO Users (user_name, user_password, user_age, user_role) VALUES
-    ('admin', 'admin', 30, 0),
-    ('customer', 'customer', 15, 1),
-    ('operator', 'operator', 22, 2),
-    ('technician', 'technician', 20, 3);
+INSERT INTO users (UserName, Password, Age, Role) VALUES
+    ('admin', 'admin', 30, 'admin'),
+    ('customer', 'customer', 15, 'customer'),
+    ('operator', 'operator', 22, 'operator'),
+    ('technician', 'technician', 20, 'technician');
 
-INSERT INTO PCs (pc_condition) VALUES
+INSERT INTO pcs (pc_condition) VALUES
     ('Usable'),
     ('Maintenance'),
     ('Broken');
@@ -22,10 +22,10 @@ INSERT INTO TransactionDetails (transaction_id, pc_id, customer_name, booked_tim
     (2, 2, 'customer', '2020-01-02 11:00:00');
 
 INSERT INTO Reports (user_role, pc_id, report_note, report_date) VALUES
-    (0, 1, 'Report 1', '2020-01-01'),
-    (1, 1, 'Report 2', '2020-01-02'),
-    (2, 2, 'Report 3', '2020-01-03'),
-    (3, 2, 'Report 4', '2020-01-04');
+    ('Customer', 1, 'Report 1', '2020-01-01'),
+    ('Operator', 1, 'Report 2', '2020-01-02'),
+    ('Customer', 2, 'Report 3', '2020-01-03'),
+    ('Operator', 2, 'Report 4', '2020-01-04');
 
 INSERT INTO PCBooks (pc_id, user_id, booked_date) VALUES
     (1, 2, '2020-01-01'),
@@ -33,6 +33,6 @@ INSERT INTO PCBooks (pc_id, user_id, booked_date) VALUES
     (1, 2, '2020-01-02'),
     (2, 2, '2020-01-02');
 
-INSERT INTO Jobs (user_id, pc_id, job_status) VALUES
-    (4, 2, 0),
-    (4, 3, 1);
+INSERT INTO jobs (user_id, pc_id, job_status) VALUES
+    (4, 2, 'Uncomplete'),
+    (4, 3, 'Complete');

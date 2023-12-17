@@ -1,4 +1,4 @@
-package view;
+package view.customer.pc;
 
 import controller.PCBookController;
 import javafx.geometry.Orientation;
@@ -11,6 +11,7 @@ import main.MainStage;
 import model.PC;
 
 import java.time.LocalDate;
+import view.TemporaryMenu;
 
 public class BookPC {
     private static BookPC bookPC;

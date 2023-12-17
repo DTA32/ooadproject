@@ -4,46 +4,31 @@ import helper.Helper;
 import javafx.scene.control.Alert;
 import model.User;
 
+import java.util.ArrayList;
+
 public class UserController {
 
-    public static Integer getUserData(String username, String password) {
+    public static User getUserData(String username, String password){
         // Validate username
-        if (username.isEmpty()) {
+        if (username.isEmpty()){
             Helper.showAlert(Alert.AlertType.ERROR, "Username cannot be empty!");
             return null;
         }
         // Validate password
-        if (password.isEmpty()) {
+        if (password.isEmpty()){
             Helper.showAlert(Alert.AlertType.ERROR, "Password cannot be empty!");
             return null;
         }
         // Validate username and password
-        Integer userId = User.getUserData(username, password);
-        if (userId == null) {
+        User user = User.getUserData(username, password);
+        if (user == null){
             Helper.showAlert(Alert.AlertType.ERROR, "Invalid username or password!");
+            return null;
         }
-        return userId;
+        Helper.showAlert(Alert.AlertType.INFORMATION, "Login success!");
+        Helper.setUser(user);
+        return user;
     }
-
-//    public static boolean getUserData(String username, String password){
-//        // Validate username
-//        if (username.isEmpty()){
-//            Helper.showAlert(Alert.AlertType.ERROR, "Username cannot be empty!");
-//            return false;
-//        }
-//        // Validate password
-//        if (password.isEmpty()){
-//            Helper.showAlert(Alert.AlertType.ERROR, "Password cannot be empty!");
-//            return false;
-//        }
-//        // Validate username and password
-//        boolean isValidUser = User.getUserData(username, password);
-//        if (!isValidUser){
-//            Helper.showAlert(Alert.AlertType.ERROR, "Invalid username or password!");
-//            return false;
-//        }
-//        return true;
-//    }
 
     public static boolean addNewUser(String username, String password, String confirmPassword, int age)
     {
@@ -93,7 +78,24 @@ public class UserController {
             Helper.showAlert(Alert.AlertType.ERROR, "Username is not unique!");
             return false;
         }
+        Helper.showAlert(Alert.AlertType.INFORMATION, "Successfully registered!");
         return true;
+    }
+
+    public static boolean changeRoleUser(String UserID, String Role)
+    {
+        if (User.changeRoleUser(UserID, Role)) {
+            Helper.showAlert(Alert.AlertType.INFORMATION, "Successfully Updated Role");
+            return true;
+        }
+
+        Helper.showAlert(Alert.AlertType.ERROR, "Error updating");
+        return false;
+    }
+
+    public static ArrayList<User> getAllUserData()
+    {
+        return User.getAlluserData();
     }
 
 }

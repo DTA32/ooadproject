@@ -3,6 +3,7 @@ package main;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import view.*;
+import view.auth.Login;
 
 public class Main extends Application {
 
@@ -10,8 +11,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         MainStage mainStage = MainStage.getInstance();
         mainStage.setStage(primaryStage);
-        TemporaryMenu temp = TemporaryMenu.getInstance();
-        temp.show();
+        Login login = new Login();
+        login.show();
         mainStage.getStage().setTitle("Internet CLafes");
         mainStage.getStage().show();
     }

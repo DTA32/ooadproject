@@ -1,4 +1,4 @@
-package view;
+package view.customer.transaction;
 
 import java.sql.Date;
 import javafx.geometry.Orientation;
@@ -10,6 +10,7 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import main.MainStage;
 import model.CustomerTransactionHistoryModel;
+import view.TemporaryMenu;
 
 public class CustomerTransactionHistory {
     private static CustomerTransactionHistory customerTransactionHistory;
