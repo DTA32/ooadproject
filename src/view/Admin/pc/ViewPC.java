@@ -17,7 +17,6 @@ import view.Admin.menu.AdminMenu;
 import view.computer_technician.menu.ComputerTechnician;
 import view.customer.menu.CustomerMenu;
 import view.customer.pc.BookPC;
-import view.TemporaryMenu;
 import view.operator.menu.OperatorMenu;
 
 public class ViewPC {
@@ -65,8 +64,6 @@ public class ViewPC {
                 OperatorMenu.getInstance().show();
             } else if (Helper.getCurrentUser().getRole().equalsIgnoreCase("technician")){
                 ComputerTechnician.getInstance().show();
-            } else {
-                TemporaryMenu.getInstance().show();
             }
         });
         bp.setTop(back);

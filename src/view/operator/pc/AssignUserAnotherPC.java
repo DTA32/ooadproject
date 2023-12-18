@@ -2,11 +2,8 @@ package view.operator.pc;
 
 import controller.PCBookController;
 import controller.PCController;
-import helper.Helper;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,16 +11,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import main.MainStage;
-import model.Job;
 import model.PC;
 import model.PCBook;
-import view.TemporaryMenu;
 import view.operator.menu.OperatorMenu;
 
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
 
 public class AssignUserAnotherPC {
     private static AssignUserAnotherPC assignuseranotherpc;
@@ -31,6 +24,7 @@ public class AssignUserAnotherPC {
         return assignuseranotherpc = assignuseranotherpc == null ? new AssignUserAnotherPC() : assignuseranotherpc;
     }
     public void show(){
+        _repaint();
         MainStage stage = MainStage.getInstance();
         stage.getStage().setScene(scene);
     }
@@ -124,11 +118,6 @@ public class AssignUserAnotherPC {
         pcIdNewLbl.setFont(Font.font("Arial", FontWeight.SEMI_BOLD, 16));
 
         pcList = new ComboBox<>();
-        ArrayList <PC> allPcData = getAllPcData();
-        for (PC pc : allPcData) {
-            pcList.getItems().add(pc.getPcid());
-        }
-        pcList.getSelectionModel().selectFirst();
 
         pcIdNewvB = new VBox(10);
         pcIdNewvB.getChildren().addAll(pcIdNewLbl, pcList);
@@ -175,6 +164,12 @@ public class AssignUserAnotherPC {
     }
 
     public void _repaint() {
+        pcList.getItems().clear();
+        ArrayList <PC> allPcData = getAllPcData();
+        for (PC pc : allPcData) {
+            pcList.getItems().add(pc.getPcid());
+        }
+        pcList.getSelectionModel().selectFirst();
         table.getItems().clear();
         ObservableList<PCBook> bookedPC = PCBook.getAllBookedPCs();
         table.setItems(bookedPC);

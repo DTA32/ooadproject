@@ -15,7 +15,6 @@ import main.MainStage;
 import model.PC;
 import controller.PCController;
 import view.Admin.menu.AdminMenu;
-import view.TemporaryMenu;
 
 public class PCManagement {
 

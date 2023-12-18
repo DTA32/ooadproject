@@ -102,37 +102,46 @@ public class Login {
 
     private void addEventListener() {
         loginButton.setOnMouseClicked(e -> {
-            String username = usernameInput.getText();
-            String password = passwordInput.getText();
-            User user = UserController.getUserData(username, password);
-            if (user != null) {
-                Helper.setUser(user);
-                if (user.getRole().equalsIgnoreCase("admin")){
-                    AdminMenu adminMenu = AdminMenu.getInstance();
-                    adminMenu.show();
-                }
-                else if (user.getRole().equalsIgnoreCase("customer")){
-                    CustomerMenu customerMenu = CustomerMenu.getInstance();
-                    customerMenu.show();
-                }
-                else if (user.getRole().equalsIgnoreCase("operator")){
-                    OperatorMenu operatorMenu = OperatorMenu.getInstance();
-                    operatorMenu.show();
-                }
-                else if (user.getRole().equalsIgnoreCase("technician")){
-                    ComputerTechnician computerTechnician = ComputerTechnician.getInstance();
-                    computerTechnician.show();
-                }
-                else{
-                    Helper.showAlert(Alert.AlertType.ERROR, "Role error!");
-                }
-            }
+            handleLogin();
         });
 
         registerHyperlink.setOnAction(e -> {
             Register register = Register.getInstance();
             register.show();
         });
+
+        passwordInput.setOnKeyPressed(e -> {
+            if(e.getCode().toString().equalsIgnoreCase("ENTER"))
+                handleLogin();
+        });
+    }
+
+    private void handleLogin(){
+        String username = usernameInput.getText();
+        String password = passwordInput.getText();
+        User user = UserController.getUserData(username, password);
+        if (user != null) {
+            Helper.setUser(user);
+            if (user.getRole().equalsIgnoreCase("admin")){
+                AdminMenu adminMenu = AdminMenu.getInstance();
+                adminMenu.show();
+            }
+            else if (user.getRole().equalsIgnoreCase("customer")){
+                CustomerMenu customerMenu = CustomerMenu.getInstance();
+                customerMenu.show();
+            }
+            else if (user.getRole().equalsIgnoreCase("operator")){
+                OperatorMenu operatorMenu = OperatorMenu.getInstance();
+                operatorMenu.show();
+            }
+            else if (user.getRole().equalsIgnoreCase("technician")){
+                ComputerTechnician computerTechnician = ComputerTechnician.getInstance();
+                computerTechnician.show();
+            }
+            else{
+                Helper.showAlert(Alert.AlertType.ERROR, "Role error!");
+            }
+        }
     }
 
 }

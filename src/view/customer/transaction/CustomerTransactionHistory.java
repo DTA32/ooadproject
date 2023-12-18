@@ -1,12 +1,10 @@
 package view.customer.transaction;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import controller.TransactionController;
 import helper.Helper;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,9 +13,7 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
-import model.CustomerTransactionHistoryModel;
 import model.TransactionHistoryDetailModel;
-import view.TemporaryMenu;
 import view.customer.menu.CustomerMenu;
 
 public class CustomerTransactionHistory {

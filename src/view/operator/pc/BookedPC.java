@@ -1,6 +1,7 @@
 package view.operator.pc;
 
 import controller.PCBookController;
+import controller.TransactionController;
 import helper.Helper;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
@@ -16,12 +17,16 @@ import main.MainStage;
 import model.PCBook;
 import view.operator.menu.OperatorMenu;
 
+import java.util.Date;
+import java.util.List;
+
 public class BookedPC {
     private static BookedPC bookedPC;
     public static BookedPC getInstance() {
         return bookedPC = bookedPC == null ? new BookedPC() : bookedPC;
     }
     public void show(){
+        _repaint();
         MainStage stage = MainStage.getInstance();
         stage.getStage().setScene(scene);
     }
@@ -57,7 +62,18 @@ public class BookedPC {
     void setupButtons() {
         finishBtn = new Button("Finish");
         finishBtn.setOnMouseClicked(e -> {
-            // Finish event handling
+            List<PCBook> selectedBooks = PCBookController.FinishBook(table.getSelectionModel().getSelectedItems());
+            Date now = new Date();
+            for(PCBook book : selectedBooks){
+                if(book.getBooked_date().before(now)){
+                    PCBookController.DeleteBookData(book.getBook_id());
+                }
+                else {
+                    Helper.showAlert(Alert.AlertType.ERROR, "Cannot finish booking before the booked date!");
+                }
+            }
+            Helper.showAlert(Alert.AlertType.INFORMATION, "Booked PC finished!");
+            _repaint();
         });
 
         cancelBtn = new Button("Cancel");
@@ -119,10 +135,8 @@ public class BookedPC {
         dateCol.setCellValueFactory(new PropertyValueFactory<> ("booked_date"));
         dateCol.setPrefWidth(200);
 
-        //kok ada 5 column coy
         table.getColumns().addAll(bookIDCol,pcIdCol, dateCol);
-        ObservableList<PCBook> bookedPC = PCBook.getAllBookedPCs();
-        table.setItems(bookedPC);
+        table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         fp.getChildren().add(table);
     }
 

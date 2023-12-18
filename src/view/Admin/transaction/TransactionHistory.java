@@ -1,11 +1,9 @@
 package view.Admin.transaction;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import helper.Helper;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,11 +12,7 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import main.MainStage;
 import model.TransactionHistoryHeaderModel;
-import model.TransactionHistoryDetailModel;
-import model.User;
 import view.Admin.menu.AdminMenu;
-import view.Admin.staff.ChangeRoleStaff;
-import view.TemporaryMenu;
 
 public class TransactionHistory{
     private static TransactionHistory transactionHistory;

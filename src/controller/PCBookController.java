@@ -2,11 +2,15 @@ package controller;
 
 
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
+import javafx.scene.control.Alert;
 import model.PC;
 import model.PCBook;
 import helper.Helper;
 import javafx.scene.control.Alert.AlertType;
+import model.TransactionHistoryHeaderModel;
 
 public class PCBookController {
 
@@ -78,7 +82,7 @@ public class PCBookController {
             Helper.showAlert(AlertType.ERROR, "PC is not available!");
             return false;
         }
-        // Check if pc is already bookmarked
+        // Check if pc is already booked
         if (PCBook.getPCBookedDetail(newPc_id)) {
             Helper.showAlert(AlertType.ERROR, "PC is already booked!");
             return false;
@@ -89,6 +93,25 @@ public class PCBookController {
          }
          Helper.showAlert(AlertType.ERROR, "Failed to assign the PC booking to new PC!");
             return false;
+    }
+
+    public static List<PCBook> FinishBook(List<PCBook> PCBooks){
+        if(PCBooks.isEmpty()){
+            Helper.showAlert(AlertType.ERROR, "Please select a PC to finish its booking!");
+            return PCBooks;
+        }
+        Date now = new Date();
+        for(PCBook book : PCBooks){
+            if(!book.getBooked_date().before(now)){
+                return PCBooks;
+            }
+        }
+        TransactionController.addTransaction(0, PCBooks, Helper.getCurrentUser());
+        return PCBooks;
+    }
+
+    public static void DeleteBookData(Integer BookID){
+        PCBook.DeleteBookData(BookID);
     }
 
 }

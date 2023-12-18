@@ -26,9 +26,10 @@ CREATE TABLE TransactionHeaders (
 CREATE TABLE TransactionDetails (
     transaction_id INT NOT NULL,
     pc_id INT NOT NULL,
-    customer_name VARCHAR(255) NOT NULL,
+    user_id INT NOT NULL,
     booked_time DATETIME NOT NULL,
     FOREIGN KEY (transaction_id) REFERENCES TransactionHeaders(transaction_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(UserID) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (pc_id) REFERENCES pcs(pc_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
