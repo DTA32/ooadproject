@@ -55,6 +55,28 @@ public class TransactionHistoryHeaderModel {
 		}
 	}
 
+	public static int addNewTransactionHeader(User StaffID, String transactionDate){
+		Connect conn = Connect.getConnection();
+		String prepareSql = "INSERT INTO transactionheaders (staff_id, staff_name, transaction_date) VALUES (?, ?, ?);";
+		try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
+			ps.setInt(1, Integer.parseInt(StaffID.getUserID()));
+			ps.setString(2, StaffID.getUserName());
+			ps.setString(3, transactionDate);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String lastId = "SELECT LAST_INSERT_ID() AS last_id FROM transactionheaders;";
+		try (ResultSet rs = conn.executeQuery(lastId)) {
+			if (rs.next()) {
+				return rs.getInt("last_id");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return 0;
+    }
+
 	public TransactionHistoryHeaderModel(int transactionID, int staff_id, String staff_name, String date) {
 		this.transactionID = transactionID;
 		this.staff_id = staff_id;

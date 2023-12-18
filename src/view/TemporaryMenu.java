@@ -15,14 +15,12 @@ import view.Admin.staff.ViewAllStaffs;
 import view.Admin.transaction.TransactionHistory;
 import view.auth.Login;
 import view.auth.Register;
-import view.computer_technician.TechnicianListJob;
 import view.computer_technician.ViewTechnicianJob;
 import view.customer.pc.BookPC;
 import view.customer.report.MakeReport;
 import view.customer.transaction.CustomerTransactionHistory;
 import view.operator.pc.AssignUserAnotherPC;
 import view.operator.pc.BookedPC;
-import view.operator.pc.FinishPC;
 
 public class TemporaryMenu {
     private static TemporaryMenu temporaryMenu;
@@ -105,12 +103,6 @@ public class TemporaryMenu {
         cancelPC.setOnMouseClicked(e -> {
             CancelPC cancelPC = CancelPC.getInstance();
             cancelPC.show();
-        });
-
-        finishPC = new Button("Finish PC");
-        finishPC.setOnMouseClicked(e -> {
-            FinishPC finishPC = FinishPC.getInstance();
-            finishPC.show();
         });
 
         login = new Button("Login");

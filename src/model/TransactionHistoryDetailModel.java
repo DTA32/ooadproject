@@ -4,7 +4,10 @@ import database.Connect;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class TransactionHistoryDetailModel {
     private String transactionDetailID;
@@ -31,6 +34,22 @@ public class TransactionHistoryDetailModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	public static void addTransactionDetail(int transactionID, List<PCBook> PCBooks){
+		Connect conn = Connect.getConnection();
+		String prepareSql = "INSERT INTO transactiondetails (transaction_id, pc_id, user_id, booked_time) VALUES (?, ?, ?, ?);";
+		try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
+			for(PCBook pcBook : PCBooks){
+				ps.setInt(1, transactionID);
+				ps.setInt(2, pcBook.getPc_id());
+				ps.setInt(3, pcBook.getUser_id());
+				ps.setString(4, String.format("%tF", pcBook.getBooked_date()));
+				ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
