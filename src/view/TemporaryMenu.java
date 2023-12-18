@@ -127,8 +127,8 @@ public class TemporaryMenu {
 
         TechJob = new Button("Technician Job List");
         TechJob.setOnMouseClicked(e -> {
-            TechnicianListJob techJob = TechnicianListJob.getInstance();
-            techJob.show();
+//            TechnicianListJob techJob = TechnicianListJob.getInstance();
+//            techJob.show();
         });
 
         Transactions = new Button("Transaction History");

@@ -1,5 +1,6 @@
 package view.Admin.pc;
 
+import helper.Helper;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -12,8 +13,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
 import model.PC;
+import view.Admin.menu.AdminMenu;
+import view.computer_technician.menu.ComputerTechnician;
+import view.customer.menu.CustomerMenu;
 import view.customer.pc.BookPC;
 import view.TemporaryMenu;
+import view.operator.menu.OperatorMenu;
 
 public class ViewPC {
     private static ViewPC viewPC;
@@ -52,8 +57,17 @@ public class ViewPC {
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = TemporaryMenu.getInstance();
-            temp.show();
+            if(Helper.getCurrentUser().getRole().equalsIgnoreCase("admin")){
+                AdminMenu.getInstance().show();
+            } else if (Helper.getCurrentUser().getRole().equalsIgnoreCase("customer")){
+                CustomerMenu.getInstance().show();
+            } else if (Helper.getCurrentUser().getRole().equalsIgnoreCase("operator")){
+                OperatorMenu.getInstance().show();
+            } else if (Helper.getCurrentUser().getRole().equalsIgnoreCase("technician")){
+                ComputerTechnician.getInstance().show();
+            } else {
+                TemporaryMenu.getInstance().show();
+            }
         });
         bp.setTop(back);
     }
@@ -101,26 +115,27 @@ public class ViewPC {
         TableColumn<PC, Void> bookCol = new TableColumn<>("Book");
         bookCol.setPrefWidth(100);
         bookCol.setCellFactory(col -> new TableCell<PC, Void>(){
-            private final Button bookBtn = new Button("Book");
-            {
-                bookBtn.setOnAction(e -> {
-                    PC currentRowData = getTableView().getItems().get(getIndex());
-                    bookPC(currentRowData.getPcid());
-                });
-            }
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if(empty){
-                    setGraphic(null);
-                }else{
-                    setGraphic(bookBtn);
+                private final Button bookBtn = new Button("Book");
+                {
+                    bookBtn.setOnAction(e -> {
+                        PC currentRowData = getTableView().getItems().get(getIndex());
+                        bookPC(currentRowData.getPcid());
+                    });
                 }
-            }
-        });
+                @Override
+                protected void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(empty){
+                        setGraphic(null);
+                    }else{
+                        setGraphic(bookBtn);
+                    }
+                }
+            });
 
-
-
+        if(!Helper.getCurrentUser().getRole().equalsIgnoreCase("customer")){
+            bookCol.setVisible(false);
+        }
 
         //Fill data
         table.getColumns().addAll(pcId, Status, bookCol);
