@@ -55,7 +55,7 @@ public class Job {
     public static boolean addNewJob(int user_id, int pc_id)
     {
         Connect conn = Connect.getConnection();
-        String query = "INSERT INTO jobs VALUES (?, ?, 'UnComplete' )";
+        String query = "INSERT INTO jobs (user_id, pc_id, job_status) VALUES (?, ?, 'UnComplete' )";
         try (PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, user_id);
             ps.setInt(2, pc_id);

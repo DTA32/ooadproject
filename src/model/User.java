@@ -31,6 +31,26 @@ public class User {
         return null;
     }
 
+    public static ArrayList<User> getAllTechnician(){
+        ArrayList<User> userList = new ArrayList<>();
+        Connect conn = Connect.getConnection();
+        String query = "SELECT * FROM users WHERE Role = 'technician'";
+        try (ResultSet rs = conn.executeQuery(query)) {
+            while (rs.next()) {
+                String UserID = rs.getString("UserID");
+                String UserNae = rs.getString("UserName");
+                String Password = rs.getString("Password");
+                int Age = Integer.parseInt(rs.getString("Age"));
+                String Role = rs.getString("Role");
+                User user = new User(UserID, UserNae, Password, Role, Age);
+                userList.add(user);
+            }
+            return userList;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public static boolean addNewUser(String username, String password, int age) {
         Connect conn = Connect.getConnection();
 
@@ -46,7 +66,7 @@ public class User {
             e.printStackTrace();
         }
 
-        prepareSql = "INSERT INTO users (UserName, Password, Age, Role) VALUES (?, ?, ?, 'Customer' )";
+        prepareSql = "INSERT INTO users (UserName, Password, Age, Role) VALUES (?, ?, ?, 'customer' )";
         try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
             ps.setString(1, username);
             ps.setString(2, password);

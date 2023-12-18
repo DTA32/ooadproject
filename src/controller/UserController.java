@@ -93,6 +93,10 @@ public class UserController {
         return false;
     }
 
+    public static ArrayList <User> getAllTechnician(){
+        return User.getAllTechnician();
+    }
+
     public static ArrayList<User> getAllUserData()
     {
         return User.getAlluserData();

@@ -6,23 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="68acd454-bd7f-47fb-98f0-e5113c16d97c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/PCBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PCBookController.java" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/src/controller/PCController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PCController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/PC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/PCBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PCBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/computer_technician/menu/ComputerTechnician.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/computer_technician/menu/ComputerTechnician.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/customer/menu/CustomerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/menu/CustomerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/customer/report/MakeReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/report/MakeReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/operator/pc/AssignUserAnotherPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/operator/pc/AssignUserAnotherPC.java" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/src/helper/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/Helper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/TransactionHistoryHeaderModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TransactionHistoryHeaderModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Admin/menu/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/menu/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/computer_technician/menu/ComputerTechnician.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/computer_technician/menu/ComputerTechnician.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/customer/menu/CustomerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/menu/CustomerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/operator/menu/OperatorMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/operator/menu/OperatorMenu.java" afterDir="false" />
->>>>>>> 698bb89133046aa61bd2bccb7f1c8ee71d4b6bbc
+      <change beforePath="$PROJECT_DIR$/src/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Job.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Admin/job/JobManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Admin/job/JobManagement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +40,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -135,5 +122,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>

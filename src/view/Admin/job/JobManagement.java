@@ -2,6 +2,8 @@ package view.Admin.job;
 
 import controller.JobController;
 import controller.PCController;
+import controller.ReportController;
+import controller.UserController;
 import helper.Helper;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,10 +18,13 @@ import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.Job;
 import model.PC;
+import model.Report;
+import model.User;
 import view.Admin.menu.AdminMenu;
 import view.TemporaryMenu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class JobManagement {
 
@@ -36,11 +41,11 @@ public class JobManagement {
     VBox titleVb, pc_idVb, technician_idVb, job_statusVb, jobManagementVb, assignVb, backVb, updateVb, pc_idVb2, technician_idVb2;
     HBox hb, hb2;
     TextField pc_idField, technicianField;
-    Label titleLbl, pc_idLbl, technician_idLbl, job_statusLbl, updateLbl, jobListLbl, reportedPcList, assignJobLbl, technician_idLbl2;
+    Label titleLbl, pc_idLbl, technician_idLbl, job_statusLbl, updateLbl, reportedPcList, assignJobLbl, technician_idLbl2;
     TableView<Job> tableView;
     Button  updateJobStatusBtn, backBtn, assignBtn;
     TableColumn<Job, String> jobIDColumn, pcIDColumn, userIDColumn, jobStatusColumn;
-    ComboBox<String> statusPCList, reportedPCList, technicianList2;
+    ComboBox<String> statusPCList, reportedPCCb, technicianList2;
     BorderPane bp;
 
 
@@ -61,7 +66,7 @@ public class JobManagement {
         titleVb = new VBox(10);
 
         backBtn = new Button("< Back");
-        backBtn.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        backBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
         backVb = new VBox(10);
         backVb.getChildren().addAll(backBtn);
@@ -73,12 +78,6 @@ public class JobManagement {
         titleVb.getChildren().addAll(titleLbl);
         titleVb.setAlignment(Pos.CENTER);
         titleVb.setMaxWidth(500);
-
-//        addNewJobBtn = new Button("Add New Job");
-//        addNewJobBtn.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-
-        jobListLbl = new Label("Job List");
-        jobListLbl.setFont(Font.font("Arial", FontWeight.SEMI_BOLD, 16));
 
         tableView = new TableView<>();
 
@@ -107,27 +106,38 @@ public class JobManagement {
         reportedPcList = new Label("Reported PC List");
         reportedPcList.setFont(Font.font("Arial", FontWeight.SEMI_BOLD, 16));
 
-        reportedPCList = new ComboBox<>();
-        reportedPCList.setPromptText("Select PC ID");
-        // reportedPCList data is frm report data
+        ReportController reportController = new ReportController();
+        List <Report> reportList = reportController.GetAllReportData();
+
+        reportedPCCb = new ComboBox<>();
+        if (reportList.isEmpty()){
+            reportedPCCb.setPromptText("No PC Reported");
+        } else {
+            reportedPCCb.setPromptText("Select PC ID");
+            for (Report report : reportList){
+                System.out.println(report.getPc_id());
+                reportedPCCb.getItems().add(Integer.toString(report.getPc_id()));
+            }
+        }
 
         pc_idVb2 = new VBox(10);
-        pc_idVb2.getChildren().addAll(reportedPcList, reportedPCList);
+        pc_idVb2.getChildren().addAll(reportedPcList, reportedPCCb);
         pc_idVb2.setAlignment(Pos.CENTER_LEFT);
 
         technician_idLbl2 = new Label("Technician ID");
         technician_idLbl2.setFont(Font.font("Arial", FontWeight.SEMI_BOLD, 16));
 
+        ArrayList <User> technicianList = UserController.getAllTechnician();
         technicianList2 = new ComboBox<>();
-        for (Job job : jobList){
-            technicianList2.getItems().add(Integer.toString(job.getUserID()));
+        for (User user : technicianList){
+            technicianList2.getItems().add(user.getUserID());
         }
 
         technician_idVb2 = new VBox(10);
         technician_idVb2.getChildren().addAll(technician_idLbl2, technicianList2);
         technician_idVb2.setAlignment(Pos.CENTER_LEFT);
 
-        technicianList2.setPromptText(Integer.toString(jobList.get(0).getUserID()));
+        technicianList2.setValue(technicianList.get(0).getUserID());
 
         hb2 = new HBox(10);
         hb2.getChildren().addAll(pc_idVb2, technician_idVb2);
@@ -196,7 +206,7 @@ public class JobManagement {
         bp.setLeft(assignVb);
         bp.setRight(updateVb);
 
-        jobManagementVb.getChildren().addAll(backVb, titleLbl, jobListLbl, tableView, bp);
+        jobManagementVb.getChildren().addAll(backVb, titleLbl, tableView, bp);
         jobManagementVb.setAlignment(Pos.CENTER);
         jobManagementVb.setPadding(new Insets(64));
         jobManagementVb.setSpacing(32);
@@ -227,6 +237,20 @@ public class JobManagement {
                 _repaint();
             }
         });
+
+        assignBtn.setOnAction(e -> {
+            if (reportedPCCb.getSelectionModel().isEmpty() || technicianList2.getSelectionModel().isEmpty()){
+                Helper.showAlert(Alert.AlertType.ERROR, "Please select PC ID and Technician ID");
+            } else {
+                boolean success = JobController.addNewJob(Integer.parseInt(technicianList2.getSelectionModel().getSelectedItem()), Integer.parseInt(reportedPCCb.getSelectionModel().getSelectedItem()));
+                System.out.println("Success : " + success);
+                if (success) {
+                    Helper.showAlert(Alert.AlertType.INFORMATION, "Job Assigned Successfully!");
+                    _repaint();
+                }
+            }
+        });
+
     }
 
     public void _repaint() {
