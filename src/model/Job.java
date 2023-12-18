@@ -12,6 +12,27 @@ public class Job {
     private int job_id, userID, pc_id;
     private String jobStatus;
 
+    public static ArrayList<Job> getTechnicianJob(String user_id){
+        ArrayList<Job> jobList = new ArrayList<>();
+        Connect conn = Connect.getConnection();
+        String query = "SELECT * FROM jobs WHERE user_id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, user_id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int job_id = Integer.parseInt(rs.getString("job_id"));
+                int userID = Integer.parseInt(rs.getString("user_id"));
+                int pc_id = Integer.parseInt(rs.getString("pc_id"));
+                String job_status = rs.getString("job_status");
+                Job job = new Job(job_id, userID, pc_id, job_status);
+                jobList.add(job);
+            }
+            return jobList;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public static ArrayList <Job> getAllJobData(){
         ArrayList<Job> jobList = new ArrayList<>();
         Connect conn = Connect.getConnection();
@@ -45,7 +66,7 @@ public class Job {
         }
     }
 
-    public static boolean updateJobStatus(int job_id, String job_status)
+    public static void updateJobStatus(int job_id, String job_status)
     {
         Connect conn = Connect.getConnection();
         String query = "UPDATE jobs SET job_status = ? WHERE job_id = ?";
@@ -53,9 +74,7 @@ public class Job {
             ps.setString(1, job_status);
             ps.setInt(2, job_id);
             ps.executeUpdate();;
-            return true;
         } catch (Exception e) {
-            return false;
         }
     }
 

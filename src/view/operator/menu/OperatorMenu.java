@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
-import view.MakeReport;
+import view.customer.report.MakeReport;
 import view.operator.pc.*;
 
 public class OperatorMenu {
@@ -87,7 +87,7 @@ public class OperatorMenu {
 
         adminMenuVb = new VBox();
         adminMenuVb.setAlignment(Pos.CENTER);
-        adminMenuVb.getChildren().addAll(titleDescVb, mainMenuVb);
+        adminMenuVb.getChildren().addAll(titleDescVb, mainMenuVb, Helper.logoutRender());
         adminMenuVb.setPadding(new Insets(64));
         adminMenuVb.setSpacing(16);
 
@@ -96,7 +96,7 @@ public class OperatorMenu {
 
     private void addEventListener() {
         assignUserToAnotherPCBtn.setOnMouseClicked(e -> {
-            AssignUserAnotherPC assignUserAnotherPC = new AssignUserAnotherPC();
+            AssignUserAnotherPC assignUserAnotherPC = AssignUserAnotherPC.getInstance();
             assignUserAnotherPC.show();
         });
         makeReportBtn.setOnMouseClicked(e -> {
@@ -104,11 +104,11 @@ public class OperatorMenu {
             makeReport.show();
         });
         bookedPcBtn.setOnMouseClicked(e -> {
-            BookedPC bookedPC = new BookedPC();
+            BookedPC bookedPC = BookedPC.getInstance();
             bookedPC.show();
         });
         finishPcBtn.setOnMouseClicked(e -> {
-            FinishPC finishPC = new FinishPC();
+            FinishPC finishPC = FinishPC.getInstance();
             finishPC.show();
         });
     }

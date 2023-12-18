@@ -15,8 +15,10 @@ import view.Admin.staff.ViewAllStaffs;
 import view.Admin.transaction.TransactionHistory;
 import view.auth.Login;
 import view.auth.Register;
+import view.computer_technician.TechnicianListJob;
 import view.computer_technician.ViewTechnicianJob;
 import view.customer.pc.BookPC;
+import view.customer.report.MakeReport;
 import view.customer.transaction.CustomerTransactionHistory;
 import view.operator.pc.AssignUserAnotherPC;
 import view.operator.pc.BookedPC;
@@ -36,12 +38,10 @@ public class TemporaryMenu {
 
     Scene scene;
     FlowPane fp;
-
     Button bookPC;
     Button viewReport;
     Button register;
     Button login;
-
     Button allPc;
 
     Button bookedPC;

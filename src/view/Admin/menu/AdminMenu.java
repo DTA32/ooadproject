@@ -66,7 +66,7 @@ public class AdminMenu {
         titleDescVb.setMaxWidth(500);
         titleDescVb.setSpacing(16);
 
-        crud_pcBtn = new Button("CRUD PC");
+        crud_pcBtn = new Button("PC Management");
         crud_pcBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
         viewAllStaffJobBtn = new Button("Job Management");
@@ -87,7 +87,7 @@ public class AdminMenu {
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
                 crud_pcBtn, viewAllStaffJobBtn, viewAllReportBtn,
-                viewAllStaffBtn, viewAllTransactionHistoryBtn
+                viewAllStaffBtn, viewAllTransactionHistoryBtn, Helper.logoutRender()
         );
         mainMenuVb.setSpacing(16);
 
@@ -106,7 +106,7 @@ public class AdminMenu {
             pcManagement.show();
         });
         viewAllStaffBtn.setOnMouseClicked(e -> {
-            ViewAllStaffs viewAllStaffs = new ViewAllStaffs();
+            ViewAllStaffs viewAllStaffs = ViewAllStaffs.getInstance();
             viewAllStaffs.show();
         });
         viewAllStaffJobBtn.setOnMouseClicked(e -> {
@@ -114,15 +114,15 @@ public class AdminMenu {
             jobManagement.show();
         });
         viewAllReportBtn.setOnMouseClicked(e -> {
-            ViewAllReport report = new ViewAllReport();
+            ViewAllReport report = ViewAllReport.getInstance();
             report.show();
         });
         viewAllPCBtn.setOnMouseClicked(e -> {
-            ViewPC viewPC = new ViewPC();
+            ViewPC viewPC = ViewPC.getInstance();
             viewPC.show();
         });
         viewAllTransactionHistoryBtn.setOnMouseClicked(e -> {
-            TransactionHistory transactionHistory = new TransactionHistory();
+            TransactionHistory transactionHistory = TransactionHistory.getInstance();
             transactionHistory.show();
         });
     }

@@ -32,6 +32,11 @@ public class ViewAllStaffs {
         topInit();
         initialize();
     }
+    private static ViewAllStaffs viewAllStaffs;
+    public static ViewAllStaffs getInstance() {
+        return viewAllStaffs = viewAllStaffs == null ? new ViewAllStaffs() : viewAllStaffs;
+    }
+
 
     public void show(){
         MainStage stage = MainStage.getInstance();

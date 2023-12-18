@@ -1,33 +1,51 @@
 package model;
 
+import database.Connect;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 public class TransactionHistoryDetailModel {
-    private int no;
-    private int transactionDetailID;
+    private String transactionDetailID;
     private int transactionID;
     private int userID;
     private int pcID;
-    
-	public TransactionHistoryDetailModel(int no, int transactionDetailID, int transactionID , int userID, int pcID) {
-        this.no = no;
+
+	public static ArrayList<TransactionHistoryDetailModel> getUserTransactionDetail(int userID){
+		Connect conn = Connect.getConnection();
+		String prepareSql = "SELECT * FROM transactiondetails WHERE user_id = ?;";
+		ArrayList<TransactionHistoryDetailModel> transactionHistoryDetailModels = new ArrayList<>();
+		try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
+			ps.setInt(1, userID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				transactionHistoryDetailModels.add(new TransactionHistoryDetailModel(
+						rs.getString("booked_time"),
+						rs.getInt("transaction_id"),
+						rs.getInt("user_id"),
+						rs.getInt("pc_id")
+				));
+			}
+			return transactionHistoryDetailModels;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public TransactionHistoryDetailModel(String transactionDetailID, int transactionID , int userID, int pcID) {
         this.transactionDetailID = transactionDetailID;
         this.transactionID = transactionID;
         this.userID = userID;
-        this.pcID = pcID; 
+        this.pcID = pcID;
     }
 
-	public int getNo() {
-		return no;
-	}
-
-	public void setNo(int no) {
-		this.no = no;
-	}
-
-	public int getTransactionDetailID() {
+	public String getTransactionDetailID() {
 		return transactionDetailID;
 	}
 
-	public void setTransactionDetailID(int transactionDetailID) {
+	public void setTransactionDetailID(String transactionDetailID) {
 		this.transactionDetailID = transactionDetailID;
 	}
 
@@ -54,5 +72,4 @@ public class TransactionHistoryDetailModel {
 	public void setPcID(int pcID) {
 		this.pcID = pcID;
 	}
-
 }

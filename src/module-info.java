@@ -17,4 +17,6 @@ module OOADProject {
     opens view.customer.pc;
     opens view.operator.menu;
     opens view.operator.pc;
+    opens view.computer_technician;
+    opens view.customer.report;
 }

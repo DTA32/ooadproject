@@ -13,12 +13,13 @@ import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
 import view.auth.Login;
+import view.computer_technician.TechnicianListJob;
 
 public class ComputerTechnician {
 
-    private static Login login;
-    public static Login getInstance() {
-        return login = login == null ? new Login() : login;
+    private static ComputerTechnician computerTechnician;
+    public static ComputerTechnician getInstance() {
+        return computerTechnician = computerTechnician == null ? new ComputerTechnician() : computerTechnician;
     }
     public void show(){
         MainStage stage = MainStage.getInstance();
@@ -77,7 +78,7 @@ public class ComputerTechnician {
 
         adminMenuVb = new VBox();
         adminMenuVb.setAlignment(Pos.CENTER);
-        adminMenuVb.getChildren().addAll(titleDescVb, mainMenuVb);
+        adminMenuVb.getChildren().addAll(titleDescVb, mainMenuVb, Helper.logoutRender());
         adminMenuVb.setPadding(new Insets(64));
         adminMenuVb.setSpacing(16);
 
@@ -85,16 +86,10 @@ public class ComputerTechnician {
     }
 
     private void addEventListener() {
-//        loginButton.setOnMouseClicked(e -> {
-//            String username = usernameInput.getText();
-//            String password = passwordInput.getText();
-//            UserController.getUserData(username, password);
-//        });
-//
-//        registerHyperlink.setOnAction(e -> {
-//            Register register = Register.getInstance();
-//            register.show();
-//        });
+        completeJobBtn.setOnMouseClicked(e -> {
+            TechnicianListJob technicianListJob = TechnicianListJob.getInstance();
+            technicianListJob.show();
+        });
     }
 
 }

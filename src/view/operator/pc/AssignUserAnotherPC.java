@@ -8,8 +8,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import main.MainStage;
+import model.Job;
+import model.PCBook;
 import view.TemporaryMenu;
+import view.operator.menu.OperatorMenu;
+
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 public class AssignUserAnotherPC {
     private static AssignUserAnotherPC assignuseranotherpc;
@@ -21,112 +28,61 @@ public class AssignUserAnotherPC {
         stage.getStage().setScene(scene);
     }
 
+    VBox assignUserAnotherPCVb, titleVb;
+    Label titleLbl;
     Scene scene;
-    BorderPane bp;
-    FlowPane fp;
+    Button back;
+    TableView<PCBook> table;
+    TableColumn<PCBook, String> userIdCol, pcidCol, bookedTimeCol;
+
+    TableColumn<PCBook, Integer> operatorCol;
+
 
     public AssignUserAnotherPC() {
-        bp = new BorderPane();
-        fp = new FlowPane();
-
-        fp.setOrientation(Orientation.VERTICAL);
-        fp.setAlignment(Pos.TOP_CENTER);
-        fp.setVgap(16);
-        bp.setCenter(fp);
+        assignUserAnotherPCVb = new VBox(10);
         titleInit();
         tableInit();
         backInit();
-
-        scene = new Scene(bp, 1200, 600);
     }
 
     void titleInit() {
-        Label title = new Label("Assign User to Another PC");
-        title.setFont(new Font("Arial", 24));
-        title.setAlignment(Pos.CENTER);
-        VBox titleContainer = new VBox();
-        titleContainer.getChildren().add(title);
-        titleContainer.setAlignment(Pos.CENTER);
-        fp.getChildren().add(titleContainer);
+        titleLbl = new Label("ASSIGN USER TO ANOTHER PC");
+        titleLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+
+        titleVb = new VBox(10);
+        titleVb.getChildren().addAll(titleLbl);
+        titleVb.setAlignment(Pos.CENTER);
+
+        assignUserAnotherPCVb.getChildren().add(titleVb);
     }
 
     void backInit() {
-        Button back = new Button("< Back");
+        back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = TemporaryMenu.getInstance();
-            temp.show();
+            OperatorMenu operatorMenu = OperatorMenu.getInstance();
+            operatorMenu.show();
         });
-        bp.setTop(back);
+        assignUserAnotherPCVb.getChildren().add(back);
     }
 
     void tableInit() {
-        TableView<AssignUserAnotherPC> table = new TableView<>();
-        table.setEditable(true);
-        table.setPrefWidth(1000);
-        table.setPrefHeight(500);
+        table = new TableView<>();
 
-        TableColumn<AssignUserAnotherPC, Integer> noCol = new TableColumn<>("NO");
-        noCol.setCellValueFactory(new PropertyValueFactory<>("no"));
-        noCol.setPrefWidth(200);
+        operatorCol = new TableColumn<>("Book ID");
+        operatorCol.setCellValueFactory(new PropertyValueFactory<>("book_id"));
 
-        TableColumn<AssignUserAnotherPC, String> operatorCol = new TableColumn<>("Operator");
-        operatorCol.setCellValueFactory(new PropertyValueFactory<>("operator"));
-        operatorCol.setPrefWidth(400);
+        userIdCol = new TableColumn<>("User ID");
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("user_id"));
 
-        TableColumn<AssignUserAnotherPC, Integer> userIdCol = new TableColumn<>("User ID");
-        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        userIdCol.setPrefWidth(200);
+        pcidCol = new TableColumn<>("PC ID");
+        pcidCol.setCellValueFactory(new PropertyValueFactory<>("pc_id"));
 
-        TableColumn<AssignUserAnotherPC, Integer> pcidCol = new TableColumn<>("PC ID");
-        pcidCol.setPrefWidth(200);
+        bookedTimeCol = new TableColumn<>("Booked Date");
+        bookedTimeCol.setCellValueFactory(new PropertyValueFactory<>("booked_date"));
 
-        ChoiceBox<String> operatorChoiceBox = new ChoiceBox<>(FXCollections.observableArrayList("Operator 1", "Operator 2", "Operator 3"));
-        operatorCol.setCellFactory(column -> new TableCell<AssignUserAnotherPC, String>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(operatorChoiceBox);
-                    operatorChoiceBox.setValue(item);
-                }
-            }
-        });
+//        ArrayList<Job> jobList =
+//        table.getItems().addAll(
 
-        ChoiceBox<Integer> userIdChoiceBox = new ChoiceBox<>(FXCollections.observableArrayList(1, 2, 3));
-        userIdCol.setCellFactory(column -> new TableCell<AssignUserAnotherPC, Integer>() {
-            @Override
-            protected void updateItem(Integer item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(userIdChoiceBox);
-                    userIdChoiceBox.setValue(item);
-                }
-            }
-        });
-
-        ChoiceBox<Integer> pcidChoiceBox = new ChoiceBox<>(FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-        pcidCol.setCellFactory(column -> new TableCell<AssignUserAnotherPC, Integer>() {
-            @Override
-            protected void updateItem(Integer item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(pcidChoiceBox);
-                    pcidChoiceBox.setValue(item);
-                }
-            }
-        });
-
-//        table.getColumns().addAll(noCol, operatorCol, userIdCol, pcidCol);
-//        table.getItems().add(new AssignUserAnotherPC(1, "Operator 1", 1, 13));
-//        table.getItems().add(new AssignUserAnotherPC(2, "Operator 1", 2, 17));
-//        table.getItems().add(new AssignUserAnotherPC(3, "Operator 3", 3, 20));
-
-        fp.getChildren().add(table);
+//        scene = new Scene(bp, 1000, 600);
     }
 }

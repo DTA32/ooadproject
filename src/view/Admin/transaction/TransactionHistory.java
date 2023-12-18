@@ -1,7 +1,10 @@
 package view.Admin.transaction;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
+import helper.Helper;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,6 +15,9 @@ import javafx.scene.text.Font;
 import main.MainStage;
 import model.TransactionHistoryHeaderModel;
 import model.TransactionHistoryDetailModel;
+import model.User;
+import view.Admin.menu.AdminMenu;
+import view.Admin.staff.ChangeRoleStaff;
 import view.TemporaryMenu;
 
 public class TransactionHistory{
@@ -24,112 +30,104 @@ public class TransactionHistory{
         stage.getStage().setScene(scene);
     }
     Scene scene;
-    BorderPane bp;
-    FlowPane fp;
+    Label title;
+    TableView <TransactionHistoryHeaderModel> table;
+    TableColumn<TransactionHistoryHeaderModel, Integer>  transactionIDCol, userIDCol;
+    TableColumn<TransactionHistoryHeaderModel, Integer> userNameCol, transactionDetailCol;
+    TableColumn<TransactionHistoryHeaderModel, Void> actionColumn;
+    VBox transactionHistoryVb, titleContainer, backVb;
 
 
     public TransactionHistory(){
-        bp = new BorderPane();
-        fp = new FlowPane();
-
-        fp.setOrientation(Orientation.VERTICAL);
-        fp.setAlignment(Pos.TOP_CENTER);
-        fp.setVgap(16);
-
-        bp.setCenter(fp);
+        transactionHistoryVb = new VBox(10);
+        backInit();
         titleInit();
         tableInit();
-        tableInit2();
-        backInit();
-
-        scene = new Scene(bp, 1500, 600);
-
     }
 
     void titleInit() {
-        Label title = new Label("Transaction History");
+        title = new Label("TRANSACTION HEADER");
         title.setFont(new Font("Arial", 24));
         title.setAlignment(Pos.CENTER);
-        VBox titleContainer = new VBox();
+
+        titleContainer = new VBox();
         titleContainer.getChildren().add(title);
         titleContainer.setAlignment(Pos.CENTER);
-        fp.getChildren().add(titleContainer);
+
+        transactionHistoryVb.getChildren().add(titleContainer);
     }
 
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = TemporaryMenu.getInstance();
-            temp.show();
+            AdminMenu adminMenu = AdminMenu.getInstance();
+            adminMenu.show();
         });
-        bp.setTop(back);
-    }
-    void tableInit() {
-        Label title = new Label("Transaction Header");
-        title.setFont(new Font("Arial", 16));
-        title.setAlignment(Pos.TOP_LEFT);
-        VBox titleContainer = new VBox();
-        titleContainer.getChildren().add(title);
-        titleContainer.setAlignment(Pos.CENTER);
-        fp.getChildren().add(titleContainer);
-        TableView table = new TableView();
-        table.setEditable(true);
-        table.setPrefWidth(750);
-        table.setPrefHeight(200);
-        TableColumn<TransactionHistoryHeaderModel, Integer> noCol = new TableColumn<>("NO");
-        noCol.setCellValueFactory(new PropertyValueFactory<>("no"));
-        noCol.setPrefWidth(150);
-        TableColumn<TransactionHistoryHeaderModel, Integer> transactionCol = new TableColumn<>("Transaction ID");
-        transactionCol.setCellValueFactory(new PropertyValueFactory<>("transactionID"));
-        transactionCol.setPrefWidth(150);
-        TableColumn<TransactionHistoryHeaderModel, Integer> userCol = new TableColumn<>("User ID");
-        userCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
-        userCol.setPrefWidth(150);
-        TableColumn<TransactionHistoryHeaderModel, Date> dateCol = new TableColumn<>("Date");
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
-        dateCol.setPrefWidth(150);
-        TableColumn<TransactionHistoryHeaderModel, Integer> totalCol = new TableColumn<>("Total amount");
-        totalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
-        totalCol.setPrefWidth(150);
-        table.getColumns().addAll(noCol, transactionCol, userCol, dateCol, totalCol);
-        table.getItems().add(new TransactionHistoryHeaderModel(1, 1, 13, new Date(System.currentTimeMillis()), 50000));
-        table.getItems().add(new TransactionHistoryHeaderModel(2, 2, 27, new Date(System.currentTimeMillis()), 80000));
-        table.getItems().add(new TransactionHistoryHeaderModel(3, 3, 43, new Date(System.currentTimeMillis()), 25000));
-        fp.getChildren().add(table);
+
+        backVb = new VBox();
+        backVb.getChildren().add(back);
+        backVb.setAlignment(Pos.CENTER_LEFT);
+        transactionHistoryVb.getChildren().add(backVb);
     }
     
-    void tableInit2() {
-        Label title = new Label("Transaction Detail");
-        title.setFont(new Font("Arial", 16));
-        title.setAlignment(Pos.TOP_LEFT);
-        VBox titleContainer = new VBox();
-        titleContainer.getChildren().add(title);
-        titleContainer.setAlignment(Pos.CENTER);
-        fp.getChildren().add(titleContainer);
-        TableView table2 = new TableView();
-        table2.setEditable(true);
-        table2.setPrefWidth(750);
-        table2.setPrefHeight(200);
-        TableColumn<TransactionHistoryDetailModel, Integer> noCol = new TableColumn<>("No");
-        noCol.setCellValueFactory(new PropertyValueFactory<>("no"));
-        noCol.setPrefWidth(150);
-        TableColumn<TransactionHistoryDetailModel, Integer> transactionDetailCol = new TableColumn<>("Transaction Detail ID");
-        transactionDetailCol.setCellValueFactory(new PropertyValueFactory<>("transactionDetailID"));
-        transactionDetailCol.setPrefWidth(150);
-        TableColumn<TransactionHistoryDetailModel, Integer> transactionCol = new TableColumn<>("Transaction ID");
-        transactionCol.setCellValueFactory(new PropertyValueFactory<>("transactionID"));
-        transactionCol.setPrefWidth(150);
-        TableColumn<TransactionHistoryDetailModel, Integer	> userCol = new TableColumn<>("User ID");
-        userCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
-        userCol.setPrefWidth(150);
-        TableColumn<TransactionHistoryDetailModel, Integer> pcCol = new TableColumn<>("PC Booked");
-        pcCol.setCellValueFactory(new PropertyValueFactory<>("pcID"));
-        pcCol.setPrefWidth(150);
-        table2.getColumns().addAll(noCol, transactionDetailCol, transactionCol, userCol, pcCol);
-        table2.getItems().add(new TransactionHistoryDetailModel(1, 1, 1, 1, 5));
-        table2.getItems().add(new TransactionHistoryDetailModel(2, 2, 2, 5, 7));
-        table2.getItems().add(new TransactionHistoryDetailModel(3, 3, 3, 7, 10));
-        fp.getChildren().add(table2);
+    void tableInit() {
+        table = new TableView();
+
+         transactionIDCol = new TableColumn<>("Transaction ID");
+        transactionIDCol.setCellValueFactory(new PropertyValueFactory<>("transactionID"));
+        transactionIDCol.setMinWidth(200);
+
+        userIDCol = new TableColumn<>("User ID");
+        userIDCol.setCellValueFactory(new PropertyValueFactory<>("staff_id"));
+        userIDCol.setMinWidth(200);
+
+        userNameCol = new TableColumn<>("User Name");
+        userNameCol.setCellValueFactory(new PropertyValueFactory<>("staff_name"));
+        userNameCol.setMinWidth(200);
+
+        transactionDetailCol = new TableColumn<>("Transaction Date");
+        transactionDetailCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        transactionDetailCol.setMinWidth(200);
+
+        actionColumn = new TableColumn<>("Action");
+        actionColumn.setMinWidth(200);
+        actionColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button seeDetailBtn = new Button("See Detail");
+
+            {
+                seeDetailBtn.setOnAction(event -> {
+                    TransactionHistoryHeaderModel th = getTableView().getItems().get(getIndex());
+                    Helper.setTransactionHistoryHeaderModel(th);
+                    TransactionDetail transactionDetail = TransactionDetail.getInstance();
+                    transactionDetail.show();
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (!empty){
+                    HBox hb = new HBox(seeDetailBtn);
+                    setGraphic(hb);
+                }
+                else{
+                    setGraphic(null);
+                }
+            }
+        });
+
+        ArrayList<TransactionHistoryHeaderModel> transactionHistoryHeaderModels = TransactionHistoryHeaderModel.getAllTransactionHeaderData();
+
+        table.getColumns().addAll(transactionIDCol, userIDCol, userNameCol, transactionDetailCol, actionColumn);
+
+        table.getItems().addAll(transactionHistoryHeaderModels);
+
+        transactionHistoryVb.getChildren().add(table);
+        transactionHistoryVb.setAlignment(Pos.CENTER);
+        transactionHistoryVb.setPadding(new Insets(64));
+        transactionHistoryVb.setSpacing(32);
+
+        scene = new Scene(transactionHistoryVb, 1200, 600);
     }
 
 }

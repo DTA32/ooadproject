@@ -1,28 +1,65 @@
 package model;
 
+import database.Connect;
+
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class TransactionHistoryHeaderModel {
-    private int no;
     private int transactionID;
-    private int userID;
-    private Date date;
-    private int total;
-    
-	public TransactionHistoryHeaderModel(int no, int transactionID, int userID , Date date, int total) {
-        this.no = no;
-        this.transactionID = transactionID;
-        this.userID = userID;
-        this.date = date;
-        this.total = total; 
-    }
+    private int staff_id;
+	private String staff_name;
+    private String date;
 
-    public int getNo() {
-		return no;
+	public static ArrayList<TransactionHistoryDetailModel> getAllTransactionDetail(int transactionID){
+		Connect conn = Connect.getConnection();
+		String prepareSql = "SELECT * FROM transactiondetails WHERE transaction_id = ?;";
+		ArrayList<TransactionHistoryDetailModel> transactionHistoryDetailModels = new ArrayList<>();
+		try (PreparedStatement ps = conn.prepareStatement(prepareSql)) {
+			ps.setInt(1, transactionID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				transactionHistoryDetailModels.add(new TransactionHistoryDetailModel(
+						rs.getString("booked_time"),
+						rs.getInt("transaction_id"),
+						rs.getInt("user_id"),
+						rs.getInt("pc_id")
+				));
+			}
+			return transactionHistoryDetailModels;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+	public static ArrayList<TransactionHistoryHeaderModel> getAllTransactionHeaderData() {
+		ArrayList<TransactionHistoryHeaderModel> result = new ArrayList<TransactionHistoryHeaderModel>();
+		Connect conn = Connect.getConnection();
+		String query = "SELECT * FROM transactionheaders";
+		try (ResultSet rs = conn.executeQuery(query)) {
+			while (rs.next()) {
+				int transactionID = rs.getInt("transaction_id");
+				int staff_id = rs.getInt("staff_id");
+				String staff_name = rs.getString("staff_name");
+				String date = rs.getString("transaction_date");
+				TransactionHistoryHeaderModel transactionHistoryHeaderModel = new TransactionHistoryHeaderModel(transactionID, staff_id, staff_name, date);
+				result.add(transactionHistoryHeaderModel);
+			}
+			return result;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+
+	public TransactionHistoryHeaderModel(int transactionID, int staff_id, String staff_name, String date) {
+		this.transactionID = transactionID;
+		this.staff_id = staff_id;
+		this.staff_name = staff_name;
+		this.date = date;
 	}
 
 	public int getTransactionID() {
@@ -33,28 +70,27 @@ public class TransactionHistoryHeaderModel {
 		this.transactionID = transactionID;
 	}
 
-	public int getUserID() {
-		return userID;
+	public int getStaff_id() {
+		return staff_id;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setStaff_id(int staff_id) {
+		this.staff_id = staff_id;
 	}
 
-	public Date getDate() {
+	public String getStaff_name() {
+		return staff_name;
+	}
+
+	public void setStaff_name(String staff_name) {
+		this.staff_name = staff_name;
+	}
+
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-
-	public int getTotal() {
-		return total;
-	}
-
-	public void setTotal(int total) {
-		this.total = total;
-	}
-
 }

@@ -2,6 +2,7 @@ package view.Admin.job;
 
 import controller.JobController;
 import controller.PCController;
+import helper.Helper;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -205,6 +206,7 @@ public class JobManagement {
 
     void addEventListener() {
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal == null) return;
             Job job = tableView.getSelectionModel().getSelectedItem();
             technicianField.setText(Integer.toString(job.getUserID()));
             pc_idField.setText(Integer.toString(job.getPc_id()));
@@ -216,10 +218,25 @@ public class JobManagement {
             adminMenu.show();
         });
 
-//        addNewJobBtn.setOnAction(e -> {
-//            AddNewJob addNewJob = new AddNewJob();
-//            addNewJob.show();
-//        });
+        updateJobStatusBtn.setOnAction(e -> {
+            Job job = tableView.getSelectionModel().getSelectedItem();
+            boolean success = JobController.updateJobStatus(job.getJob_id(), statusPCList.getSelectionModel().getSelectedItem());
+            if (success) {
+                PCController.updatePCCondition(Integer.toString(job.getPc_id()), statusPCList.getSelectionModel().getSelectedItem());
+                Helper.showAlert(Alert.AlertType.INFORMATION, "Job Status Updated Successfully!");
+                _repaint();
+            }
+        });
+    }
+
+    public void _repaint() {
+        tableView.getItems().clear();
+
+        ArrayList <Job> jobList = getAllJobData();
+
+        for(Job job : jobList) {
+            tableView.getItems().add(job);
+        }
     }
 
 }

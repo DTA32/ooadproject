@@ -41,6 +41,10 @@ public class PCController {
         }
     }
 
+    public static void updatePCCondition(String pc_id, String pc_condition) {
+        PC.updatePCCondition(pc_id, pc_condition);
+    }
+
     public static void updatePC(String pcidText, String status){
         if (pcidText == null || pcidText.isEmpty()) {
             Helper.showAlert(AlertType.ERROR, "PC ID Cannot be empty!");

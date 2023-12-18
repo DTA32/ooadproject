@@ -1,6 +1,11 @@
 package view.customer.transaction;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import controller.TransactionController;
+import helper.Helper;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,9 +13,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.CustomerTransactionHistoryModel;
+import model.TransactionHistoryDetailModel;
 import view.TemporaryMenu;
+import view.customer.menu.CustomerMenu;
 
 public class CustomerTransactionHistory {
     private static CustomerTransactionHistory customerTransactionHistory;
@@ -22,69 +30,78 @@ public class CustomerTransactionHistory {
         stage.getStage().setScene(scene);
     }
     Scene scene;
-    BorderPane bp;
-    FlowPane fp;
+    VBox customerTransactionHistoryVb, titleVb, backVb;
+    Label title;
+    TableView <TransactionHistoryDetailModel> table;
+    TableColumn<TransactionHistoryDetailModel, String> dateCol;
+    TableColumn<TransactionHistoryDetailModel, Integer> transactionIdCol, pcidCol, userCol;
 
     public CustomerTransactionHistory(){
-        bp = new BorderPane();
-        fp = new FlowPane();
-
-        fp.setOrientation(Orientation.VERTICAL);
-        fp.setAlignment(Pos.TOP_CENTER);
-        fp.setVgap(16);
-        bp.setCenter(fp);
+        customerTransactionHistoryVb = new VBox();
+        backInit();
         titleInit();
         tableInit();
-        backInit();
+    }
 
-        scene = new Scene(bp, 1200, 600);
+    ArrayList <TransactionHistoryDetailModel> getUserTransactionDetail(int user_id){
+    	return TransactionController.getUserTransactionDetail(user_id);
     }
 
 
     void titleInit() {
-        Label title = new Label("Customer Transaction History");
-        title.setFont(new Font("Arial", 24));
-        title.setAlignment(Pos.CENTER);
-        VBox titleContainer = new VBox();
-        titleContainer.getChildren().add(title);
-        titleContainer.setAlignment(Pos.CENTER);
-        fp.getChildren().add(titleContainer);
+        title = new Label("CUSTOMER TRANSACTION HISTORY");
+        title.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 20));
+
+        titleVb = new VBox();
+        titleVb.getChildren().add(title);
+        titleVb.setAlignment(Pos.CENTER);
+        customerTransactionHistoryVb.getChildren().add(titleVb);
     }
 
     void backInit(){
         Button back = new Button("< Back");
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = TemporaryMenu.getInstance();
-            temp.show();
+            CustomerMenu customerMenu = CustomerMenu.getInstance();
+            customerMenu.show();
         });
-        bp.setTop(back);
+        backVb = new VBox();
+        backVb.getChildren().add(back);
+        backVb.setAlignment(Pos.CENTER_LEFT);
+        customerTransactionHistoryVb.getChildren().add(backVb);
     }
 
     void tableInit() {
-        TableView table = new TableView<>();
-        table.setEditable(true);
-        table.setPrefWidth(1000);
-        table.setPrefHeight(500);
-        TableColumn<CustomerTransactionHistoryModel, Integer> noCol = new TableColumn<>("NO");
-        noCol.setCellValueFactory(new PropertyValueFactory<>("no"));
-        noCol.setPrefWidth(200);
-        TableColumn<CustomerTransactionHistoryModel, String> userCol = new TableColumn<>("User ID");
-        userCol.setCellValueFactory(new PropertyValueFactory<>("userid"));
-        userCol.setPrefWidth(400);
-        TableColumn<CustomerTransactionHistoryModel, String> pcidCol = new TableColumn<>("PC ID");
-        pcidCol.setCellValueFactory(new PropertyValueFactory<>("pcid"));
-        pcidCol.setPrefWidth(200);
-        TableColumn<CustomerTransactionHistoryModel, Date> dateCol = new TableColumn<>("Date");
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
-        dateCol.setPrefWidth(200);
-        table.getColumns().addAll(noCol, userCol, pcidCol, dateCol);
-        table.getItems()
-                .add(new CustomerTransactionHistoryModel(1, 1, 121, new Date(System.currentTimeMillis())));
-        table.getItems()
-                .add(new CustomerTransactionHistoryModel(2, 2, 122, new Date(System.currentTimeMillis())));
-        table.getItems()
-                .add(new CustomerTransactionHistoryModel(3, 3, 123, new Date(System.currentTimeMillis())));
-        fp.getChildren().add(table);
+        table = new TableView<>();
+
+        transactionIdCol = new TableColumn<>("Transaction ID");
+        transactionIdCol.setCellValueFactory(new PropertyValueFactory<>("transactionID"));
+        transactionIdCol.setMinWidth(250);
+
+        userCol = new TableColumn<>("User ID");
+        userCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        userCol.setMinWidth(250);
+
+        pcidCol = new TableColumn<>("PC ID");
+        pcidCol.setCellValueFactory(new PropertyValueFactory<>("pcID"));
+        pcidCol.setMinWidth(250);
+
+        dateCol = new TableColumn<>("Booked Time");
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("transactionDetailID"));
+        dateCol.setMinWidth(250);
+
+        table.getColumns().addAll(transactionIdCol, userCol, pcidCol, dateCol);
+
+        int uuser_id = Integer.parseInt(Helper.getCurrentUser().getUserID());
+        ArrayList <TransactionHistoryDetailModel> transactionHistoryDetailModels = getUserTransactionDetail(uuser_id);
+        table.getItems().addAll(transactionHistoryDetailModels);
+        table.setPlaceholder(new Label("No Transaction Found"));
+
+        customerTransactionHistoryVb.getChildren().add(table);
+        customerTransactionHistoryVb.setAlignment(Pos.CENTER);
+        customerTransactionHistoryVb.setPadding(new Insets(64));
+        customerTransactionHistoryVb.setSpacing(32);
+
+        scene = new Scene(customerTransactionHistoryVb, 1200, 600);
     }
 
 

@@ -1,4 +1,4 @@
-package view;
+package view.customer.report;
 
 import controller.ReportController;
 import helper.Helper;
@@ -11,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
+import view.TemporaryMenu;
 
 public class MakeReport {
     private static MakeReport makeReport;

@@ -13,8 +13,6 @@ public class PC {
     private Integer pcid;
     private String status;
 
-
-
     public PC(Integer pcid, String status){
         this.pcid = pcid;
         this.status = status;
@@ -38,6 +36,20 @@ public class PC {
 
     public PC(){
 
+    }
+
+    public static void updatePCCondition(String pc_id, String pc_condition)
+    {
+        Connect connect = Connect.getConnection();
+        String prepareSql = "UPDATE pcs SET pc_condition = ? WHERE pc_id = ?";
+
+        try (PreparedStatement ps = connect.prepareStatement(prepareSql)) {
+            ps.setString(1, pc_condition);
+            ps.setString(2, pc_id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
