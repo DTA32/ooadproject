@@ -73,4 +73,23 @@ public class PCBookController {
 
     }
 
+    public static boolean assignUserToNewPc(int book_id, int newPc_id){
+        // Check if pc is available (pc is available in database)
+        if (!PCController.getPCDetail(newPc_id)) {
+            Helper.showAlert(AlertType.ERROR, "PC is not available!");
+            return false;
+        }
+        // Check if pc is already bookmarked
+        if (PCBook.getPCBookedDetail(newPc_id)) {
+            Helper.showAlert(AlertType.ERROR, "PC is already booked!");
+            return false;
+        }
+         if (PCBook.assignUserToNewPc(book_id, newPc_id)){
+             Helper.showAlert(AlertType.INFORMATION, "PC Booked on date : "+ PCBook.getBookingbyID(book_id) + " Successfully Assigned to new PC!");
+             return true;
+         }
+         Helper.showAlert(AlertType.ERROR, "Failed to assign the PC booking to new PC!");
+            return false;
+    }
+
 }

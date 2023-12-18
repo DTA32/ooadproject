@@ -97,6 +97,10 @@ public class PCController {
 
     }
 
+    public static boolean getPCDetail(int pc_id){
+        return PC.getPCDetail(pc_id);
+    }
+
     public static ArrayList<PC> getAllPCData() {
         return PC.getAllPCData();
     }

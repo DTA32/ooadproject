@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
 import view.TemporaryMenu;
+import view.operator.menu.OperatorMenu;
 
 public class MakeReport {
     private static MakeReport makeReport;
@@ -128,8 +129,8 @@ public class MakeReport {
             }
         });
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = TemporaryMenu.getInstance();
-            temp.show();
+            OperatorMenu operatorMenu = OperatorMenu.getInstance();
+            operatorMenu.show();
         });
     }
 }

@@ -12,7 +12,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
-import view.MakeReport;
 import view.auth.Login;
 import view.Admin.pc.ViewPC;
 import view.customer.pc.BookPC;

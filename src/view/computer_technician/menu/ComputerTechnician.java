@@ -13,11 +13,8 @@ import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
 import view.auth.Login;
-<<<<<<< HEAD
 import view.computer_technician.TechnicianListJob;
-=======
 import view.computer_technician.ViewTechnicianJob;
->>>>>>> df8a17b483063562c2bf3e1b22cd3ea4a6899527
 
 public class ComputerTechnician {
 

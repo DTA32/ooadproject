@@ -38,6 +38,21 @@ public class PC {
 
     }
 
+    public static boolean getPCDetail(int pc_id){
+        Connect connect = Connect.getConnection();
+        String prepareSql = "SELECT * FROM pcs WHERE pc_id = ?";
+        try (PreparedStatement ps = connect.prepareStatement(prepareSql)) {
+            ps.setInt(1, pc_id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static void updatePCCondition(String pc_id, String pc_condition)
     {
         Connect connect = Connect.getConnection();

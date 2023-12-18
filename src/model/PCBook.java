@@ -58,6 +58,21 @@ public class PCBook
 
     //nanti tambahin 1 parameter baru user_id
 
+    public static boolean getPCBookedDetail(int pc_id){
+        Connect connect = Connect.getConnection();
+        String prepareSql = "SELECT * FROM pcbooks WHERE pc_id = ?";
+        try (PreparedStatement ps = connect.prepareStatement(prepareSql)) {
+            ps.setInt(1, pc_id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static boolean addNewBook(Integer pcid, LocalDate booked_date, Integer user_id) {
         Connect connect = Connect.getConnection();
 
@@ -77,6 +92,22 @@ public class PCBook
             return false;
         }
 
+    }
+
+    public static boolean assignUserToNewPc(int book_id, int newPc_id){
+        Connect connect = Connect.getConnection();
+
+        String prepareSql = "UPDATE pcbooks SET pc_id = ? WHERE book_id = ?";
+
+        try(PreparedStatement ps = connect.prepareStatement(prepareSql)) {
+            ps.setInt(1, newPc_id);
+            ps.setInt(2, book_id);
+            int getRows = ps.executeUpdate();
+            return getRows > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public static boolean isAvailablePC(Integer pcid, LocalDate booked_date) {
