@@ -52,6 +52,7 @@ public class Helper {
             Helper.setTempUser(null);
             Login login = Login.getInstance();
             login.show();
+            Helper.showAlert(AlertType.INFORMATION, "Successfully logged out!");
         });
         return logout;
     }

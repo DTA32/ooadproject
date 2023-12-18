@@ -27,7 +27,6 @@ public class PCBookController {
         }
 
         String pcStatus = PC.getPCStatus(pcid);
-        System.out.println("PC Status : " +pcStatus);
         if(pcStatus.equalsIgnoreCase("Broken") || pcStatus.equalsIgnoreCase("Maintenance")){
             Helper.showAlert(AlertType.ERROR, "PC is not available for booking currently due to "+ pcStatus +"!");
             return;
