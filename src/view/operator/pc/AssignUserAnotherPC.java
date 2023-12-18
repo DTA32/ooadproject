@@ -31,6 +31,7 @@ public class AssignUserAnotherPC {
         return assignuseranotherpc = assignuseranotherpc == null ? new AssignUserAnotherPC() : assignuseranotherpc;
     }
     public void show(){
+        _repaint();
         MainStage stage = MainStage.getInstance();
         stage.getStage().setScene(scene);
     }
@@ -124,11 +125,6 @@ public class AssignUserAnotherPC {
         pcIdNewLbl.setFont(Font.font("Arial", FontWeight.SEMI_BOLD, 16));
 
         pcList = new ComboBox<>();
-        ArrayList <PC> allPcData = getAllPcData();
-        for (PC pc : allPcData) {
-            pcList.getItems().add(pc.getPcid());
-        }
-        pcList.getSelectionModel().selectFirst();
 
         pcIdNewvB = new VBox(10);
         pcIdNewvB.getChildren().addAll(pcIdNewLbl, pcList);
@@ -175,6 +171,12 @@ public class AssignUserAnotherPC {
     }
 
     public void _repaint() {
+        pcList.getItems().clear();
+        ArrayList <PC> allPcData = getAllPcData();
+        for (PC pc : allPcData) {
+            pcList.getItems().add(pc.getPcid());
+        }
+        pcList.getSelectionModel().selectFirst();
         table.getItems().clear();
         ObservableList<PCBook> bookedPC = PCBook.getAllBookedPCs();
         table.setItems(bookedPC);

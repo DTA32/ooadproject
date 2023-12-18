@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
 import view.TemporaryMenu;
+import view.operator.menu.OperatorMenu;
 
 public class MakeReport {
     private static MakeReport makeReport;
@@ -24,7 +25,6 @@ public class MakeReport {
         _repaint();
     }
     public void _repaint(){
-        userRoleField.setText("");
         pcidField.setText("");
         reportNoteField.setText("");
     }
@@ -32,7 +32,6 @@ public class MakeReport {
     BorderPane bpOuter;
     FlowPane fp;
     VBox vbFields;
-    TextField userRoleField;
     TextField pcidField;
     TextArea reportNoteField;
     Button reportBtn;
@@ -56,8 +55,6 @@ public class MakeReport {
         backInit();
 
         titleInit();
-        // TODO: hapus field user role kalo udah ada view all pc
-        userRoleInit();
         pcidInit();
         reportNoteInit();
 
@@ -81,14 +78,6 @@ public class MakeReport {
         titleContainer.getChildren().add(title);
         titleContainer.setAlignment(Pos.CENTER);
         fp.getChildren().add(titleContainer);
-    }
-
-    void userRoleInit(){
-        Label userRoleLbl = new Label("User Role");
-        userRoleField = new TextField();
-        VBox userRoleContainer = new VBox();
-        userRoleContainer.getChildren().addAll(userRoleLbl, userRoleField);
-        vbFields.getChildren().add(userRoleContainer);
     }
 
     void pcidInit(){
@@ -117,12 +106,12 @@ public class MakeReport {
     void setupEventHandling(){
         reportBtn.setOnMouseClicked((e) ->  {
             ReportController controller = new ReportController();
-            String userRole = userRoleField.getText();
+            String role = Helper.getCurrentUser().getRole();
             int pcid = Integer.parseInt(pcidField.getText());
             String reportNote = reportNoteField.getText();
-            if(controller.AddNewReport(userRole, pcid, reportNote)){
-                TemporaryMenu temp = TemporaryMenu.getInstance();
-                temp.show();
+            if(controller.AddNewReport(role, pcid, reportNote)){
+                OperatorMenu operatorMenu = OperatorMenu.getInstance();
+                operatorMenu.show();
             } else {
                 Helper.showAlert(Alert.AlertType.ERROR, "Failed to make report!");
             }

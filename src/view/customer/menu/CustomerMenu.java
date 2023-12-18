@@ -80,7 +80,7 @@ public class CustomerMenu {
 
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
-                viewCustomerTransactionHistoryBtn, viewAllPCBtn
+                viewCustomerTransactionHistoryBtn, viewAllPCBtn, makeReportBtn
         );
         mainMenuVb.setSpacing(16);
 

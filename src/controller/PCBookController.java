@@ -82,7 +82,7 @@ public class PCBookController {
             Helper.showAlert(AlertType.ERROR, "PC is not available!");
             return false;
         }
-        // Check if pc is already bookmarked
+        // Check if pc is already booked
         if (PCBook.getPCBookedDetail(newPc_id)) {
             Helper.showAlert(AlertType.ERROR, "PC is already booked!");
             return false;
