@@ -13,11 +13,8 @@ import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
 import view.auth.Login;
-<<<<<<< HEAD
 import view.computer_technician.TechnicianListJob;
-=======
 import view.computer_technician.ViewTechnicianJob;
->>>>>>> df8a17b483063562c2bf3e1b22cd3ea4a6899527
 
 public class ComputerTechnician {
 
@@ -34,7 +31,7 @@ public class ComputerTechnician {
     VBox companyVb, titleDescVb, adminMenuVb;
     HBox mainMenuVb;
     Label companyLbl, titleLbl, descriptionLbl;
-    Button completeJobBtn, viewTechnicianJobBtn, logoutBtn;
+    Button completeJobBtn, viewTechnicianJobBtn;
 
     public ComputerTechnician() {
         initialize();
@@ -73,14 +70,12 @@ public class ComputerTechnician {
         viewTechnicianJobBtn = new Button("View Technician Job");
         viewTechnicianJobBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
-        logoutBtn = new Button("Logout");
-        logoutBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
+
 
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
                 completeJobBtn,
-                viewTechnicianJobBtn,
-                logoutBtn
+                viewTechnicianJobBtn
         );
         mainMenuVb.setSpacing(16);
 
@@ -101,12 +96,6 @@ public class ComputerTechnician {
         viewTechnicianJobBtn.setOnMouseClicked(e -> {
             ViewTechnicianJob viewTechnicianJob = ViewTechnicianJob.getInstance();
             viewTechnicianJob.show();
-        });
-        logoutBtn.setOnMouseClicked(e -> {
-            Helper.setUser(null);
-            Helper.setTempUser(null);
-            Login login = Login.getInstance();
-            login.show();
         });
     }
 

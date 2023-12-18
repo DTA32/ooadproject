@@ -32,7 +32,7 @@ public class OperatorMenu {
     VBox companyVb, titleDescVb, adminMenuVb;
     HBox mainMenuVb;
     Label companyLbl, titleLbl, descriptionLbl;
-    Button assignUserToAnotherPCBtn, makeReportBtn, bookedPcBtn, finishPcBtn, logoutBtn;
+    Button assignUserToAnotherPCBtn, makeReportBtn, bookedPcBtn, finishPcBtn;
 
     public OperatorMenu() {
         initialize();
@@ -77,16 +77,13 @@ public class OperatorMenu {
         finishPcBtn = new Button("Finish PC");
         finishPcBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
-        logoutBtn = new Button("Logout");
-        logoutBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
                 assignUserToAnotherPCBtn,
                 makeReportBtn,
                 bookedPcBtn,
-                finishPcBtn,
-                logoutBtn
+                finishPcBtn
         );
         mainMenuVb.setSpacing(16);
 
@@ -115,12 +112,6 @@ public class OperatorMenu {
         finishPcBtn.setOnMouseClicked(e -> {
             FinishPC finishPC = FinishPC.getInstance();
             finishPC.show();
-        });
-        logoutBtn.setOnMouseClicked(e -> {
-            Helper.setUser(null);
-            Helper.setTempUser(null);
-            Login login = Login.getInstance();
-            login.show();
         });
     }
 

@@ -12,7 +12,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
-import view.MakeReport;
 import view.auth.Login;
 import view.Admin.pc.ViewPC;
 import view.customer.pc.BookPC;
@@ -34,7 +33,7 @@ public class CustomerMenu {
     VBox companyVb, titleDescVb, adminMenuVb;
     HBox mainMenuVb;
     Label companyLbl, titleLbl, descriptionLbl;
-    Button makeReportBtn, bookPcBtn, viewCustomerTransactionHistoryBtn, viewAllPCBtn, logoutBtn;
+    Button makeReportBtn, viewCustomerTransactionHistoryBtn, viewAllPCBtn, logoutBtn;
 
     public CustomerMenu() {
         initialize();
@@ -73,9 +72,6 @@ public class CustomerMenu {
         viewCustomerTransactionHistoryBtn = new Button("View Transaction History");
         viewCustomerTransactionHistoryBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
-        bookPcBtn = new Button("Book PC");
-        bookPcBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
-
         viewAllPCBtn = new Button("View All PC");
         viewAllPCBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
@@ -84,7 +80,7 @@ public class CustomerMenu {
 
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
-                viewCustomerTransactionHistoryBtn, bookPcBtn, viewAllPCBtn, logoutBtn
+                viewCustomerTransactionHistoryBtn, viewAllPCBtn
         );
         mainMenuVb.setSpacing(16);
 
@@ -106,20 +102,10 @@ public class CustomerMenu {
             CustomerTransactionHistory customerTransactionHistory = CustomerTransactionHistory.getInstance();
             customerTransactionHistory.show();
         });
-        bookPcBtn.setOnMouseClicked(e -> {
-            BookPC bookPC = BookPC.getInstance();
-            bookPC.show();
-        });
 
         viewAllPCBtn.setOnMouseClicked(e -> {
             ViewPC viewPC = new ViewPC();
             viewPC.show();
-        });
-        logoutBtn.setOnMouseClicked(e -> {
-            Helper.setUser(null);
-            Helper.setTempUser(null);
-            Login login = Login.getInstance();
-            login.show();
         });
     }
 
