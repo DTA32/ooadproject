@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
-import view.customer.report.MakeReport;
+import view.operator.report.MakeReport;
 import view.auth.Login;
 import view.operator.pc.*;
 
@@ -35,6 +35,8 @@ public class OperatorMenu {
     Button assignUserToAnotherPCBtn;
     Button makeReportBtn;
     Button bookedPcBtn;
+
+    Button viewAllPcBtn;
 
     public OperatorMenu() {
         initialize();
@@ -76,6 +78,9 @@ public class OperatorMenu {
         bookedPcBtn = new Button("Booked PC");
         bookedPcBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
+        viewAllPcBtn = new Button("View All PC");
+        viewAllPcBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
+
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
                 assignUserToAnotherPCBtn,
@@ -86,7 +91,7 @@ public class OperatorMenu {
 
         adminMenuVb = new VBox();
         adminMenuVb.setAlignment(Pos.CENTER);
-        adminMenuVb.getChildren().addAll(titleDescVb, mainMenuVb, Helper.logoutRender());
+        adminMenuVb.getChildren().addAll(titleDescVb, mainMenuVb, viewAllPcBtn, Helper.logoutRender());
         adminMenuVb.setPadding(new Insets(64));
         adminMenuVb.setSpacing(16);
 
@@ -105,6 +110,10 @@ public class OperatorMenu {
         bookedPcBtn.setOnMouseClicked(e -> {
             BookedPC bookedPC = BookedPC.getInstance();
             bookedPC.show();
+        });
+        viewAllPcBtn.setOnMouseClicked(e -> {
+            ViewPC viewPC = ViewPC.getInstance();
+            viewPC.show();
         });
     }
 

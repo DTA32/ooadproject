@@ -13,11 +13,9 @@ import main.MainStage;
 import model.User;
 import view.Admin.job.JobManagement;
 import view.Admin.pc.PCManagement;
-import view.Admin.pc.ViewPC;
 import view.Admin.report.ViewAllReport;
 import view.Admin.staff.ViewAllStaffs;
 import view.Admin.transaction.TransactionHistory;
-import view.auth.Login;
 
 public class AdminMenu {
 
@@ -34,7 +32,7 @@ public class AdminMenu {
     VBox companyVb, titleDescVb, adminMenuVb;
     HBox mainMenuVb;
     Label companyLbl, titleLbl, descriptionLbl;
-    Button crud_pcBtn, viewAllStaffJobBtn, viewAllReportBtn, viewAllStaffBtn, viewAllTransactionHistoryBtn, viewAllPCBtn;
+    Button crud_pcBtn, viewAllStaffJobBtn, viewAllReportBtn, viewAllStaffBtn, viewAllTransactionHistoryBtn;
 
     public AdminMenu() {
         initialize();
@@ -73,9 +71,6 @@ public class AdminMenu {
         viewAllStaffJobBtn = new Button("Job Management");
         viewAllStaffJobBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
-        viewAllPCBtn = new Button("View All PC");
-        viewAllPCBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
-
         viewAllReportBtn = new Button("View All Report");
         viewAllReportBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
@@ -88,7 +83,7 @@ public class AdminMenu {
 
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
-                crud_pcBtn, viewAllPCBtn,viewAllStaffJobBtn, viewAllReportBtn,
+                crud_pcBtn, viewAllStaffJobBtn, viewAllReportBtn,
                 viewAllStaffBtn, viewAllTransactionHistoryBtn
         );
         mainMenuVb.setSpacing(16);
@@ -118,10 +113,6 @@ public class AdminMenu {
         viewAllReportBtn.setOnMouseClicked(e -> {
             ViewAllReport report = ViewAllReport.getInstance();
             report.show();
-        });
-        viewAllPCBtn.setOnMouseClicked(e -> {
-            ViewPC viewPC = ViewPC.getInstance();
-            viewPC.show();
         });
         viewAllTransactionHistoryBtn.setOnMouseClicked(e -> {
             TransactionHistory transactionHistory = TransactionHistory.getInstance();

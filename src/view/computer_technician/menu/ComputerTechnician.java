@@ -13,6 +13,7 @@ import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.User;
 import view.computer_technician.TechnicianListJob;
+import view.computer_technician.ViewPC;
 
 public class ComputerTechnician {
 
@@ -29,7 +30,7 @@ public class ComputerTechnician {
     VBox companyVb, titleDescVb, adminMenuVb;
     HBox mainMenuVb;
     Label companyLbl, titleLbl, descriptionLbl;
-    Button completeJobBtn;
+    Button completeJobBtn, viewAllPcBtn;
 
     public ComputerTechnician() {
         initialize();
@@ -65,9 +66,12 @@ public class ComputerTechnician {
         completeJobBtn = new Button("View Job");
         completeJobBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
 
+        viewAllPcBtn = new Button("View All PC");
+        viewAllPcBtn.setFont(Font.font("Arial", FontWeight.MEDIUM, 16));
+
         mainMenuVb.setAlignment(Pos.CENTER);
         mainMenuVb.getChildren().addAll(
-                completeJobBtn
+                completeJobBtn, viewAllPcBtn
         );
         mainMenuVb.setSpacing(16);
 
@@ -84,6 +88,10 @@ public class ComputerTechnician {
         completeJobBtn.setOnMouseClicked(e -> {
             TechnicianListJob technicianListJob = TechnicianListJob.getInstance();
             technicianListJob.show();
+        });
+        viewAllPcBtn.setOnMouseClicked(e->{
+            ViewPC viewPC = ViewPC.getInstance();
+            viewPC.show();
         });
     }
 

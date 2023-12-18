@@ -25,7 +25,7 @@ public class TransactionHistoryHeaderModel {
 				transactionHistoryDetailModels.add(new TransactionHistoryDetailModel(
 						rs.getString("booked_time"),
 						rs.getInt("transaction_id"),
-						rs.getInt("customer_name"),
+						rs.getInt("user_id"),
 						rs.getInt("pc_id")
 				));
 			}

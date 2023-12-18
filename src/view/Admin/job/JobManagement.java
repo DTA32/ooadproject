@@ -17,12 +17,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.Job;
-<<<<<<< HEAD
-import model.PC;
 import model.Report;
 import model.User;
-=======
->>>>>>> 248c39ac8a4aa10f41f0843b9a3f098f31919a58
 import view.Admin.menu.AdminMenu;
 
 import java.util.ArrayList;

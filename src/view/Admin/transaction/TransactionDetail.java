@@ -24,8 +24,15 @@ public class TransactionDetail {
         return transactionDetail = transactionDetail == null ? new TransactionDetail() : transactionDetail;
     }
     public void show(){
+        _repaint();
         MainStage stage = MainStage.getInstance();
         stage.getStage().setScene(scene);
+    }
+
+    void _repaint(){
+        table.getItems().clear();
+        ArrayList<TransactionHistoryDetailModel> transactions = TransactionController.getAllTransactionDetail(Helper.getTransactionHistoryHeaderModel().getTransactionID());
+        table.getItems().addAll(transactions);
     }
     Scene scene;
     Label title;
@@ -86,10 +93,7 @@ public class TransactionDetail {
         bookedTimeCol.setCellValueFactory(new PropertyValueFactory<>("transactionDetailID"));
         bookedTimeCol.setMinWidth(250);
 
-        ArrayList<TransactionHistoryDetailModel> transactions = TransactionController.getAllTransactionDetail(Helper.getTransactionHistoryHeaderModel().getTransactionID());
-
         table.getColumns().addAll(transactionIDCol, userIDCol, pcIDCol, bookedTimeCol);
-        table.getItems().addAll(transactions);
 
         transactionHistoryVb.getChildren().add(table);
         transactionHistoryVb.setAlignment(Pos.CENTER);

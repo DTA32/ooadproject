@@ -1,4 +1,4 @@
-package view.Admin.pc;
+package view.operator.pc;
 
 import helper.Helper;
 import javafx.collections.ObservableList;

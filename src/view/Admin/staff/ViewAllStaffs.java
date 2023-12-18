@@ -39,8 +39,15 @@ public class ViewAllStaffs {
 
 
     public void show(){
+        _repaint();
         MainStage stage = MainStage.getInstance();
         stage.getStage().setScene(scene);
+    }
+
+    void _repaint(){
+        tableView.getItems().clear();
+        ArrayList <User> userList = getAllStaffs();
+        tableView.getItems().addAll(userList);
     }
 
     public ArrayList<User> getAllStaffs(){
@@ -110,9 +117,6 @@ public class ViewAllStaffs {
 
         tableView.getColumns().addAll(userNameColumn, roleColumn, actionColumn);
         tableView.setPlaceholder(new Label("No Staffs Found"));
-
-        ArrayList <User> userList = getAllStaffs();
-        tableView.getItems().addAll(userList);
 
         viewAllStaffVb = new VBox(10);
         viewAllStaffVb.getChildren().addAll(titleLbl, tableView);

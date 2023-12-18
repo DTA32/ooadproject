@@ -45,7 +45,7 @@ public class ChangeRoleStaff {
         changeRoleLbl.setFont(Font.font("Arial", FontWeight.SEMI_BOLD, 16));
 
         roleList = new ComboBox<String>();
-        roleList.getItems().addAll(  "operator", "technician");
+        roleList.getItems().addAll(  "admin", "operator", "technician");
         roleList.getSelectionModel().select(user.getRole());
 
         hb2 = new HBox();
