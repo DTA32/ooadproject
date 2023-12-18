@@ -15,9 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.Job;
-import model.PC;
 import view.Admin.menu.AdminMenu;
-import view.TemporaryMenu;
 
 import java.util.ArrayList;
 

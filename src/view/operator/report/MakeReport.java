@@ -11,7 +11,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
-import view.TemporaryMenu;
 import view.operator.menu.OperatorMenu;
 
 public class MakeReport {
@@ -106,19 +105,19 @@ public class MakeReport {
     void setupEventHandling(){
         reportBtn.setOnMouseClicked((e) ->  {
             ReportController controller = new ReportController();
-            String role = Helper.getCurrentUser().getRole();
+            String userRole = Helper.getCurrentUser().getRole();
             int pcid = Integer.parseInt(pcidField.getText());
             String reportNote = reportNoteField.getText();
-            if(controller.AddNewReport(role, pcid, reportNote)){
-                OperatorMenu operatorMenu = OperatorMenu.getInstance();
-                operatorMenu.show();
+            if(controller.AddNewReport(userRole, pcid, reportNote)){
+                OperatorMenu operatorMenuMenu = OperatorMenu.getInstance();
+                operatorMenuMenu.show();
             } else {
                 Helper.showAlert(Alert.AlertType.ERROR, "Failed to make report!");
             }
         });
         back.setOnMouseClicked(e -> {
-            TemporaryMenu temp = TemporaryMenu.getInstance();
-            temp.show();
+            OperatorMenu operatorMenu = OperatorMenu.getInstance();
+            operatorMenu.show();
         });
     }
 }

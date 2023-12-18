@@ -1,7 +1,6 @@
 package view.auth;
 
 import controller.UserController;
-import helper.Helper;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -11,7 +10,6 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
-import view.TemporaryMenu;
 
 public class Register {
     private static Register register;

@@ -1,32 +1,23 @@
 package view.computer_technician;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import controller.JobController;
-import database.Connect;
 import helper.Helper;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.FontWeight;
 import main.MainStage;
 import model.Job;
 import model.TechnicianListJobModel;
-import controller.TechnicianListJobController;
-import view.TemporaryMenu;
 import view.computer_technician.menu.ComputerTechnician;
 
 public class TechnicianListJob{

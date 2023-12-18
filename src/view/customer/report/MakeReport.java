@@ -11,9 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.MainStage;
-import view.TemporaryMenu;
 import view.customer.menu.CustomerMenu;
-import view.operator.menu.OperatorMenu;
 
 public class MakeReport {
     private static MakeReport makeReport;
@@ -118,8 +116,8 @@ public class MakeReport {
             }
         });
         back.setOnMouseClicked(e -> {
-            OperatorMenu operatorMenu = OperatorMenu.getInstance();
-            operatorMenu.show();
+            CustomerMenu customerMenuMenu = CustomerMenu.getInstance();
+            customerMenuMenu.show();
         });
     }
 }

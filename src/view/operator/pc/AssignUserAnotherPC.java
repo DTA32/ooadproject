@@ -2,11 +2,8 @@ package view.operator.pc;
 
 import controller.PCBookController;
 import controller.PCController;
-import helper.Helper;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,16 +11,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import main.MainStage;
-import model.Job;
 import model.PC;
 import model.PCBook;
-import view.TemporaryMenu;
 import view.operator.menu.OperatorMenu;
 
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
 
 public class AssignUserAnotherPC {
     private static AssignUserAnotherPC assignuseranotherpc;

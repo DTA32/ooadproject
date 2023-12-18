@@ -5,7 +5,6 @@ module OOADProject {
     opens main;
     opens model;
     opens controller;
-    opens view;
     opens view.auth;
     opens view.Admin.menu;
     opens view.Admin.pc;

@@ -8,12 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Pos;
 import main.MainStage;
-import model.PC;
 
 import java.time.LocalDate;
 
-import model.PCBook;
-import view.TemporaryMenu;
 import view.customer.menu.CustomerMenu;
 
 public class BookPC {
